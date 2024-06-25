@@ -7,7 +7,8 @@ class FS
 public:
     template <typename T>
     bool write(string path, T item);
-   // rapid<T>
+    template <typename T>
+    rapid<T> read(string path);
 
 private:
 };
@@ -31,3 +32,22 @@ inline bool FS::write(string path, T item)
     return isOk;
 }
 
+template <typename T>
+inline rapid<T> FS::read(string path)
+{
+    rapid<T> arr;
+    ifstream fin;
+    fin.open(path);
+    if (fin.is_open())
+    {
+        T item;
+        while (fin.read((char *)&item, sizeof(T)))
+        {
+            arr.backForce(1);
+            arr.push(item);
+            arr.norm();
+        }
+    }
+    fin.close();
+    return arr;
+}

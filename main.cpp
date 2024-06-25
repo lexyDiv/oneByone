@@ -4,12 +4,12 @@
 
 class WayPoint
 {
-    public:
+public:
     WayPoint(){};
     WayPoint(int x, int y)
     {
-         this->x = x;
-         this->y = y;
+        this->x = x;
+        this->y = y;
     }
     int x;
     int y;
@@ -17,7 +17,7 @@ class WayPoint
 
 class WayPointContainer
 {
-    public:
+public:
     int length = 0;
     WayPoint *arr[1000];
     void add(WayPoint *wPoint)
@@ -27,12 +27,10 @@ class WayPointContainer
     }
 };
 
- WayPointContainer wayPointContainer;
+WayPointContainer wayPointContainer;
 
- WayPoint* wPoint = new WayPoint(10, 10);
-
-
-
+WayPoint *wPoint = new WayPoint(10, 10);
+WayPoint *wPoint2 = new WayPoint(100, 100);
 
 int main()
 {
@@ -42,43 +40,14 @@ int main()
 
     ///////////////////////////////////
 
-   // fs.write("levels/level1.txt", wPoint);
-
-    // ofstream fout;
-    // fout.open("levels/level1.txt", ofstream::app);
-    // if(fout.is_open())
-    // {
-    //     console.log("file is open!");
-    //     fout.write((char*)wPoint, sizeof(WayPoint));
-    // }
-    // else
-    // {
-    //     console.log("error!");
-    // }
-    // fout.close();
+    //  fs.write("levels/level1.txt", wPoint2);
 
 
-    ifstream fin;
-    fin.open("levels/level1.txt");
-    if(fin.is_open())
-    {
-        console.log("file is open");
-        WayPoint pnt;
-        while (fin.read((char*)&pnt, sizeof(WayPoint)))
-        {
-            /* code */
-        }
-        WayPoint* pnt2 = new WayPoint(pnt.x, pnt.y);
-        console.log("x = " + to_string(pnt2->x));
-    }
-    else
-    {
-        console.log("error!");
-    }
-    fin.close();
-    ///////////////////////////
+    // rapid<WayPoint> arr = fs.read<WayPoint>("levels/level1.txt");
+    // arr.forEach([](WayPoint el, int i)
+    //             { console.log("i = " + to_string(i) + " x = " + to_string(el.x)); });
 
-    
+
 
     while (!quit)
     {
@@ -119,7 +88,7 @@ int main()
 
         // ctx.ClearRect(0, 0, 800, 600);
 
-       // console.log("Is worcking !!!");
+        // console.log("Is worcking !!!");
 
         ctx.CreateDrawZone(0, 0, 800, 600);
         ctx.FillRect(0, 0, 800, 600, "white");
