@@ -20,19 +20,60 @@ class WayPointContainer
 {
 public:
     int length = 0;
+    WayPointContainer(){};
     rapid<WayPoint *> *arr = new rapid<WayPoint *>;
+
+    void add(WayPoint* pnt)
+    {
+        this->arr->backForce(1);
+        this->arr->push(pnt);
+        this->arr->norm();
+    }
+
+    void add(WayPoint &pnt)
+    {
+        WayPoint* newPnt = new WayPoint(pnt.x, pnt.y);
+        this->arr->backForce(1);
+        this->arr->push(newPnt);
+        this->arr->norm();
+        newPnt = nullptr;
+    }
+
+    void update(rapid<WayPoint> &arr)
+    {
+        this->arr->backForce(arr.getLength());
+        for (int i = 0; i < arr.getLength(); i++)
+        {
+            this->add(arr.getItem(i));
+        }
+        this->arr->norm();
+    }
 
     void draw()
     {
         this->arr->forEach([](WayPoint *el)
                            { ctx.FillRect(el->x, el->y, 5, 5); });
     };
+
+    ~WayPointContainer()
+    {
+        this->arr->forEach([](WayPoint *el)
+                           {
+        delete el;
+        el = nullptr; });
+        delete this->arr;
+        this->arr = nullptr;
+        printf(" delete arr !!!");
+    }
 };
 
-WayPointContainer *wayPointContainer;
+WayPointContainer *wpc = new WayPointContainer();
 
-WayPoint *wPoint = new WayPoint(10, 10);
-WayPoint *wPoint2 = new WayPoint(100, 100);
+// WayPoint *wPoint = new WayPoint(10, 10);
+// WayPoint *wPoint2 = new WayPoint(100, 100);
+
+WayPoint wPoint(10, 10);
+WayPoint wPoint2(100, 100);
 
 int main()
 {
@@ -44,10 +85,17 @@ int main()
     //   fs.write("levels/level1.txt", wPoint);
     //   fs.write("levels/level1.txt", wPoint2);
 
-    rapid<WayPoint> arr = fs.read<WayPoint>("levels/level1.txt");
+    rapid<WayPoint> arr = fs.read<WayPoint>("levels/level1.txt", sizeof(WayPoint));
 
     arr.forEach([](WayPoint el, int i)
-                { console.log(" x = " + to_string(el.x)); });
+                {
+                     console.log(" x = " + to_string(el.x));
+                    // wpc->add(el);
+                      });
+     // wpc->add(wPoint);
+     // wpc->add(wPoint2);
+    wpc->update(arr);
+
 
     rapid<WayPoint *> *saveArr = new rapid<WayPoint *>;
     saveArr->backForce(30);
@@ -106,18 +154,21 @@ int main()
                     saveArr->norm();
                     saveArr->forEach([](WayPoint *pnt)
                                      {
-                        ofstream fout;
-    fout.open("levels/level1.txt", ofstream::app);
-    if (fout.is_open())
-    {
-        fout.write((char *)pnt, sizeof(WayPoint));
-        console.log("write");
-    }
-    else
-    {
-        console.log("fuck u");
-    }
-    fout.close(); });
+                                         //  write("levels/level1.txt", pnt, sizeof(WayPoint));
+                                         fs.write("levels/level1.txt", pnt, sizeof(WayPoint));
+                                         //                     ofstream fout;
+                                         // fout.open("levels/level1.txt", ofstream::app);
+                                         // if (fout.is_open())
+                                         // {
+                                         //     fout.write((char *)pnt, sizeof(WayPoint));
+                                         //     console.log("write");
+                                         // }
+                                         // else
+                                         // {
+                                         //     console.log("fuck u");
+                                         // }
+                                         // fout.close();
+                                     });
                 }
             }
             if (e.type == SDL_MOUSEMOTION)
@@ -156,7 +207,7 @@ int main()
 
         ctx.CreateDrawZone(0, 0, 800, 600);
         ctx.FillRect(0, 0, 800, 600, "white");
-        // wayPointContainer->
+        wpc->draw();
 
         console.draw();
         ctx.End();
@@ -171,6 +222,8 @@ int main()
         el = nullptr; });
     delete saveArr;
     saveArr = nullptr;
+    delete wpc;
+    wpc = nullptr;
 
     return 0;
 }
