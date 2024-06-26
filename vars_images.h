@@ -1,5 +1,5 @@
 #pragma once
 
- #include "union/FS/FS.cpp"
+#include "body/Game/Game.cpp"
 
- Image * test = new Image("src/zombi.png");
+Image *test = new Image("src/zombi.png");

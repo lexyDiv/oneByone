@@ -15,6 +15,7 @@
 #include <cmath>
 #include <cstring>
 #include <fstream>
+#include <list>
 
 #include <SDL.h>
 #include <SDL_image.h>

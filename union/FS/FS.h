@@ -23,7 +23,6 @@ inline bool FS::write(string path, T item, size_t size)
     {
         fout.write((char *)item, size);
         isOk = true;
-        console.log("write");
     }
     else
     {
