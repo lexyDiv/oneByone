@@ -34,8 +34,6 @@ public:
 		return this->arr[index];
 	};
 
-
-
 	class too
 	{
 	public:
@@ -61,9 +59,7 @@ private:
 };
 
 template <typename T>
-inline rapid<T>::rapid()
-{
-};
+inline rapid<T>::rapid(){};
 
 template <typename T>
 inline rapid<T>::~rapid()
@@ -225,9 +221,12 @@ inline T rapid<T>::max(function<int(T item)> fn)
 template <typename T>
 inline void rapid<T>::forEach(function<void(T item)> fn)
 {
-	for (int i = 0; i < this->length; i++)
+	if (this->length)
 	{
-		fn(this->arr[i]);
+		for (int i = 0; i < this->length; i++)
+		{
+			fn(this->arr[i]);
+		}
 	}
 }
 
@@ -247,16 +246,16 @@ inline int rapid<T>::indexOf(T item)
 template <typename T>
 inline int rapid<T>::getLength()
 {
-    return this->length;
+	return this->length;
 }
 
 template <typename T>
-inline void rapid<T>::clear() {
+inline void rapid<T>::clear()
+{
 	this->length = 0;
 	this->norm();
 	this->left = 0;
 	this->right = 0;
- 
 };
 
 template <typename T>

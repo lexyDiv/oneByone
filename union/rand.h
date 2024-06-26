@@ -14,6 +14,7 @@
 #include <string>
 #include <cmath>
 #include <cstring>
+#include <fstream>
 
 #include <SDL.h>
 #include <SDL_image.h>
