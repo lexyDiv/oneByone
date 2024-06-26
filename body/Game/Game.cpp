@@ -2,4 +2,7 @@
 
 Game::Game()
 {
+}
+Game::~Game(){
+    
 };
