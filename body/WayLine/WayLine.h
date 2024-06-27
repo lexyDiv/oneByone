@@ -7,7 +7,6 @@ class WayPoint
 public:
     int x;
     int y;
-    float disToRight;
     WayPoint(){};
     WayPoint(int x, int y)
     {
@@ -22,6 +21,7 @@ public:
     WayPoint *wayPoint;
     Container *left = nullptr;
     Container *right = nullptr;
+    float disToRight;
 
     Container(WayPoint *wayPoint)
     {
