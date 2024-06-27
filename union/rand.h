@@ -33,3 +33,31 @@ int intRand(int start, int finish)
    // printf(ret.c_str());
     return random_number; // random_number;
 };
+
+
+struct PointF
+{
+    float x;
+    float y;
+    PointF(float x, float y)
+    {
+        this->x = x;
+        this->y = y;
+    }
+};
+
+float getDis(PointF a, PointF b)
+{
+    float dX = a.x - b.x;
+    float dY = a.y - b.y;
+    float c = sqrt(dX * dX + dY * dY);
+    return c;
+};
+
+float getDis(PointF &a, PointF &b)
+{
+    float dX = a.x - b.x;
+    float dY = a.y - b.y;
+    float c = sqrt(dX * dX + dY * dY);
+    return c;
+};
