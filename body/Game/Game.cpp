@@ -1,4 +1,6 @@
-#include "Game.h"
+#include "Game.prog.cpp"
+
+
 
 Game::Game()
 {

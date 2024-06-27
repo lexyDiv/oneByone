@@ -3,7 +3,7 @@
 int main()
 {
 
-    // WayLine *wayLine = new WayLine();
+     
     // rapid<WayPoint> testArr = fs.read<WayPoint>("levels/level1.txt", sizeof(WayPoint));
     // wayLine->update(testArr);
 
@@ -24,12 +24,13 @@ int main()
     {
         listenner(e, quit);
         console.proc(mouse.x, mouse.y, mouse.leftKey);
-
+        //game.prog();
      
 
         ctx.CreateDrawZone(0, 0, 800, 600);
         ctx.FillRect(0, 0, 800, 600, "white");
-       // wayLine->drawPoints();
+       // game.draw();
+        wayLine->drawPoints();
 
         console.draw();
         ctx.End();
