@@ -26,6 +26,7 @@ int main()
         console.proc(mouse.x, mouse.y, mouse.leftKey);
         game.prog();
      
+     
 
         ctx.CreateDrawZone(0, 0, 800, 600);
         ctx.FillRect(0, 0, 800, 600, "white");
