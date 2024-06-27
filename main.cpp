@@ -24,13 +24,13 @@ int main()
     {
         listenner(e, quit);
         console.proc(mouse.x, mouse.y, mouse.leftKey);
-        //game.prog();
+        game.prog();
      
 
         ctx.CreateDrawZone(0, 0, 800, 600);
         ctx.FillRect(0, 0, 800, 600, "white");
-       // game.draw();
-        wayLine->drawPoints();
+        game.draw();
+       // wayLine->drawPoints();
 
         console.draw();
         ctx.End();
