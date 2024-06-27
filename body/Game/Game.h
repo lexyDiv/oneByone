@@ -6,8 +6,11 @@ class Game
 {
     public:
     int level = 1;
-    string path = "level" + this->level;
+    string path = "levels/level" + to_string(this->level) + ".txt";
     WayLine* wayLine = new WayLine();
+
+    void prog();
+    void draw();
 
     Game();
     ~Game();
