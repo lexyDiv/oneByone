@@ -19,11 +19,3 @@ void Roll::draw()
     ctx.FillRect(this->cX, this->cY, 3, 3, "yellow");
 };
 
-class RollGroup
-{
-    public:
-    rapid<Roll*>* arr = new rapid<Roll*>;
-    int speed = 0;
-    Roll* head = nullptr;
-    Roll* tale = nullptr;
-};

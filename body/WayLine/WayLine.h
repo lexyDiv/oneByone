@@ -7,6 +7,7 @@ class WayPoint
 public:
     int x;
     int y;
+    float disToRight;
     WayPoint(){};
     WayPoint(int x, int y)
     {
@@ -39,6 +40,7 @@ public:
     Container *getItem(int index, Container *cont);
 
     void update(rapid<WayPoint> &arr);
+    void getAllDists();
     void push(WayPoint *wayPoint);
     void unshift(WayPoint *wayPoint);
     void drawPoints();

@@ -21,3 +21,11 @@ public:
     void draw();
 };
 
+class RollGroup
+{
+    public:
+    rapid<Roll*>* arr = new rapid<Roll*>;
+    int speed = 0;
+    Roll* head = nullptr;
+    Roll* tale = nullptr;
+};

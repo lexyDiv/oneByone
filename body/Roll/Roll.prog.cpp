@@ -2,5 +2,5 @@
 
 void Roll::prog()
 {
-   // int speed = this->group->speed;
+    int speed = this->group->speed;
 }
