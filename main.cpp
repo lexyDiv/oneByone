@@ -28,10 +28,11 @@ int main()
      
      
 
-        ctx.CreateDrawZone(0, 0, 800, 600);
-        ctx.FillRect(0, 0, 800, 600, "white");
+        ctx.CreateDrawZone(0, 0, 1280, 800);
+        ctx.FillRect(0, 0, 1280, 800, "white");
         game.draw();
        // wayLine->drawPoints();
+      
 
         console.draw();
         ctx.End();
