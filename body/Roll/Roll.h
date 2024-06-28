@@ -31,6 +31,8 @@ public:
     float liner = 2 * M_PI * ((this->diameter / 2) - 1);
     int mid = this->diameter / 2;
     double conor = 0;
+    int rotation = 1;
+    int vector = 1;
     int speed;
     bool impulse = false;
     int animX = 0;
@@ -43,6 +45,7 @@ public:
     void prog();
     void impulseProg();
     void getWayLength();
+    void getRotation();
     void updateConor();
     void move();
     void draw();

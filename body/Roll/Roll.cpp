@@ -43,25 +43,42 @@ void Roll::getWayLength()
     this->way = getDis(delta);
 }
 
+void Roll::getRotation()
+{
+    if (this->vector)
+    {
+        WayPoint *next = this->rightCont->wayPoint;
+        WayPoint *prev = this->leftCont->wayPoint;
+        if (next->x > prev->x)
+        {
+            this->rotation = 1;
+        }
+        else
+        {
+            this->rotation = -1;
+        }
+    }
+}
+
 void Roll::updateConor()
 {
+    this->getRotation();
+
     double deltaConor = (this->way * 360) / this->liner;
-    this->conor += deltaConor;
+    this->conor += deltaConor * this->rotation;
 
     double moveConorRad = this->rightCont->getConorToRight();
     float toDeg = moveConorRad * 180 / M_PI;
-   // console.log("deg = " + to_string(toDeg));
-   
+    // console.log("deg = " + to_string(toDeg));
+
     if (this->conor >= 360)
     {
         this->conor = this->conor - 360;
     }
-    else if(this->conor <=0)
+    else if (this->conor <= 0)
     {
         this->conor = 360 - this->conor;
     }
-
-
 };
 
 void Roll::move()
