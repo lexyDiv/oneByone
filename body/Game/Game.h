@@ -9,6 +9,9 @@ class Game
     string path = "levels/level" + to_string(this->level) + ".txt";
     WayLine* wayLine = new WayLine();
 
+    rapid<Roll*>* rolls = new rapid<Roll*>;
+    Roll* impulseRoll = nullptr;
+
     void prog();
     void draw();
 

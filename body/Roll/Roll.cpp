@@ -14,7 +14,7 @@ Roll::Roll(int type, float cX, float cY)
     this->y = this->cY - this->mid;
     if (this->type == 1)
     {
-        this->image = new Image("src/roll5");
+        this->image = new Image("src/roll5.png");
     }
 }
 

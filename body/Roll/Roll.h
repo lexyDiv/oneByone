@@ -23,6 +23,8 @@ public:
     int radius = 50;
     int mid = this->radius / 2;
     double conor = 0;
+    int speed;
+    bool impulse = false;
     int animX = 0;
     int animY = 0;
     int animW = 213;
