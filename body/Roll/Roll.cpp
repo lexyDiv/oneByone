@@ -37,3 +37,9 @@ void Roll::draw()
 
     ctx.FillRect(this->cX, this->cY, 3, 3, "green");
 }
+
+void Roll::move()
+{
+    this->x = this->cX - this->mid;
+    this->y = this->cY - this->mid;
+}

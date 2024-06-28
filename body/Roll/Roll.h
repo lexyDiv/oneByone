@@ -7,10 +7,12 @@ Image* roll5 = new Image("src/roll5.png");
 
 
 class RollTypeGroup;
+class Game;
 
 class Roll
 {
 public:
+    Game* game = nullptr;
     Roll *leftRoll = nullptr;
     Roll *rightRoll = nullptr;
     Container *leftCont = nullptr;
@@ -37,7 +39,8 @@ public:
     Roll(int type, float cX, float cY);
 
     void prog();
-    void impulseProg(int speed);
+    void impulseProg();
+    void move();
     void draw();
 
 private:

@@ -3,7 +3,6 @@
 int main()
 {
 
-     
     // rapid<WayPoint> testArr = fs.read<WayPoint>("levels/level1.txt", sizeof(WayPoint));
     // wayLine->update(testArr);
 
@@ -24,15 +23,12 @@ int main()
     {
         listenner(e, quit);
         console.proc(mouse.x, mouse.y, mouse.leftKey);
-        game.prog();
-     
-     
+        game->prog();
 
         ctx.CreateDrawZone(0, 0, 1280, 800);
         ctx.FillRect(0, 0, 1280, 800, "white");
-        game.draw();
-       // wayLine->drawPoints();
-      
+        game->draw();
+        // wayLine->drawPoints();
 
         console.draw();
         ctx.End();
@@ -41,8 +37,8 @@ int main()
     ctx.Close();
     delete test;
     test = nullptr;
-    // delete wayLine;
-    // wayLine = nullptr;
+    delete game;
+    game = nullptr;
 
     return 0;
 }

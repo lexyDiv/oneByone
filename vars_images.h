@@ -6,4 +6,4 @@ Image *test = new Image("src/zombi.png");
 
 
 
-Game game;
+Game* game = new Game;

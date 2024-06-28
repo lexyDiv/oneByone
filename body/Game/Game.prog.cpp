@@ -1,5 +1,7 @@
 #include "Game.h"
 
+#include "../Roll/Roll.impulseProg.cpp"
+
 void Game::prog()
 {
     if (!this->wayLine->getLength())
@@ -8,7 +10,8 @@ void Game::prog()
         this->wayLine->update(arr);
     }
     this->impulseRollCreate();
-    this->impulseRoll->impulseProg(this->speed);
+    this->impulseRoll->impulseProg();
+    
 }
 
 void Game::impulseRollCreate()
@@ -25,6 +28,7 @@ void Game::impulseRollCreate()
         this->rolls->norm();
         newRoll->leftCont = head;
         newRoll->rightCont = head->right;
+        newRoll->game = this;
         newRoll = nullptr;
         head = nullptr;
     }
