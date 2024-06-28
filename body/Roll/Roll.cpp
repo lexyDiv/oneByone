@@ -1,4 +1,9 @@
 #include "Roll.prog.cpp"
+#include "Roll.h"
+
+Roll::Roll()
+{
+};
 
 Roll::Roll(int type, float cX, float cY)
 {
@@ -9,7 +14,8 @@ Roll::Roll(int type, float cX, float cY)
     {
         this->image = new Image("src/roll5");
     }
-};
+}
+
 
 Image *Roll::getImage()
 {
