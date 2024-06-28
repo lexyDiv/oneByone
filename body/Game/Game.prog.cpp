@@ -8,6 +8,7 @@ void Game::prog()
         this->wayLine->update(arr);
     }
     this->impulseRollCreate();
+    this->impulseRoll->impulseProg(this->speed);
 }
 
 void Game::impulseRollCreate()

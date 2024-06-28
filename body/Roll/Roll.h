@@ -37,6 +37,7 @@ public:
     Roll(int type, float cX, float cY);
 
     void prog();
+    void impulseProg(int speed);
     void draw();
 
 private:
