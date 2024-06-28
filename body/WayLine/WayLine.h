@@ -21,11 +21,20 @@ public:
     WayPoint *wayPoint;
     Container *left = nullptr;
     Container *right = nullptr;
+    double getConorToRight();
+    void setConorToRight(double conor);
+    double getConorToLeft();
+    void setConorToLeft(double conor);
+
 
     Container(WayPoint *wayPoint)
     {
         this->wayPoint = wayPoint;
     }
+
+private:
+    double conorToRight;
+    double conorToLeft;
 };
 
 class WayLine
@@ -39,6 +48,7 @@ public:
     Container *getItem(int index, Container *cont);
 
     void update(rapid<WayPoint> &arr);
+    void getAllConors();
     void push(WayPoint *wayPoint);
     void unshift(WayPoint *wayPoint);
     void drawPoints();
