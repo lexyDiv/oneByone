@@ -13,6 +13,7 @@ class Game
     Roll* impulseRoll = nullptr;
 
     void prog();
+    void impulseRollCreate();
     void draw();
 
     Game();

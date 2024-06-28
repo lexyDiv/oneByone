@@ -2,6 +2,10 @@
 
 #include "../WayLine/WayLine.cpp"
 
+
+Image* roll5 = new Image("src/roll5.png");
+
+
 class RollTypeGroup;
 
 class Roll
