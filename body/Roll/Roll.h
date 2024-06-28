@@ -26,8 +26,10 @@ public:
     int y;
     float prevCx;
     float prevCy;
-    int radius = 50;
-    int mid = this->radius / 2;
+    float way;
+    int diameter = 50;
+    float liner = 2 * M_PI * ((this->diameter / 2) - 1);
+    int mid = this->diameter / 2;
     double conor = 0;
     int speed;
     bool impulse = false;
@@ -40,6 +42,8 @@ public:
 
     void prog();
     void impulseProg();
+    void getWayLength();
+    void updateConor();
     void move();
     void draw();
 

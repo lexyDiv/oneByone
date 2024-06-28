@@ -6,7 +6,7 @@ class Game
 {
     public:
     int level = 1;
-    int speed = 3;
+    int speed = 4;
     string path = "levels/level" + to_string(this->level) + ".txt";
     WayLine* wayLine = new WayLine();
 
