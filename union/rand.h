@@ -25,6 +25,8 @@
 // #include <SDL/SDL.h>
 // #include <SDL/SDL_image.h>
 
+#include "../test/cell.cpp"
+
 
 int intRand(int start, int finish)
 {
