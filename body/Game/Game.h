@@ -1,6 +1,6 @@
 #pragma once
 
- #include "../WayLine/WayLine.cpp"
+#include "../WayLine/WayLine.cpp"
 
 class Game
 {

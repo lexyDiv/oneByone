@@ -31,6 +31,11 @@ public:
     {
         this->wayPoint = wayPoint;
     }
+    ~Container()
+    {
+        delete this->wayPoint;
+        this->wayPoint = nullptr;
+    }
 
 private:
     double conorToRight;
@@ -52,6 +57,7 @@ public:
     void push(WayPoint *wayPoint);
     void unshift(WayPoint *wayPoint);
     void drawPoints();
+    void clear();
     ~WayLine();
 
 private:

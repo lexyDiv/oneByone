@@ -97,14 +97,20 @@ void WayLine::drawPoints()
     }
 }
 
-WayLine::~WayLine()
+void WayLine::clear()
 {
-    for (int i = 0; i < this->length; i++)
+        for (int i = 0; i < this->length; i++)
     {
         Container *cont = this->getItem(i, this->getHead());
         delete cont;
         cont = nullptr;
     }
+    this->length = 0;
+}
+
+WayLine::~WayLine()
+{
+   this->clear();
 };
 
 double Container::getConorToRight()
