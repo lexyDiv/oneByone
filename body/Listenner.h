@@ -4,14 +4,15 @@
 
 WayLine *wayLine = new WayLine();
 
-void listenner(SDL_Event e, bool &quit)
+void listenner(SDL_Event e, Game* game)
 {
     while (SDL_PollEvent(&e) != 0)
     {
         // User requests quit
         if (e.type == SDL_QUIT)
         {
-            quit = true;
+            
+            game->quit = true;
         }
         if (e.type == SDL_KEYDOWN)
         {

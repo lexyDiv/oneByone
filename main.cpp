@@ -1,5 +1,20 @@
 #include "vars_images.h"
 
+void goWork()
+{
+    SDL_Event e;
+    while (!game->quit)
+    {
+        listenner(e, game);
+        console.proc(mouse.x, mouse.y, mouse.leftKey);
+
+        game->prog();
+
+        console.log("do !!!");
+       // this_thread::sleep_for(chrono::milliseconds(30));
+    }
+}
+
 int main()
 {
 
@@ -17,13 +32,16 @@ int main()
 
     ctx.getFont();
     bool quit = false;
-    SDL_Event e;
+    // SDL_Event e;
 
-    while (!quit)
+    thread th(goWork);
+
+    while (!game->quit)
     {
-        listenner(e, quit);
-        console.proc(mouse.x, mouse.y, mouse.leftKey);
-        game->prog();
+        // listenner(e, game);
+        // console.proc(mouse.x, mouse.y, mouse.leftKey);
+        // game->prog();
+        // th.;
 
         ctx.CreateDrawZone(0, 0, 1280, 800);
         ctx.FillRect(0, 0, 1280, 800, "white");
@@ -32,6 +50,8 @@ int main()
 
         console.draw();
         ctx.End();
+
+        // this_thread::sleep_for(chrono::milliseconds(30));
     }
 
     ctx.Close();
@@ -39,6 +59,8 @@ int main()
     test = nullptr;
     delete game;
     game = nullptr;
+
+    th.detach();
 
     return 0;
 }
