@@ -43,6 +43,8 @@ public:
     Roll(int type, float cX, float cY);
 
     void prog();
+    void impulsForvard();
+    void goToSecond();
     void impulseProg();
     void getWayLength();
     void getRotation();
