@@ -6,15 +6,15 @@ void Roll::prog() {
 
 void Roll::impulsForvard()
 {
-    float speedKoof = 0.3;
+
     double conor = this->leftCont->getConorToRight();
-    this->cX = this->cX - cos(conor) * speedKoof;
-    this->cY = this->cY - sin(conor) * speedKoof;
+    this->cX = this->cX - cos(conor) * this->game->speedKoof;
+    this->cY = this->cY - sin(conor) * this->game->speedKoof;
     PointF a = {(float)this->cX, (float)this->cY};
     PointF b = {(float)this->rightCont->wayPoint->x, (float)this->rightCont->wayPoint->y};
     Delta nextContDeltas = getDeltas(a, b);
     float nextContDis = getDis(nextContDeltas);
-    if (nextContDis <= 1 * speedKoof)
+    if (nextContDis <= 1 * this->game->speedKoof)
     {
         this->cX = this->rightCont->wayPoint->x;
         this->cY = this->rightCont->wayPoint->y;
@@ -30,7 +30,23 @@ void Roll::goToSecond()
 {
     if (this->game->rolls->getLength() > 1)
     {
-        
+        while (true)
+        {
+            Roll *secondRoll = this->rightRoll;
+            PointF a = {this->cX, this->cY};
+            PointF b = {secondRoll->cX, secondRoll->cY};
+            Delta deltas = getDeltas(a, b);
+            float disToSecondRoll = getDis(deltas);
+            if (disToSecondRoll <= 1 * this->game->speedKoof)
+            {
+                break;
+            }
+            else
+            {
+                this->impulsForvard();
+            }
+        }
+        this->rightRoll->impulse = true;
     }
 };
 
