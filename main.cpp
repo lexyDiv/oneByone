@@ -6,10 +6,10 @@ void goWork()
     while (!game->quit)
     {
 
-        listenner(e, game);
-        console.proc(mouse.x, mouse.y, mouse.leftKey);
-        game->prog();
-        this_thread::sleep_for(chrono::milliseconds(25));
+         listenner(e, game);
+         console.proc(mouse.x, mouse.y, mouse.leftKey);
+         game->prog();
+         this_thread::sleep_for(chrono::milliseconds(25));
     }
 }
 
@@ -41,8 +41,8 @@ int main()
         // game->prog();
         // th.;
 
-        ctx.CreateDrawZone(0, 0, 1280, 800);
-        ctx.FillRect(0, 0, 1280, 800, "white");
+        ctx.CreateDrawZone(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
+        ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "white");
         game->draw();
         // wayLine->drawPoints();
 
