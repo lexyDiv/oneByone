@@ -13,6 +13,7 @@ class Game
     WayLine* wayLine = new WayLine();
 
     rapid<Roll*>* rolls = new rapid<Roll*>;
+    vector<Roll*> rollsV;
     Roll* impulseRoll = nullptr;
 
     void prog();

@@ -53,6 +53,7 @@ private:
 	int right = 0;
 	T *frontCopy(T *newArr);
 	T *backCopy(T *newArr);
+	T *backCopy2(T *newArr);
 	T *createNewArr(int force);
 	void copy(T *newArr);
 	rapid<T> *createRapid();
@@ -116,20 +117,6 @@ inline void rapid<T>::unshift(T item)
 	this->arr[this->left] = item;
 };
 
-template <typename T>
-inline void rapid<T>::norm()
-{
-	if (this->right)
-	{
-		this->copy(this->frontCopy(this->createNewArr(0)));
-		this->right = 0;
-	}
-	else if (this->left)
-	{
-		this->copy(this->backCopy(this->createNewArr(0)));
-		this->left = 0;
-	}
-};
 
 template <typename T>
 inline void rapid<T>::print()
@@ -286,15 +273,6 @@ inline T *rapid<T>::frontCopy(T *newArr)
 	return newArr;
 };
 
-template <typename T>
-inline T *rapid<T>::backCopy(T *newArr)
-{
-	for (int i = this->length - 1; i >= 0; i--)
-	{
-		newArr[i] = this->arr[this->left + i];
-	};
-	return newArr;
-};
 
 template <typename T>
 inline T *rapid<T>::createNewArr(int force)
@@ -316,4 +294,39 @@ inline rapid<T> *rapid<T>::createRapid()
 	rapid<T> *newRapid = new rapid<T>;
 	newRapid->backForce(this->length);
 	return newRapid;
+};
+
+template <typename T>
+inline T *rapid<T>::backCopy(T *newArr)
+{
+	for (int i = 0; i < this->length; i++)
+	{
+		newArr[i + this->left] = this->arr[i];
+	};
+	return newArr;
+};
+
+template <typename T>
+inline T *rapid<T>::backCopy2(T *newArr)
+{
+	for (int i = 0; i < this->length; i++)
+	{
+		newArr[i] = this->arr[i + this->left];
+	};
+	return newArr;
+};
+
+template <typename T>
+inline void rapid<T>::norm()
+{
+	if (this->right)
+	{
+		this->copy(this->frontCopy(this->createNewArr(0)));
+		this->right = 0;
+	}
+	else if (this->left)
+	{
+		this->copy(this->backCopy2(this->createNewArr(0)));
+		this->left = 0;
+	}
 };

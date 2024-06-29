@@ -23,22 +23,11 @@ void Game::prog()
         disToImpulseRoll = getDis(deltas);
     }
 
-    if (disToImpulseRoll && disToImpulseRoll >= this->impulseRoll->diameter && ! cc)
-    {
-        Container *head = this->wayLine->getHead();
-        Roll *newRoll = new Roll(2,
-                                 head->wayPoint->x,
-                                 head->wayPoint->y);
 
-        //this->rolls->frontForce(1);
-        this->rolls->unshift(newRoll);
-        //this->rolls->norm();
 
-        console.log("here");
-        cc = true;
-    }
-
-    if (!this->rolls->getLength())
+    if (!this->rolls->getLength()
+    ||
+    (disToImpulseRoll && disToImpulseRoll >= this->impulseRoll->diameter))
     {
         this->impulseRollCreate();
     }
@@ -53,9 +42,10 @@ void Game::impulseRollCreate()
                              head->wayPoint->x,
                              head->wayPoint->y);
     this->impulseRoll = newRoll;
-    this->rolls->frontForce(1000);
-    this->rolls->unshift(newRoll);
-    //this->rolls->norm();
+     this->rolls->frontForce(1);
+     this->rolls->unshift(newRoll);
+     this->rolls->norm();
+    //this->rollsV.insert(this->rollsV.begin(), newRoll);
     newRoll->leftCont = head;
     newRoll->rightCont = head->right;
     newRoll->game = this;
@@ -65,4 +55,5 @@ void Game::impulseRollCreate()
     }
     newRoll = nullptr;
     head = nullptr;
+    console.log("create");
 }

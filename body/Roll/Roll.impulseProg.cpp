@@ -54,7 +54,7 @@ void Roll::impulseProg()
 {
     this->prevCx = this->cX;
     this->prevCy = this->cY;
-    this->goToSecond();
+    //this->goToSecond();
 
     for (int i = 0; i < this->game->speed; i++)
     {
