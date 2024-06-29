@@ -2,8 +2,7 @@
 
 #include "../Roll/Roll.impulseProg.cpp"
 
-
-bool cc = false;
+int check = 0;
 
 void Game::prog()
 {
@@ -23,16 +22,23 @@ void Game::prog()
         disToImpulseRoll = getDis(deltas);
     }
 
-
-
-    if (!this->rolls->getLength()
-    ||
-    (disToImpulseRoll && disToImpulseRoll >= this->impulseRoll->diameter))
+    if (!this->rolls->getLength() ||
+        (disToImpulseRoll && disToImpulseRoll >= this->impulseRoll->diameter))
     {
-        this->impulseRollCreate();
+       // if(check < 2)
+      //  {
+           // check++;
+            this->impulseRollCreate();
+            
+       // }
     }
 
     this->impulseRoll->impulseProg();
+    
+    for(int i = 1; i < this->rolls->getLength(); i++)
+    {
+        this->rolls->getItem(i)->prog();
+    }
 }
 
 void Game::impulseRollCreate()
@@ -42,16 +48,17 @@ void Game::impulseRollCreate()
                              head->wayPoint->x,
                              head->wayPoint->y);
     this->impulseRoll = newRoll;
-     this->rolls->frontForce(1);
-     this->rolls->unshift(newRoll);
-     this->rolls->norm();
-    //this->rollsV.insert(this->rollsV.begin(), newRoll);
+    this->rolls->frontForce(1);
+    this->rolls->unshift(newRoll);
+    this->rolls->norm();
     newRoll->leftCont = head;
     newRoll->rightCont = head->right;
     newRoll->game = this;
     if (this->rolls->getLength() > 1)
     {
-        newRoll->rightRoll = this->rolls->getItem(1);
+        Roll* secondRoll = this->rolls->getItem(1);
+        newRoll->rightRoll = secondRoll;
+        secondRoll->leftRoll = newRoll;
     }
     newRoll = nullptr;
     head = nullptr;

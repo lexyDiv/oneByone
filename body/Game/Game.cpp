@@ -8,12 +8,10 @@ Game::~Game()
 {
     delete this->wayLine;
     this->wayLine = nullptr;
-    for(int i = 0; i < this->rollsV.size(); i++)
-    {
-        
-         delete this->rollsV[i];
-         this->rollsV[i] = nullptr;
-    }
+    this->rolls->forEach([](Roll* rl){
+        delete rl;
+        rl = nullptr;
+    });
 };
 
 void Game::draw()

@@ -1,7 +1,38 @@
 #include "Roll.h"
 
-void Roll::prog() {
+void Roll::prog()
+{
+    if (this->impulse)
+    {
+        // this->impulse = false;
 
+        this->prevCx = this->cX;
+        this->prevCy = this->cY;
+
+        PointF a = {this->cX, this->cY};
+        PointF b = {this->leftRoll->cX, this->leftRoll->cY};
+        Delta deltas = getDeltas(a, b);
+        float disToLeftRoll = getDis(deltas);
+
+        while (true)
+        {
+            PointF a = {this->cX, this->cY};
+            PointF b = {this->leftRoll->cX, this->leftRoll->cY};
+            Delta deltas = getDeltas(a, b);
+            float disToLeftRoll = getDis(deltas);
+
+            if (disToLeftRoll >= this->diameter - 2)
+            {
+                break;
+            }
+            else
+            {
+                this->impulsForvard();
+                // this->cX += 3;
+            }
+        }
+    }
+    this->move();
 };
 
 void Roll::impulsForvard()
@@ -28,8 +59,9 @@ void Roll::impulsForvard()
 
 void Roll::goToSecond()
 {
-    if (this->rightRoll)
+    if (this->rightRoll && !this->debut)
     {
+        this->debut = true;
         while (true)
         {
             Roll *secondRoll = this->rightRoll;
@@ -37,7 +69,7 @@ void Roll::goToSecond()
             PointF b = {secondRoll->cX, secondRoll->cY};
             Delta deltas = getDeltas(a, b);
             float disToSecondRoll = getDis(deltas);
-            if (disToSecondRoll <= 1 * this->game->speedKoof)
+            if (disToSecondRoll <= this->diameter)
             {
                 break;
             }
@@ -52,9 +84,13 @@ void Roll::goToSecond()
 
 void Roll::impulseProg()
 {
+
     this->prevCx = this->cX;
     this->prevCy = this->cY;
-    //this->goToSecond();
+    if (this->rightRoll != nullptr)
+    {
+        this->goToSecond();
+    }
 
     for (int i = 0; i < this->game->speed; i++)
     {

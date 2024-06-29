@@ -36,6 +36,7 @@ public:
     int vector = 1;
     int speed;
     bool impulse = false;
+    bool debut = false;
     int animX = 0;
     int animY = 0;
     int animW = 213;
