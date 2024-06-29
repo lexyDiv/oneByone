@@ -31,5 +31,3 @@ void Roll::impulseProg()
     }
     this->move();
 }
-
-

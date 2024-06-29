@@ -5,13 +5,11 @@ void goWork()
     SDL_Event e;
     while (!game->quit)
     {
+
         listenner(e, game);
         console.proc(mouse.x, mouse.y, mouse.leftKey);
-
         game->prog();
-
-        console.log("do !!!");
-       // this_thread::sleep_for(chrono::milliseconds(30));
+        this_thread::sleep_for(chrono::milliseconds(25));
     }
 }
 
@@ -59,8 +57,11 @@ int main()
     test = nullptr;
     delete game;
     game = nullptr;
+    delete wayLine;
+    wayLine = nullptr;
 
-    th.detach();
+
+    th.join();
 
     return 0;
 }

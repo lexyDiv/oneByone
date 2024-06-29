@@ -69,42 +69,15 @@ void Roll::updateConor()
 
     double moveConorRad = this->rightCont->getConorToRight();
     float toDeg = moveConorRad * 180 / M_PI;
-    // console.log("deg = " + to_string(toDeg));
-
-    // if (this->conor > 0)
-    // {
-    //     if (this->conor > 360)
-    //     {
-    //         this->conor = this->conor - 360;
-    //     }
-    // }
-    // else if (this->conor < 0)
-    // {
-    // }
 
     if (this->conor > 360)
     {
         this->conor = this->conor - 360;
     }
-     if (this->conor <= -360)
+    if (this->conor <= -360)
     {
-       // console.log("conor before = " + to_string(this->conor));
         this->conor = this->conor + 360;
-       // console.log("conor past = " + to_string(this->conor));
     }
-
-    // if ((int)this->conor % 360 == 0)
-    // {
-    //     double full = this->conor / 360;
-    //     double deltaTail = full - (int)full;
-    //     console.log("deltaTale = " + to_string(deltaTail));
-    //    if(this->conor > 0)
-    //    {
-    //     this->conor =  deltaTail;
-    //    }
-    //     console.log("format");
-    // }
-   // console.log("conor = " + to_string(this->conor));
 };
 
 void Roll::move()
