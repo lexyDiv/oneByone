@@ -28,7 +28,7 @@ void Roll::impulsForvard()
 
 void Roll::goToSecond()
 {
-    if (this->game->rolls->getLength() > 1)
+    if (this->rightRoll)
     {
         while (true)
         {

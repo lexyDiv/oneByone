@@ -6,7 +6,7 @@ class Game
 {
     public:
     int level = 1;
-    int speed = 4;
+    int speed = 1;
     bool quit = false;
     float speedKoof = 0.3;
     string path = "levels/level" + to_string(this->level) + ".txt";
@@ -16,6 +16,7 @@ class Game
     Roll* impulseRoll = nullptr;
 
     void prog();
+    
     void impulseRollCreate();
     void draw();
 

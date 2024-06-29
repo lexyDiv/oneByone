@@ -2,6 +2,9 @@
 
 #include "../Roll/Roll.impulseProg.cpp"
 
+
+bool cc = false;
+
 void Game::prog()
 {
     if (!this->wayLine->getLength())
@@ -9,27 +12,57 @@ void Game::prog()
         rapid<WayPoint> arr = fs.read<WayPoint>(this->path, sizeof(WayPoint));
         this->wayLine->update(arr);
     }
-    this->impulseRollCreate();
+
+    float disToImpulseRoll = 0.0f;
+    if (this->impulseRoll != nullptr)
+    {
+        WayPoint *head = this->wayLine->getHead()->wayPoint;
+        PointF a = {(float)head->x, (float)head->y};
+        PointF b = {(float)this->impulseRoll->cX, (float)this->impulseRoll->cY};
+        Delta deltas = getDeltas(a, b);
+        disToImpulseRoll = getDis(deltas);
+    }
+
+    if (disToImpulseRoll && disToImpulseRoll >= this->impulseRoll->diameter && ! cc)
+    {
+        Container *head = this->wayLine->getHead();
+        Roll *newRoll = new Roll(2,
+                                 head->wayPoint->x,
+                                 head->wayPoint->y);
+
+        //this->rolls->frontForce(1);
+        this->rolls->unshift(newRoll);
+        //this->rolls->norm();
+
+        console.log("here");
+        cc = true;
+    }
+
+    if (!this->rolls->getLength())
+    {
+        this->impulseRollCreate();
+    }
+
     this->impulseRoll->impulseProg();
-    
 }
 
 void Game::impulseRollCreate()
 {
-    if (!this->rolls->getLength())
+    Container *head = this->wayLine->getHead();
+    Roll *newRoll = new Roll(1,
+                             head->wayPoint->x,
+                             head->wayPoint->y);
+    this->impulseRoll = newRoll;
+    this->rolls->frontForce(1000);
+    this->rolls->unshift(newRoll);
+    //this->rolls->norm();
+    newRoll->leftCont = head;
+    newRoll->rightCont = head->right;
+    newRoll->game = this;
+    if (this->rolls->getLength() > 1)
     {
-        Container *head = this->wayLine->getHead();
-        Roll *newRoll = new Roll(1,
-                                 head->wayPoint->x,
-                                 head->wayPoint->y);
-        this->impulseRoll = newRoll;
-        this->rolls->frontForce(1);
-        this->rolls->unshift(newRoll);
-        this->rolls->norm();
-        newRoll->leftCont = head;
-        newRoll->rightCont = head->right;
-        newRoll->game = this;
-        newRoll = nullptr;
-        head = nullptr;
+        newRoll->rightRoll = this->rolls->getItem(1);
     }
+    newRoll = nullptr;
+    head = nullptr;
 }

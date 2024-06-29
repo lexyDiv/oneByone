@@ -14,6 +14,10 @@ Roll::Roll(int type, float cX, float cY)
     {
         this->image = roll5;
     }
+    else if (this->type == 2)
+    {
+        this->image = roll6;
+    }
 }
 
 void Roll::draw()

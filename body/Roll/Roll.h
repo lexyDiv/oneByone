@@ -4,6 +4,7 @@
 
 
 Image* roll5 = new Image("src/roll5.png");
+Image* roll6 = new Image("src/roll6.png");
 
 
 class RollTypeGroup;
