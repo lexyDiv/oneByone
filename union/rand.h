@@ -38,57 +38,57 @@ int intRand(int start, int finish)
 
 struct PointF
 {
-    float x;
-    float y;
+    double x;
+    double y;
 };
 
 struct Delta
 {
-    float deltaX;
-    float deltaY;
+    double deltaX;
+    double deltaY;
 };
 
 
 
 // Delta getDeltas(PointF a, PointF b)
 // {
-//     float deltaX = b.x - a.x;
-//     float deltaY = b.y - a.y;
+//     double deltaX = b.x - a.x;
+//     double deltaY = b.y - a.y;
 //     return {deltaX, deltaY};;
 // }
 
 Delta getDeltas(PointF &a, PointF &b)
 {
-    float deltaX = b.x - a.x;
-    float deltaY = b.y - a.y;
+    double deltaX = b.x - a.x;
+    double deltaY = b.y - a.y;
     return {deltaX, deltaY};
 }
 
 Delta getDeltas(PointF *a, PointF *b)
 {
-    float deltaX = b->x - a->x;
-    float deltaY = b->y - a->y;
+    double deltaX = b->x - a->x;
+    double deltaY = b->y - a->y;
     return {deltaX, deltaY};
 }
 
 
 
 
-float getDis(Delta &del)
+double getDis(Delta &del)
 {
-    float c = sqrt(del.deltaX * del.deltaX + del.deltaY * del.deltaY);
+    double c = sqrt(del.deltaX * del.deltaX + del.deltaY * del.deltaY);
     return c;
 };
 
-// float getDis(Delta del)
+// double getDis(Delta del)
 // {
-//     float c = sqrt(del.deltaX * del.deltaX + del.deltaY * del.deltaY);
+//     double c = sqrt(del.deltaX * del.deltaX + del.deltaY * del.deltaY);
 //     return c;
 // };
 
-float getDis(Delta *del)
+double getDis(Delta *del)
 {
-    float c = sqrt(del->deltaX * del->deltaX + del->deltaY * del->deltaY);
+    double c = sqrt(del->deltaX * del->deltaX + del->deltaY * del->deltaY);
     return c;
 };
 

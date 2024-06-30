@@ -21,15 +21,16 @@ public:
     RollTypeGroup *typeGroup = nullptr;
     Image *image = nullptr;
     int type;
-    float cX;
-    float cY;
+    double cX;
+    double cY;
     int x;
     int y;
-    float prevCx;
-    float prevCy;
-    float way;
+    double prevCx;
+    double prevCy;
+    double way;
     int diameter = 50;
-    float liner = 2 * M_PI * ((this->diameter / 2) - 1);
+    double liner = 2 * M_PI * ((this->diameter / 2) - 3);
+    int kickDis = this->diameter - 3;
     int mid = this->diameter / 2;
     double conor = 0;
     int rotation = 1;
@@ -42,12 +43,13 @@ public:
     int animW = 213;
     int animH = 213;
     Roll();
-    Roll(int type, float cX, float cY);
+    Roll(int type, double cX, double cY);
 
     void prog();
     void impulsForvard();
     void goToSecond();
     void impulseProg();
+    void kick();
     void getWayLength();
     void getRotation();
     void updateConor();

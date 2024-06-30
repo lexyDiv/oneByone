@@ -12,16 +12,16 @@ void Roll::prog()
         PointF a = {this->cX, this->cY};
         PointF b = {this->leftRoll->cX, this->leftRoll->cY};
         Delta deltas = getDeltas(a, b);
-        float disToLeftRoll = getDis(deltas);
+        double disToLeftRoll = getDis(deltas);
 
         while (true)
         {
             PointF a = {this->cX, this->cY};
             PointF b = {this->leftRoll->cX, this->leftRoll->cY};
             Delta deltas = getDeltas(a, b);
-            float disToLeftRoll = getDis(deltas);
+            double disToLeftRoll = getDis(deltas);
 
-            if (disToLeftRoll >= this->diameter - 2)
+            if (disToLeftRoll >= this->diameter - 3)
             {
                 break;
             }
@@ -31,6 +31,8 @@ void Roll::prog()
                 // this->cX += 3;
             }
         }
+
+        this->kick();
     }
     this->move();
 };
@@ -41,10 +43,10 @@ void Roll::impulsForvard()
     double conor = this->leftCont->getConorToRight();
     this->cX = this->cX - cos(conor) * this->game->speedKoof;
     this->cY = this->cY - sin(conor) * this->game->speedKoof;
-    PointF a = {(float)this->cX, (float)this->cY};
-    PointF b = {(float)this->rightCont->wayPoint->x, (float)this->rightCont->wayPoint->y};
+    PointF a = {(double)this->cX, (double)this->cY};
+    PointF b = {(double)this->rightCont->wayPoint->x, (double)this->rightCont->wayPoint->y};
     Delta nextContDeltas = getDeltas(a, b);
-    float nextContDis = getDis(nextContDeltas);
+    double nextContDis = getDis(nextContDeltas);
     if (nextContDis <= 1 * this->game->speedKoof)
     {
         this->cX = this->rightCont->wayPoint->x;
@@ -68,7 +70,7 @@ void Roll::goToSecond()
             PointF a = {this->cX, this->cY};
             PointF b = {secondRoll->cX, secondRoll->cY};
             Delta deltas = getDeltas(a, b);
-            float disToSecondRoll = getDis(deltas);
+            double disToSecondRoll = getDis(deltas);
             if (disToSecondRoll <= this->diameter)
             {
                 break;
@@ -78,7 +80,6 @@ void Roll::goToSecond()
                 this->impulsForvard();
             }
         }
-        this->rightRoll->impulse = true;
     }
 };
 
@@ -96,5 +97,23 @@ void Roll::impulseProg()
     {
         this->impulsForvard();
     }
+    this->kick();
     this->move();
+}
+
+
+
+void Roll::kick()
+{
+    if (this->rightRoll != nullptr)
+    {
+        PointF a = {this->cX, this->cY};
+        PointF b = {this->rightRoll->cX, this->rightRoll->cY};
+        Delta deltas = getDeltas(a, b);
+        double dis = getDis(deltas);
+        if (dis < this->kickDis)
+        {
+            this->rightRoll->impulse = true;
+        }
+    }
 }

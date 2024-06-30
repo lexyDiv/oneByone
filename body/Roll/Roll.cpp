@@ -3,7 +3,7 @@
 
 Roll::Roll(){};
 
-Roll::Roll(int type, float cX, float cY)
+Roll::Roll(int type, double cX, double cY)
 {
     this->type = type;
     this->cX = cX;
@@ -72,7 +72,7 @@ void Roll::updateConor()
     this->conor += deltaConor * this->rotation;
 
     double moveConorRad = this->rightCont->getConorToRight();
-    float toDeg = moveConorRad * 180 / M_PI;
+    double toDeg = moveConorRad * 180 / M_PI;
 
     if (this->conor > 360)
     {

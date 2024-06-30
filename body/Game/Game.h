@@ -6,9 +6,10 @@ class Game
 {
     public:
     int level = 1;
-    int speed = 5;
+    int speed = 0;
+    int speedVector = -1;
     bool quit = false;
-    float speedKoof = 0.3;
+    double speedKoof = 0.1;
     string path = "levels/level" + to_string(this->level) + ".txt";
     WayLine* wayLine = new WayLine();
 

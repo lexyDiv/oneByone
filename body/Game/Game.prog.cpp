@@ -12,18 +12,18 @@ void Game::prog()
         this->wayLine->update(arr);
     }
 
-    float disToImpulseRoll = 0.0f;
+    double disToImpulseRoll = 0.0f;
     if (this->impulseRoll != nullptr)
     {
         WayPoint *head = this->wayLine->getHead()->wayPoint;
-        PointF a = {(float)head->x, (float)head->y};
-        PointF b = {(float)this->impulseRoll->cX, (float)this->impulseRoll->cY};
+        PointF a = {(double)head->x, (double)head->y};
+        PointF b = {(double)this->impulseRoll->cX, (double)this->impulseRoll->cY};
         Delta deltas = getDeltas(a, b);
         disToImpulseRoll = getDis(deltas);
     }
 
-    if (!this->rolls->getLength() ||
-        (disToImpulseRoll && disToImpulseRoll >= this->impulseRoll->diameter))
+    if (!this->rolls->getLength() 
+    || (disToImpulseRoll && disToImpulseRoll >= this->rolls->getItem(0)->kickDis))
     {
        // if(check < 2)
       //  {
@@ -35,10 +35,17 @@ void Game::prog()
 
     this->impulseRoll->impulseProg();
     
-    for(int i = 1; i < this->rolls->getLength(); i++)
+    for(int i = 0; i < this->rolls->getLength(); i++)
     {
         this->rolls->getItem(i)->prog();
     }
+
+    if(this->speed == 100 || this->speed == 0)
+    {
+        this->speedVector = -this->speedVector;
+    }
+        this->speed += this->speedVector;
+    
 }
 
 void Game::impulseRollCreate()
