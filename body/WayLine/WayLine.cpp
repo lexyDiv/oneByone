@@ -27,7 +27,7 @@ Container *WayLine::getItem(int index, Container *cont)
     return cont;
 }
 
-void WayLine::update(rapid<WayPoint> &arr)
+void WayLine::update(rapid<WayPoint> &arr, int level)
 {
     for (int i = 0; i < arr.getLength(); i++)
     {
@@ -35,6 +35,11 @@ void WayLine::update(rapid<WayPoint> &arr)
         WayPoint *nPnt = new WayPoint(pnt.x, pnt.y);
         this->push(nPnt);
         nPnt = nullptr;
+    }
+    if(level == 1)
+    {
+        WayPoint *startPoint = new WayPoint(-150, 600);
+        this->unshift(startPoint);
     }
     this->getAllConors();
 }
@@ -82,6 +87,24 @@ void WayLine::push(WayPoint *wayPoint)
         this->tale->right = container;
         container->left = this->tale;
         this->tale = container;
+    }
+    this->length++;
+}
+
+void WayLine::unshift(WayPoint *wayPoint)
+{
+        Container *container = new Container(wayPoint);
+    if (!this->length)
+    {
+        this->head = container;
+        this->tale = container;
+        this->head->right = this->tale;
+        this->tale->left = this->head;
+    }
+    else
+    {
+      container->right = this->head;
+      this->head = container;
     }
     this->length++;
 }

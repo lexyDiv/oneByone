@@ -10,14 +10,7 @@ Roll::Roll(int type, double cX, double cY)
     this->cY = cY;
     this->x = this->cX - this->mid;
     this->y = this->cY - this->mid;
-    if (this->type == 1)
-    {
-        this->image = roll5;
-    }
-    else if (this->type == 2)
-    {
-        this->image = roll6;
-    }
+    this->image = this->getImage(this->type);
 }
 
 void Roll::draw()
@@ -37,6 +30,27 @@ void Roll::draw()
                   this->mid);
 
     //  ctx.FillRect(this->cX, this->cY, 3, 3, "violet");
+}
+
+Image* Roll::getImage(int type)
+{
+    switch (type)
+    {
+    case 1:
+        return roll5;
+    case 2:
+        return roll6;
+    case 3:
+        return roll7;
+    case 4:
+        return roll8;
+    case 5:
+        return roll9;
+    case 6:
+        return roll10;
+    default:
+        return roll5;
+    }
 }
 
 void Roll::getWayLength()

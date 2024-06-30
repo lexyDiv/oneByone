@@ -8,31 +8,19 @@ Game::~Game()
 {
     delete this->wayLine;
     this->wayLine = nullptr;
-    this->rolls->forEach([](Roll* rl){
+    this->rolls->forEach([](Roll *rl)
+                         {
         delete rl;
-        rl = nullptr;
-    });
+        rl = nullptr; });
 };
 
 void Game::draw()
 {
 
-    // for(int i = 0; i < this->rollsV.size(); i++)
-    // {
-    //     this->rollsV[i]->draw();
-    // }
-
-
     this->rolls->forEach([](Roll *roll, int i)
-                         { 
-                            if(roll != nullptr)
-                            {
-                                roll->draw();
-                            }
-                            else 
-                            {
-                               // console.log("i = " + to_string);
-                            } });
+                         {
+                             roll->draw();
+                         });
 
     this->wayLine->drawPoints();
 }

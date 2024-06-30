@@ -9,7 +9,7 @@ void Game::prog()
     if (!this->wayLine->getLength())
     {
         rapid<WayPoint> arr = fs.read<WayPoint>(this->path, sizeof(WayPoint));
-        this->wayLine->update(arr);
+        this->wayLine->update(arr, this->level);
     }
 
     double disToImpulseRoll = 0.0f;
@@ -22,36 +22,29 @@ void Game::prog()
         disToImpulseRoll = getDis(deltas);
     }
 
-    if (!this->rolls->getLength() 
-    || (disToImpulseRoll && disToImpulseRoll >= this->rolls->getItem(0)->kickDis))
+    if (!this->rolls->getLength() || (disToImpulseRoll && disToImpulseRoll >= this->rolls->getItem(0)->kickDis))
     {
-       // if(check < 2)
-      //  {
-           // check++;
-            this->impulseRollCreate();
-            
-       // }
+        this->impulseRollCreate();
     }
 
     this->impulseRoll->impulseProg();
-    
-    for(int i = 0; i < this->rolls->getLength(); i++)
+
+    for (int i = 0; i < this->rolls->getLength(); i++)
     {
         this->rolls->getItem(i)->prog();
     }
 
-    if(this->speed == 100 || this->speed == 0)
+    if (this->speed == 100 || this->speed == 0)
     {
         this->speedVector = -this->speedVector;
     }
-        this->speed += this->speedVector;
-    
+    this->speed += this->speedVector;
 }
 
 void Game::impulseRollCreate()
 {
     Container *head = this->wayLine->getHead();
-    Roll *newRoll = new Roll(1,
+    Roll *newRoll = new Roll(intRand(1, 6),
                              head->wayPoint->x,
                              head->wayPoint->y);
     this->impulseRoll = newRoll;
@@ -63,11 +56,10 @@ void Game::impulseRollCreate()
     newRoll->game = this;
     if (this->rolls->getLength() > 1)
     {
-        Roll* secondRoll = this->rolls->getItem(1);
+        Roll *secondRoll = this->rolls->getItem(1);
         newRoll->rightRoll = secondRoll;
         secondRoll->leftRoll = newRoll;
     }
     newRoll = nullptr;
     head = nullptr;
-    console.log("create");
 }

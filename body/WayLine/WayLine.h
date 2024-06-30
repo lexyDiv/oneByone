@@ -52,7 +52,7 @@ public:
     Container *getNext(Container *container);
     Container *getItem(int index, Container *cont);
 
-    void update(rapid<WayPoint> &arr);
+    void update(rapid<WayPoint> &arr, int level);
     void getAllConors();
     void push(WayPoint *wayPoint);
     void unshift(WayPoint *wayPoint);

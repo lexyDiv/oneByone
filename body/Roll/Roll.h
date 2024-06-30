@@ -5,6 +5,10 @@
 
 Image* roll5 = new Image("src/roll5.png");
 Image* roll6 = new Image("src/roll6.png");
+Image* roll7 = new Image("src/roll7.png");
+Image* roll8 = new Image("src/roll8.png");
+Image* roll9 = new Image("src/roll9.png");
+Image* roll10 = new Image("src/roll10.png");
 
 
 class RollTypeGroup;
@@ -55,6 +59,7 @@ public:
     void updateConor();
     void move();
     void draw();
+    Image* getImage(int type);
 
 private:
 };
