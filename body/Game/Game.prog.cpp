@@ -22,7 +22,8 @@ void Game::prog()
         disToImpulseRoll = getDis(deltas);
     }
 
-    if (!this->rolls->getLength() || (disToImpulseRoll && disToImpulseRoll >= this->rolls->getItem(0)->kickDis))
+    if (!this->rolls->getLength() ||
+        (disToImpulseRoll && disToImpulseRoll >= this->rolls->getItem(0)->kickDis))
     {
         this->impulseRollCreate();
     }
@@ -31,7 +32,12 @@ void Game::prog()
 
     for (int i = 0; i < this->rolls->getLength(); i++)
     {
-        this->rolls->getItem(i)->prog();
+        Roll *roll = this->rolls->getItem(i);
+        if (roll != nullptr)
+        {
+            roll->prog();
+        }
+        roll = nullptr;
     }
 
     if (this->speed == 100 || this->speed == 0)

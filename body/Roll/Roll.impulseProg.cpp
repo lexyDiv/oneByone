@@ -4,7 +4,7 @@ void Roll::prog()
 {
     if (this->impulse)
     {
-        // this->impulse = false;
+        this->impulse = false;
 
         this->prevCx = this->cX;
         this->prevCy = this->cY;
@@ -28,7 +28,6 @@ void Roll::prog()
             else
             {
                 this->impulsForvard();
-                // this->cX += 3;
             }
         }
 
