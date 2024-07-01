@@ -1,5 +1,7 @@
 #include "Game.prog.cpp"
 
+#include "Game.Station/Station.cpp"
+
 Game::Game()
 {
 }

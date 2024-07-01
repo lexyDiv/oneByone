@@ -2,6 +2,8 @@
 
 #include "../Roll/Roll.cpp"
 
+#include "Game.Station/Station.h"
+
 class Game
 {
     public:
@@ -10,6 +12,7 @@ class Game
     int speedVector = -1;
     bool quit = false;
     double speedKoof = 0.1;
+    Station* station = nullptr;
     string path = "levels/level" + to_string(this->level) + ".txt";
     WayLine* wayLine = new WayLine();
 
