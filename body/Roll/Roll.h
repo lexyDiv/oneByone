@@ -49,7 +49,7 @@ public:
     Roll();
     Roll(int type, double cX, double cY);
 
-    void prog();
+    void prog(int index);
     void impulsForvard();
     void goToSecond();
     void impulseProg();

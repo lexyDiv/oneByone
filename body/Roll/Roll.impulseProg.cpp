@@ -1,9 +1,10 @@
 #include "Roll.h"
 
-void Roll::prog()
+void Roll::prog(int index)
 {
     if (this->impulse)
     {
+        this->speed = 0;
         this->impulse = false;
 
         this->prevCx = this->cX;
@@ -32,6 +33,13 @@ void Roll::prog()
         }
 
         this->kick();
+    }
+    else
+    {
+        if(index)
+        {
+           // console.log("here"); // ok
+        }
     }
     this->move();
 };
@@ -99,8 +107,6 @@ void Roll::impulseProg()
     this->kick();
     this->move();
 }
-
-
 
 void Roll::kick()
 {

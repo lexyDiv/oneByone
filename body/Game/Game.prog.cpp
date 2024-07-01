@@ -35,7 +35,7 @@ void Game::prog()
         Roll *roll = this->rolls->getItem(i);
         if (roll != nullptr)
         {
-            roll->prog();
+            roll->prog(i);
         }
         roll = nullptr;
     }
