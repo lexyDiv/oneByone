@@ -68,6 +68,7 @@ int main()
 
         ctx.CreateDrawZone(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
         ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "white");
+       // ctx.DrawImage(spiral, 0, 0, 512, 512, 0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
         game->draw();
         // wayLine->drawPoints();
 

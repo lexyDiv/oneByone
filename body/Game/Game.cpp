@@ -21,7 +21,10 @@ void Game::draw()
 
     this->rolls->forEach([](Roll *roll, int i)
                          {
-                             roll->draw();
+                             if(roll != nullptr)
+                             {
+                                roll->draw();
+                             }
                          });
 
     this->wayLine->drawPoints();

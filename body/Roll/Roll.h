@@ -46,6 +46,7 @@ public:
     int animY = 0;
     int animW = 213;
     int animH = 213;
+    bool del = false;
     Roll();
     Roll(int type, double cX, double cY);
 

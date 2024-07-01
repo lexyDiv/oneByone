@@ -34,12 +34,26 @@ void Game::newRollCreating()
 
 void Game::rollsToProg()
 {
+    this->rolls = this->rolls->filter([](Roll* roll, int i){
+       return roll != nullptr;
+    });
+
+    console.log("length = " + to_string(this->rolls->getLength()));
+
     for (int i = 0; i < this->rolls->getLength(); i++)
     {
         Roll *roll = this->rolls->getItem(i);
         if (roll != nullptr)
         {
-            roll->prog(i);
+            if(!roll->del)
+            {
+                roll->prog(i);
+            }
+            else{
+                
+               delete this->rolls->arr[i];
+               this->rolls->arr[i] = nullptr;
+            }
         }
         roll = nullptr;
     }

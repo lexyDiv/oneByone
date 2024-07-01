@@ -15,6 +15,12 @@ void Roll::prog(int index)
         Delta deltas = getDeltas(a, b);
         double disToLeftRoll = getDis(deltas);
 
+        // if (this->rightCont->right == nullptr)
+        // {
+        //     this->del = true; //////////////////////////////////////////////
+        //     return;
+        // }
+
         while (true)
         {
             PointF a = {this->cX, this->cY};
@@ -36,9 +42,9 @@ void Roll::prog(int index)
     }
     else
     {
-        if(index)
+        if (index)
         {
-           // console.log("here"); // ok
+            // console.log("here"); // ok
         }
     }
     this->move();
@@ -56,12 +62,16 @@ void Roll::impulsForvard()
     double nextContDis = getDis(nextContDeltas);
     if (nextContDis <= 1 * this->game->speedKoof)
     {
-        this->cX = this->rightCont->wayPoint->x;
-        this->cY = this->rightCont->wayPoint->y;
         if (this->rightCont->right != nullptr)
         {
+            this->cX = this->rightCont->wayPoint->x;
+            this->cY = this->rightCont->wayPoint->y;
             this->leftCont = this->rightCont;
             this->rightCont = this->leftCont->right;
+        }
+        else
+        {
+            this->del = true;
         }
     }
 }

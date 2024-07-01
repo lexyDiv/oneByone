@@ -7,6 +7,7 @@ template <typename T>
 class rapid
 {
 public:
+T *arr = new T[0];
 	rapid();
 	~rapid();
 	T pop();
@@ -48,7 +49,6 @@ public:
 
 private:
 	int length = 0;
-	T *arr = new T[0];
 	int left = 0;
 	int right = 0;
 	T *frontCopy(T *newArr);
