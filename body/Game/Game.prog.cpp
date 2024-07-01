@@ -4,14 +4,17 @@
 
 int check = 0;
 
-void Game::prog()
+void Game::getWayLine()
 {
     if (!this->wayLine->getLength())
     {
         rapid<WayPoint> arr = fs.read<WayPoint>(this->path, sizeof(WayPoint));
         this->wayLine->update(arr, this->level);
     }
+}
 
+void Game::newRollCreating()
+{
     double disToImpulseRoll = 0.0f;
     if (this->impulseRoll != nullptr)
     {
@@ -27,9 +30,10 @@ void Game::prog()
     {
         this->impulseRollCreate();
     }
+}
 
-    this->impulseRoll->impulseProg();
-
+void Game::rollsToProg()
+{
     for (int i = 0; i < this->rolls->getLength(); i++)
     {
         Roll *roll = this->rolls->getItem(i);
@@ -39,12 +43,23 @@ void Game::prog()
         }
         roll = nullptr;
     }
+}
 
-    if (this->speed == 100 || this->speed == 0)
-    {
-        this->speedVector = -this->speedVector;
-    }
-    this->speed += this->speedVector;
+void Game::prog()
+{
+    this->getWayLine();
+
+    this->newRollCreating();
+
+    this->impulseRoll->impulseProg();
+
+    this->rollsToProg();
+
+    // if (this->speed == 100 || this->speed == 0)
+    // {
+    //     this->speedVector = -this->speedVector;
+    // }
+    // this->speed += this->speedVector;
 }
 
 void Game::impulseRollCreate()

@@ -6,7 +6,7 @@ class Game
 {
     public:
     int level = 1;
-    int speed = 0;
+    int speed = 10;
     int speedVector = -1;
     bool quit = false;
     double speedKoof = 0.1;
@@ -14,9 +14,11 @@ class Game
     WayLine* wayLine = new WayLine();
 
     rapid<Roll*>* rolls = new rapid<Roll*>;
-    //vector<Roll*> rollsV;
     Roll* impulseRoll = nullptr;
 
+    void getWayLine();
+    void newRollCreating();
+    void rollsToProg();
     void prog();
     
     void impulseRollCreate();
