@@ -2,8 +2,8 @@
 
 void Roll::prog(int index)
 {
-    if (this->impulse)
-    {
+   // if (this->impulse)
+   // {
         this->speed = 0;
         this->impulse = false;
 
@@ -15,11 +15,7 @@ void Roll::prog(int index)
         Delta deltas = getDeltas(a, b);
         double disToLeftRoll = getDis(deltas);
 
-        // if (this->rightCont->right == nullptr)
-        // {
-        //     this->del = true; //////////////////////////////////////////////
-        //     return;
-        // }
+        this->speed++;
 
         while (true)
         {
@@ -28,25 +24,29 @@ void Roll::prog(int index)
             Delta deltas = getDeltas(a, b);
             double disToLeftRoll = getDis(deltas);
 
-            if (disToLeftRoll >= this->diameter - 3)
+            if (disToLeftRoll >= this->kickDis)
             {
                 break;
             }
             else
             {
                 this->impulsForvard();
+                this->speed = 0;
             }
         }
+   
 
-        this->kick();
-    }
-    else
-    {
-        if (index)
-        {
-            // console.log("here"); // ok
-        }
-    }
+        
+
+       // this->kick();
+    // }
+    // else
+    // {
+    //     if (index)
+    //     {
+    //         // console.log("here"); // ok
+    //     }
+    // }
     this->move();
 };
 
@@ -78,7 +78,7 @@ void Roll::impulsForvard()
 
 void Roll::goToSecond()
 {
-    if (this->rightRoll && !this->debut)
+    if (this->rightRoll != nullptr && !this->debut)
     {
         this->debut = true;
         while (true)
@@ -102,19 +102,17 @@ void Roll::goToSecond()
 
 void Roll::impulseProg()
 {
-
     this->prevCx = this->cX;
     this->prevCy = this->cY;
-    if (this->rightRoll != nullptr)
-    {
+
         this->goToSecond();
-    }
+    
 
     for (int i = 0; i < this->game->speed; i++)
     {
         this->impulsForvard();
     }
-    this->kick();
+   // this->kick();
     this->move();
 }
 

@@ -2,8 +2,6 @@
 
 #include "../Roll/Roll.impulseProg.cpp"
 
-int check = 0;
-
 void Game::getWayLine()
 {
     if (!this->wayLine->getLength())
@@ -28,21 +26,30 @@ void Game::newRollCreating()
     if (!this->rolls->getLength() ||
         (disToImpulseRoll && disToImpulseRoll >= this->rolls->getItem(0)->kickDis))
     {
-        this->impulseRollCreate();
+        if (this->check < 3)
+        {
+            this->impulseRollCreate();
+            // this->check++;
+        }
     }
 }
 
 void Game::rollsToProg()
 {
-    this->rolls = this->rolls->filter([](Roll* roll, int i){
-       return roll != nullptr;
-    });
-    for (int i = 0; i < this->rolls->getLength(); i++)
+
+    if (this->needFilter)
+    {
+        this->rolls = this->rolls->filter([](Roll *roll, int i)
+                                          { return roll != nullptr; });
+        this->needFilter = false;
+    }
+
+    for (int i = 1; i < this->rolls->getLength(); i++)
     {
         Roll *roll = this->rolls->getItem(i);
         if (roll != nullptr)
         {
-            if(!roll->del)
+            if (!roll->del)
             {
                 roll->prog(i);
             }
@@ -50,6 +57,7 @@ void Game::rollsToProg()
             {
                 this->deleteProg(roll);
                 this->rolls->reDate(i, nullptr);
+                this->needFilter = true;
             }
         }
         roll = nullptr;
@@ -58,26 +66,40 @@ void Game::rollsToProg()
 
 void Game::deleteProg(Roll *roll)
 {
-   delete roll;
-   roll = nullptr;
+    delete roll;
+    roll = nullptr;
 }
-
 
 void Game::prog()
 {
+
     this->getWayLine();
 
     this->newRollCreating();
 
-    this->impulseRoll->impulseProg();
+    if (this->impulseRoll != nullptr && !this->impulseRoll->del)
+    {
+        this->impulseRoll->impulseProg();
+    }
+    else
+    {
+        if (this->impulseRoll != nullptr)
+        {
+            this->deleteProg(impulseRoll);
+            this->rolls->reDate(0, nullptr);
+            this->impulseRoll = nullptr;
+            this->endLevel = true;
+            this->needFilter = true;
+        }
+    }
 
     this->rollsToProg();
 
-    // if (this->speed == 100 || this->speed == 0)
-    // {
-    //     this->speedVector = -this->speedVector;
-    // }
-    // this->speed += this->speedVector;
+    if (this->speed == 150 || this->speed == 0)
+    {
+        this->speedVector = -this->speedVector;
+    }
+    this->speed += this->speedVector;
     this->station->prog();
 }
 

@@ -20,7 +20,9 @@ void listenner(SDL_Event e, Game* game)
             if (e.key.keysym.scancode == 40)
             {
                 console.log("eneter");
-                game->speed++;
+              //  game->speed++;
+              game->endLevel = false;
+              game->check = 0;
             }
         }
         if (e.type == SDL_MOUSEMOTION)

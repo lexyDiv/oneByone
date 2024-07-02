@@ -8,7 +8,10 @@ class Game
 {
     public:
     int level = 2;
-    int speed = 50;
+    bool endLevel = false;
+    int check = 0;
+    bool needFilter = false;
+    int speed = 0;
     int speedVector = -1;
     bool quit = false;
     double speedKoof = 0.1; // !!!!
