@@ -8,6 +8,7 @@ void Game::getWayLine()
     {
         rapid<WayPoint> arr = fs.read<WayPoint>(this->path, sizeof(WayPoint));
         this->wayLine->update(arr, this->level);
+        this->station->getPosition(this->level);
     }
 }
 
