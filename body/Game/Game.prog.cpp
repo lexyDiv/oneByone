@@ -39,7 +39,7 @@ void Game::rollsToProg()
 
     if (this->needFilter)
     {
-        this->rolls = this->rolls->filter([](Roll *roll, int i)
+        this->rolls->filter([](Roll *roll, int i)
                                           { return roll != nullptr; });
         this->needFilter = false;
     }

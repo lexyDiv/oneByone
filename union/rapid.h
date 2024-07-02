@@ -18,7 +18,8 @@ public:
 	void norm();
 	void print();
 	void printArr();
-	rapid<T> *filter(function<bool(T item, int index)> fn);
+	// rapid<T> *filter(function<bool(T item, int index)> fn);
+	void filter(function<bool(T item, int index)> fn);
 	rapid<T> *sort(function<bool(T a, T b)> fn);
 	T min(function<int(T item)> fn);
 	T max(function<int(T item)> fn);
@@ -118,7 +119,6 @@ inline void rapid<T>::unshift(T item)
 	this->arr[this->left] = item;
 };
 
-
 template <typename T>
 inline void rapid<T>::print()
 {
@@ -142,19 +142,24 @@ inline void rapid<T>::printArr()
 };
 
 template <typename T>
-inline rapid<T> *rapid<T>::filter(function<bool(T item, int index)> fn)
+inline void rapid<T>::filter(function<bool(T item, int index)> fn)
 {
-	rapid *newRapid = this->createRapid();
+	T *newArr = new T[this->length];
+	int nInd = 0;
 	for (int i = 0; i < this->length; i++)
 	{
 		T item = this->arr[i];
 		if (fn(item, i))
 		{
-			newRapid->push(item);
+			newArr[nInd] = item;
+			nInd++;
 		}
 	}
-	newRapid->norm();
-	return newRapid;
+	this->right = this->length - nInd;
+	this->length = nInd;
+	delete this->arr;
+	this->arr = newArr;
+	this->norm();
 };
 
 template <typename T>
@@ -246,12 +251,10 @@ inline void rapid<T>::clear()
 	this->right = 0;
 }
 
-
-
 template <typename T>
-inline void rapid<T>::reDate(int index, T item) 
+inline void rapid<T>::reDate(int index, T item)
 {
-    this->arr[index] = item;
+	this->arr[index] = item;
 };
 
 template <typename T>
@@ -281,7 +284,6 @@ inline T *rapid<T>::frontCopy(T *newArr)
 	};
 	return newArr;
 };
-
 
 template <typename T>
 inline T *rapid<T>::createNewArr(int force)
