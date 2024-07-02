@@ -1,7 +1,5 @@
 #include "../../Listenner.h"
 
-
-
 Station::Station(Game *game)
 {
     this->game = game;
@@ -24,7 +22,7 @@ void Station::getPosition(int level)
     }
     case 2:
     {
-        this->x = 100;
+        this->x = 250;
         this->y = 200;
         return;
     }
@@ -45,8 +43,20 @@ void Station::prog()
     this->conor = radToDeg(getConor(deltas)) + 90;
 }
 
-void Station::draw() 
+void Station::draw()
 {
-    ctx.FillRect(this->x, this->y, 5, 5, "blue");
-    ctx.DrawImage(ass, 0, 0, 1200, 1200, this->x, this->y, 200, 200, SDL_FLIP_NONE, this->conor, 255, 100, 100);
+    ctx.DrawImage(ass,
+                  0,
+                  0,
+                  1200,
+                  1200,
+                  this->x,
+                  this->y,
+                  this->gabX,
+                  this->gabY,
+                  SDL_FLIP_NONE,
+                  this->conor,
+                  255,
+                  this->gabX / 2,
+                  this->gabY / 2);
 };

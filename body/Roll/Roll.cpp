@@ -94,9 +94,6 @@ void Roll::updateConor()
     double deltaConor = (this->way * 360) / this->liner;
     this->conor += deltaConor * this->rotation;
 
-    // double moveConorRad = this->rightCont->getConorToRight();
-    // double toDeg = moveConorRad * 180 / M_PI;
-
     if (this->conor > 360)
     {
         this->conor = this->conor - 360;

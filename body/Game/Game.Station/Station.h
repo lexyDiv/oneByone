@@ -10,6 +10,8 @@ class Station
     public:
     int x;
     int y;
+    int gabX = 200;
+    int gabY = 200;
     double conor = 0;
     Station(Game* game);
     Game* game = nullptr;
