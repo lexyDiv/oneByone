@@ -26,6 +26,7 @@ public:
     Container *rightCont = nullptr;
     RollTypeGroup *typeGroup = nullptr;
     Image *image = nullptr;
+    bool special = false;
     int type;
     double cX;
     double cY;
