@@ -42,7 +42,7 @@ void Station::prog()
     PointF a = {(double)this->x + 100, (double)this->y + 100};
     PointF b = {(double)mouse.x, (double)mouse.y};
     Delta deltas = getDeltas(b, a);
-    this->conor = (getConor(deltas) * 180 / M_PI) + 90;
+    this->conor = radToDeg(getConor(deltas)) + 90;
 }
 
 void Station::draw() 

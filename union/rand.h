@@ -49,14 +49,6 @@ struct Delta
 };
 
 
-
-// Delta getDeltas(PointF a, PointF b)
-// {
-//     double deltaX = b.x - a.x;
-//     double deltaY = b.y - a.y;
-//     return {deltaX, deltaY};;
-// }
-
 Delta getDeltas(PointF &a, PointF &b)
 {
     double deltaX = b.x - a.x;
@@ -80,11 +72,6 @@ double getDis(Delta &del)
     return c;
 };
 
-// double getDis(Delta del)
-// {
-//     double c = sqrt(del.deltaX * del.deltaX + del.deltaY * del.deltaY);
-//     return c;
-// };
 
 double getDis(Delta *del)
 {
@@ -93,13 +80,6 @@ double getDis(Delta *del)
 };
 
 
-
-
-// double getConor(Delta del)
-// {
-//     double conorData = atan2(del.deltaY, del.deltaX);
-//     return conorData;
-// };
 
 double getConor(Delta &del)
 {
@@ -112,3 +92,14 @@ double getConor(Delta *del)
     double conorData = atan2(del->deltaY, del->deltaX);
     return conorData;
 };
+
+
+double radToDeg(double rad)
+{
+    return rad * 180 / M_PI;
+}
+
+double degToRad(double deg)
+{
+    return deg * (M_PI / 180);
+}
