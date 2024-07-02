@@ -2,16 +2,14 @@
 
 #include "../WayLine/WayLine.cpp"
 
-
-Image* roll5 = new Image("src/roll5.png");
-Image* roll6 = new Image("src/roll6.png");
-Image* roll7 = new Image("src/roll7.png");
-Image* roll8 = new Image("src/roll8.png");
-Image* roll9 = new Image("src/roll9.png");
-Image* roll10 = new Image("src/roll10.png");
+Image *roll5 = new Image("src/roll5.png");
+Image *roll6 = new Image("src/roll6.png");
+Image *roll7 = new Image("src/roll7.png");
+Image *roll8 = new Image("src/roll8.png");
+Image *roll9 = new Image("src/roll9.png");
+Image *roll10 = new Image("src/roll10.png");
 
 Image *ass = new Image("src/ass.png");
-
 
 class RollTypeGroup;
 class Game;
@@ -19,7 +17,7 @@ class Game;
 class Roll
 {
 public:
-    Game* game = nullptr;
+    Game *game = nullptr;
     Roll *leftRoll = nullptr;
     Roll *rightRoll = nullptr;
     Container *leftCont = nullptr;
@@ -27,6 +25,7 @@ public:
     RollTypeGroup *typeGroup = nullptr;
     Image *image = nullptr;
     bool special = false;
+    int flySpeed = 10;
     int type;
     double cX;
     double cY;
@@ -35,10 +34,11 @@ public:
     double prevCx;
     double prevCy;
     double way;
-    int diameter = 50;
-    double liner = 2 * M_PI * ((this->diameter / 2) - 3);
-    int kickDis = this->diameter - 3;
+    int diameter = 60;
     int mid = this->diameter / 2;
+    double liner = 2 * M_PI * (mid - 3);
+    int kickDis = this->diameter - 3;
+
     double conor = 0;
     int rotation = 1;
     int vector = 1;
@@ -64,7 +64,7 @@ public:
     void updateConor();
     void move();
     void draw();
-    Image* getImage(int type);
+    Image *getImage(int type);
 
 private:
 };
