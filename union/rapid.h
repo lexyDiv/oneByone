@@ -7,7 +7,6 @@ template <typename T>
 class rapid
 {
 public:
-T *arr = new T[0];
 	rapid();
 	~rapid();
 	T pop();
@@ -29,6 +28,7 @@ T *arr = new T[0];
 	int indexOf(T item);
 	int getLength();
 	void clear();
+	void reDate(int index, T item);
 
 	T &getItem(int index)
 	{
@@ -57,6 +57,7 @@ private:
 	T *createNewArr(int force);
 	void copy(T *newArr);
 	rapid<T> *createRapid();
+	T *arr = new T[0];
 };
 
 template <typename T>
@@ -243,6 +244,14 @@ inline void rapid<T>::clear()
 	this->norm();
 	this->left = 0;
 	this->right = 0;
+}
+
+
+
+template <typename T>
+inline void rapid<T>::reDate(int index, T item) 
+{
+    this->arr[index] = item;
 };
 
 template <typename T>

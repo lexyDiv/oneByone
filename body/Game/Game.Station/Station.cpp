@@ -1,7 +1,29 @@
 #include "Station.h"
 
-Station::Station(int x, int y)
+Station::Station(Game *game)
 {
-    this->x = x;
-    this->y = y;
+    this->game = game;
+    this->game->station = this;
+}
+
+Station::Station()
+{
+ 
+}
+
+
+void Station::prog() 
+{
+   PointF a = {(double)this->x, (double)this->y};
+   PointF b = {(double)mouse.x, (double)mouse.y};
+   Delta deltas = getDeltas(b, a);
+   double conor = getConor(deltas);
+
+   
+
+}
+
+
+void Station::draw() 
+{
 };

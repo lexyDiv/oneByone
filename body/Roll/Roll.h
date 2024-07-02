@@ -49,6 +49,7 @@ public:
     bool del = false;
     Roll();
     Roll(int type, double cX, double cY);
+    ~Roll();
 
     void prog(int index);
     void impulsForvard();

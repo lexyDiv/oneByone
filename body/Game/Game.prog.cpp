@@ -37,9 +37,6 @@ void Game::rollsToProg()
     this->rolls = this->rolls->filter([](Roll* roll, int i){
        return roll != nullptr;
     });
-
-    console.log("length = " + to_string(this->rolls->getLength()));
-
     for (int i = 0; i < this->rolls->getLength(); i++)
     {
         Roll *roll = this->rolls->getItem(i);
@@ -49,15 +46,22 @@ void Game::rollsToProg()
             {
                 roll->prog(i);
             }
-            else{
-                
-               delete this->rolls->arr[i];
-               this->rolls->arr[i] = nullptr;
+            else
+            {
+                this->deleteProg(roll);
+                this->rolls->reDate(i, nullptr);
             }
         }
         roll = nullptr;
     }
 }
+
+void Game::deleteProg(Roll *roll)
+{
+   delete roll;
+   roll = nullptr;
+}
+
 
 void Game::prog()
 {
@@ -74,6 +78,7 @@ void Game::prog()
     //     this->speedVector = -this->speedVector;
     // }
     // this->speed += this->speedVector;
+    this->station->prog();
 }
 
 void Game::impulseRollCreate()

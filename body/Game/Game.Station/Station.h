@@ -8,6 +8,9 @@ class Station
     public:
     int x;
     int y;
+    Station(Game* game);
     Game* game = nullptr;
-    Station(int x, int y);
+    Station();
+    void prog();
+    void draw();
 };

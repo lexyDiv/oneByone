@@ -4,6 +4,11 @@
 
 Game::Game()
 {
+    if(this->level == 2)
+    {
+        this->station->x = 100;
+        this->station->y = 200;
+    }
 }
 
 Game::~Game()
@@ -28,4 +33,5 @@ void Game::draw()
                          });
 
     this->wayLine->drawPoints();
+    this->station->draw();
 }

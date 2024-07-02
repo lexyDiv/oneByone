@@ -8,11 +8,11 @@ class Game
 {
     public:
     int level = 2;
-    int speed = 130;
+    int speed = 50;
     int speedVector = -1;
     bool quit = false;
-    double speedKoof = 0.1;
-    Station* station = nullptr;
+    double speedKoof = 0.1; // !!!!
+    Station* station = new Station(this);
     string path = "levels/level" + to_string(this->level) + ".txt";
     WayLine* wayLine = new WayLine();
 
@@ -22,6 +22,8 @@ class Game
     void getWayLine();
     void newRollCreating();
     void rollsToProg();
+    void deleteProg(Roll* roll);
+    //void stationProg();
     void prog();
     
     void impulseRollCreate();

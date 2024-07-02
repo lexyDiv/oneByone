@@ -13,6 +13,15 @@ Roll::Roll(int type, double cX, double cY)
     this->image = this->getImage(this->type);
 }
 
+Roll::~Roll()
+{
+    this->image = nullptr;
+    this->leftCont = nullptr;
+    this->rightCont = nullptr;
+    this->leftRoll = nullptr;
+    this->rightRoll = nullptr;
+}
+
 void Roll::draw()
 {
     ctx.DrawImage(this->image,
@@ -32,7 +41,7 @@ void Roll::draw()
     //  ctx.FillRect(this->cX, this->cY, 3, 3, "violet");
 }
 
-Image* Roll::getImage(int type)
+Image *Roll::getImage(int type)
 {
     switch (type)
     {
