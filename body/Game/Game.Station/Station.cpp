@@ -1,4 +1,4 @@
-#include "../../Listenner.h"
+#include "../../Roll/Roll.cpp"
 
 Station::Station(Game *game)
 {
@@ -45,7 +45,12 @@ void Station::prog()
     {
         this->roll = new Roll(1, (double)this->x + this->gabX / 2,
                               (double)this->y + this->gabY / 2);
-        this->roll->special = true;                      
+        this->roll->special = true;
+        this->roll->conor = this->conor;
+    }
+    else
+    {
+        this->roll->conor = this->conor;
     }
 }
 
@@ -66,10 +71,8 @@ void Station::draw()
                   this->gabX / 2,
                   this->gabY / 2);
 
-      if(this->roll != nullptr)
-      {
-        this->roll->conor = this->conor;
+    if (this->roll != nullptr)
+    {
         this->roll->draw();
-      }        
-
+    }
 };

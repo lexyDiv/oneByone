@@ -1,5 +1,4 @@
-#include "Roll.prog.cpp"
-#include "Roll.h"
+#include "../Game/Game.cpp"
 
 Roll::Roll(){};
 
@@ -37,7 +36,6 @@ void Roll::draw()
                   255,
                   this->mid,
                   this->mid);
-
     //  ctx.FillRect(this->cX, this->cY, 3, 3, "violet");
 }
 

@@ -1,8 +1,6 @@
 #pragma once
 
-#include "../Roll/Roll.cpp"
-
-//#include "Game.Station/Station.h"
+#include "../Roll/Roll.h"
 
 class Game
 {

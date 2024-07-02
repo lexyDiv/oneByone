@@ -1,6 +1,4 @@
-#include "Game.h"
-
-#include "../Roll/Roll.impulseProg.cpp"
+#include "../WayLine/WayLine.cpp"
 
 void Game::getWayLine()
 {
@@ -41,7 +39,7 @@ void Game::rollsToProg()
     if (this->needFilter)
     {
         this->rolls->filter([](Roll *roll, int i)
-                                          { return roll != nullptr; });
+                            { return roll != nullptr; });
         this->needFilter = false;
     }
 
@@ -101,7 +99,7 @@ void Game::prog()
     //     this->speedVector = -this->speedVector;
     // }
     // this->speed += this->speedVector;
-    
+
     this->station->prog();
 }
 

@@ -1,4 +1,6 @@
-#include "WayLine.h"
+
+#include "../Game/Game.h"
+
 
 WayLine::WayLine(){};
 

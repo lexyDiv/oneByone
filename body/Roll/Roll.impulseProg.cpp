@@ -1,4 +1,4 @@
-#include "Roll.h"
+#include "../Game/Game.prog.cpp"
 
 void Roll::prog(int index)
 {

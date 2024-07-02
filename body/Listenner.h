@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Game.cpp"
+#include "Game/Game.Station/Station.cpp"
 
 WayLine *wayLine = new WayLine();
 

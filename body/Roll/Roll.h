@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../WayLine/WayLine.cpp"
+#include "../WayLine/WayLine.h"
 
 Image *roll5 = new Image("src/roll5.png");
 Image *roll6 = new Image("src/roll6.png");
@@ -11,7 +11,7 @@ Image *roll10 = new Image("src/roll10.png");
 
 Image *ass = new Image("src/ass.png");
 
-class RollTypeGroup;
+
 class Game;
 
 class Roll
@@ -22,7 +22,7 @@ public:
     Roll *rightRoll = nullptr;
     Container *leftCont = nullptr;
     Container *rightCont = nullptr;
-    RollTypeGroup *typeGroup = nullptr;
+ 
     Image *image = nullptr;
     bool special = false;
     int flySpeed = 10;

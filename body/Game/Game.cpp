@@ -1,6 +1,4 @@
-#include "Game.prog.cpp"
-
-//#include "Game.Station/Station.cpp"
+#include "../Roll/Roll.impulseProg.cpp"
 
 Game::Game()
 {
