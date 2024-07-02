@@ -9,6 +9,7 @@ void goWork()
          listenner(e, game);
          console.proc(mouse.x, mouse.y, mouse.leftKey);
          game->prog();
+         mouse.defaultKeys();
          this_thread::sleep_for(chrono::milliseconds(25));
     }
 }
@@ -65,7 +66,6 @@ int main()
         // console.proc(mouse.x, mouse.y, mouse.leftKey);
         // game->prog();
         // th.;
-
         ctx.CreateDrawZone(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
         ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "white");
        // ctx.DrawImage(spiral, 0, 0, 512, 512, 0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);

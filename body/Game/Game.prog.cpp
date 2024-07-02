@@ -96,11 +96,11 @@ void Game::prog()
 
     this->rollsToProg();
 
-    if (this->speed == 150 || this->speed == 0)
-    {
-        this->speedVector = -this->speedVector;
-    }
-    this->speed += this->speedVector;
+    // if (this->speed == 150 || this->speed == 0)
+    // {
+    //     this->speedVector = -this->speedVector;
+    // }
+    // this->speed += this->speedVector;
     
     this->station->prog();
 }

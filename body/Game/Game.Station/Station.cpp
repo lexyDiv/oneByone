@@ -41,6 +41,11 @@ void Station::prog()
     PointF b = {(double)mouse.x, (double)mouse.y};
     Delta deltas = getDeltas(b, a);
     this->conor = radToDeg(getConor(deltas)) + 90;
+    if (this->roll == nullptr)
+    {
+        this->roll = new Roll(1, (double)this->x + this->gabX / 2,
+                              (double)this->y + this->gabY / 2);
+    }
 }
 
 void Station::draw()
@@ -59,4 +64,11 @@ void Station::draw()
                   255,
                   this->gabX / 2,
                   this->gabY / 2);
+
+      if(this->roll != nullptr)
+      {
+        this->roll->conor = this->conor;
+        this->roll->draw();
+      }        
+
 };

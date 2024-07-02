@@ -40,12 +40,14 @@ void listenner(SDL_Event e, Game* game)
             // console.log("click");
 
             mouse.pressKey(e.button.button);
+            mouse.keyDown(e.button.button);
             // console.log("click point");
         }
         if (e.type == SDL_MOUSEBUTTONUP)
         {
             // console.log(to_string(e.button.button)); // 1, 2, 3
             mouse.upKey(e.button.button);
+            mouse.keyUp(e.button.button);
         }
         if (e.type == SDL_MOUSEWHEEL)
         {

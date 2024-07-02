@@ -11,7 +11,7 @@ class Game
     bool endLevel = false;
     int check = 0;
     bool needFilter = false;
-    int speed = 0;
+    int speed = 10;
     int speedVector = -1;
     bool quit = false;
     double speedKoof = 0.1; // !!!!

@@ -4,6 +4,7 @@
 #include "../../../union/FS/FS.cpp"
 
 class Game;
+class Roll;
 
 class Station
 {
@@ -15,6 +16,7 @@ class Station
     double conor = 0;
     Station(Game* game);
     Game* game = nullptr;
+    Roll* roll = nullptr;
     Station();
     void getPosition(int level);
     void prog();
