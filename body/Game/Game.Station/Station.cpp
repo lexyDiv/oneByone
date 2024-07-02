@@ -1,4 +1,6 @@
-#include "Station.h"
+#include "../../Listenner.h"
+
+
 
 Station::Station(Game *game)
 {
@@ -37,13 +39,14 @@ void Station::getPosition(int level)
 
 void Station::prog()
 {
-    PointF a = {(double)this->x, (double)this->y};
+    PointF a = {(double)this->x + 100, (double)this->y + 100};
     PointF b = {(double)mouse.x, (double)mouse.y};
     Delta deltas = getDeltas(b, a);
-    this->conor = getConor(deltas);
+    this->conor = (getConor(deltas) * 180 / M_PI) + 90;
 }
 
 void Station::draw() 
 {
-   // ctx.FillRect(this->x, this->y, 5, 5, "blue");
+    ctx.FillRect(this->x, this->y, 5, 5, "blue");
+    ctx.DrawImage(ass, 0, 0, 1200, 1200, this->x, this->y, 200, 200, SDL_FLIP_NONE, this->conor, 255, 100, 100);
 };

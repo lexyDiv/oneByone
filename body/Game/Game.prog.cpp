@@ -101,6 +101,7 @@ void Game::prog()
         this->speedVector = -this->speedVector;
     }
     this->speed += this->speedVector;
+    
     this->station->prog();
 }
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../union/FS/FS.cpp"
+#include "../Game/Game.Station/Station.h"
 
 class WayPoint
 {

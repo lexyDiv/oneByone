@@ -10,6 +10,8 @@ Image* roll8 = new Image("src/roll8.png");
 Image* roll9 = new Image("src/roll9.png");
 Image* roll10 = new Image("src/roll10.png");
 
+Image *ass = new Image("src/ass.png");
+
 
 class RollTypeGroup;
 class Game;
