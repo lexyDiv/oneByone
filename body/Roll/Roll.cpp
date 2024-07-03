@@ -38,7 +38,7 @@ void Roll::draw()
                   255,
                   this->mid,
                   this->mid);
-      ctx.FillRect(this->cX, this->cY, 3, 3, "red");
+      ctx.FillRect(this->cX, this->cY, 3, 3, "yellow");
 }
 
 Image *Roll::getImage(int type)
