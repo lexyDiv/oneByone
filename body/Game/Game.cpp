@@ -17,7 +17,7 @@ Game::~Game()
         delete this->flyingRoll;
         this->flyingRoll = nullptr;
     }
-    this->rollsToCollisionClear();
+    this->rollsToCollision->clear();
     delete this->rollsToCollision;
     this->rollsToCollision = nullptr;
 };

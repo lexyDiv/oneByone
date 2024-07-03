@@ -36,31 +36,30 @@ void Game::newRollCreating()
 
 void Game::rollsToProg()
 {
+    for (int i = 1; i < this->rolls->getLength(); i++)
+    {
+        Roll *roll = this->rolls->getItem(i);
+        //  if (roll != nullptr)
+        //  {
+        if (!roll->del)
+        {
+            roll->prog(i);
+        }
+        else
+        {
+            this->deleteProg(roll);
+            this->rolls->reDate(i, nullptr);
+            this->needFilter = true;
+        }
+        // }
+        roll = nullptr;
+    }
 
     if (this->needFilter)
     {
         this->rolls->filter([](Roll *roll, int i)
                             { return roll != nullptr; });
         this->needFilter = false;
-    }
-
-    for (int i = 1; i < this->rolls->getLength(); i++)
-    {
-        Roll *roll = this->rolls->getItem(i);
-      //  if (roll != nullptr)
-      //  {
-            if (!roll->del)
-            {
-                roll->prog(i);
-            }
-            else
-            {
-                this->deleteProg(roll);
-                this->rolls->reDate(i, nullptr);
-                this->needFilter = true;
-            }
-       // }
-        roll = nullptr;
     }
 }
 
@@ -105,9 +104,8 @@ void Game::prog()
     this->getRollsToCheckCollision();
     this->flyingMove();
     this->flyingOutDel();
-    this->rollsToCollisionClear();  // !!
+    this->rollsToCollision->clear();
 }
-
 
 void Game::impulseRollCreate()
 {

@@ -5,7 +5,6 @@ void Roll::getConorToSonRoll()
 {
     if (this->sonRoll != nullptr)
     {
-
     }
 }
 
@@ -13,20 +12,18 @@ void Game::getRollsToCheckCollision()
 {
     if (this->flyingRoll != nullptr)
     {
-
+        for (int i = 1; i < this->rolls->getLength(); i++)
+        {
+        }
     }
 }
 
-void Game::rollsToCollisionClear()
-{
 
-}
 
 Roll *Game::checkCollision()
 {
     if (this->flyingRoll != nullptr)
     {
-          
     }
     return nullptr;
 }
@@ -35,7 +32,12 @@ void Game::flyingMove()
 {
     if (this->flyingRoll != nullptr)
     {
-
+        double moveConor = degToRad(this->flyingRoll->conor);
+        for (int i = 0; i < this->flyingRoll->flySpeed; i++)
+        {
+            this->flyingRoll->cX += cos(moveConor);
+            this->flyingRoll->cY += sin(moveConor);
+        }
     }
 }
 

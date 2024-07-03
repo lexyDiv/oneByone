@@ -31,7 +31,6 @@ public:
     void prog();
 
     void getRollsToCheckCollision();
-    void rollsToCollisionClear();
     Roll* checkCollision();
     void flyingMove();
     void flyingOutDel();
