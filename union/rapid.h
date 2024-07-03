@@ -30,6 +30,7 @@ public:
 	int getLength();
 	void clear();
 	void reDate(int index, T item);
+	void splice(int index, T item);
 
 	T &getItem(int index)
 	{
@@ -245,24 +246,42 @@ inline int rapid<T>::getLength()
 template <typename T>
 inline void rapid<T>::clear()
 {
-	// this->right = this->length;
-	// this->length = 0;
-	// this->norm();
-	// this->left = 0;
-	// this->right = 0;
-
-
-	 delete[] this->arr;
-	 this->arr = this->createNewArr(0);
-	 this->length = 0;
-	 this->left = 0;
-	 this->right = 0;
+	delete[] this->arr;
+	this->arr = this->createNewArr(0);
+	this->length = 0;
+	this->left = 0;
+	this->right = 0;
 }
 
 template <typename T>
 inline void rapid<T>::reDate(int index, T item)
 {
 	this->arr[index] = item;
+}
+
+template <typename T>
+inline void rapid<T>::splice(int index, T item)
+{
+	this->norm();
+	T *newArr = this->createNewArr(1);
+	for (int i = 0; i <= this->length; i++)
+	{
+		if (i < index)
+		{
+			newArr[i] = this->arr[i];
+		}
+		else if (i == index)
+		{
+			newArr[i] = item;
+		}
+		else
+		{
+			newArr[i] = this->arr[i - 1];
+		}
+	}
+	this->length++;
+	delete[] this->arr;
+	this->arr = newArr;
 };
 
 template <typename T>

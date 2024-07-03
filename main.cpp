@@ -17,33 +17,37 @@ void goWork()
     }
 }
 
-// class Hz
-// {
-//     public:
-//     int x;
-//     Hz(int x)
-//     {
-//        this->x = x;
-//     }
-// };
+class Hz
+{
+    public:
+    int x;
+    Hz(int x)
+    {
+       this->x = x;
+    }
+};
 
 
 
 int main()
 {
 
-//    rapid<Hz*>* ar = new rapid<Hz*>;
-//    Hz* a = new Hz(99);
-//    Hz* b = new Hz(100);
-//    ar->frontForce(3);
-//    ar->unshift(a);
-//    ar->norm();
-//    ar->frontForce(200);
-//    ar->unshift(b);
-//    ar->norm();
+   rapid<Hz*>* ar = new rapid<Hz*>;
+   Hz* a = new Hz(99);
+   Hz* b = new Hz(100);
+   Hz* c = new Hz(46);
+   ar->frontForce(3);
+   ar->unshift(a);
+   ar->norm();
+   ar->frontForce(200);
+   ar->unshift(b);
+   ar->norm();
+   ar->splice(0, c);
 
-//     console.log("a->x = " + to_string(ar->getItem(0)->x));
-//     console.log("b->x = " + to_string(ar->getItem(1)->x));
+
+    console.log("ar[0]->x = " + to_string(ar->getItem(0)->x));
+    console.log("ar[1]->x = " + to_string(ar->getItem(1)->x));
+    console.log("ar[2]->x = " + to_string(ar->getItem(2)->x));
 
     // rapid<WayPoint> testArr = fs.read<WayPoint>("levels/level1.txt", sizeof(WayPoint));
     // wayLine->update(testArr);
