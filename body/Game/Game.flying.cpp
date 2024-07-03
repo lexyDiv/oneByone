@@ -39,12 +39,52 @@ void Game::rollsToCollisionClear()
     this->rollsToCollision->clear();
 }
 
+Roll *Game::checkCollision()
+{
+    if (this->flyingRoll != nullptr)
+    {
+        for (int i = 0; i < this->rollsToCollision->getLength(); i++)
+        {
+            Roll *roll = this->rollsToCollision->getItem(i);
+            PointF a = {this->flyingRoll->cX, this->flyingRoll->cY};
+            PointF b = {roll->cX, roll->cY};
+            Delta deltas = getDeltas(a, b);
+            double dis = getDis(deltas);
+            if (dis <= roll->kickDis)
+            {
+                return roll;
+            }
+            roll = nullptr;
+        }
+    }
+    return nullptr;
+}
+
 void Game::flyingMove()
 {
     if (this->flyingRoll != nullptr)
     {
-        this->flyingRoll->cX += cos(degToRad(this->flyingRoll->conor)) * this->flyingRoll->flySpeed;
-        this->flyingRoll->cY += sin(degToRad(this->flyingRoll->conor)) * this->flyingRoll->flySpeed;
+        if (!this->rollsToCollision->getLength())
+        {
+            this->flyingRoll->cX += cos(degToRad(this->flyingRoll->conor)) * this->flyingRoll->flySpeed;
+            this->flyingRoll->cY += sin(degToRad(this->flyingRoll->conor)) * this->flyingRoll->flySpeed;
+        }
+        else
+        {
+            for (int i = 0; i < this->flyingRoll->flySpeed; i++)
+            {
+                Roll *roll = this->checkCollision();
+                if (roll != nullptr)
+                {
+                    this->pause = true;
+                }
+                else
+                {
+                    this->flyingRoll->cX += cos(degToRad(this->flyingRoll->conor));
+                    this->flyingRoll->cY += sin(degToRad(this->flyingRoll->conor));
+                }
+            }
+        }
         this->flyingRoll->x = this->flyingRoll->cX - this->flyingRoll->mid;
         this->flyingRoll->y = this->flyingRoll->cY - this->flyingRoll->mid;
     }

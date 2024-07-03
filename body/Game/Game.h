@@ -5,6 +5,7 @@
 class Game
 {
 public:
+    bool pause = false;
     int level = 2;
     bool endLevel = false;
     int check = 0;
@@ -30,6 +31,7 @@ public:
 
     void getRollsToCheckCollision();
     void rollsToCollisionClear();
+    Roll* checkCollision();
     void flyingMove();
     void flyingOutDel();
 

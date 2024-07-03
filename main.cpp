@@ -8,7 +8,10 @@ void goWork()
 
          listenner(e, game);
          console.proc(mouse.x, mouse.y, mouse.leftKey);
-         game->prog();
+         if(!game->pause)
+         {
+            game->prog();
+         }
          mouse.defaultKeys();
          this_thread::sleep_for(chrono::milliseconds(25));
     }

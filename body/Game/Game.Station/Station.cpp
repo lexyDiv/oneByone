@@ -45,7 +45,6 @@ void Station::prog()
     {
         this->roll = new Roll(1, (double)this->x + this->gabX / 2,
                               (double)this->y + this->gabY / 2);
-        this->roll->special = true;
         this->roll->conor = this->conor;
     }
     else if (this->roll != nullptr)
