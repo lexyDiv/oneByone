@@ -1,8 +1,7 @@
-#include "../Roll/Roll.impulseProg.cpp"
+#include "Game.flying.cpp"
 
 Game::Game()
 {
-
 }
 
 Game::~Game()
@@ -23,9 +22,12 @@ void Game::draw()
                              if(roll != nullptr)
                              {
                                 roll->draw();
-                             }
-                         });
+                             } });
 
     this->wayLine->drawPoints();
     this->station->draw();
+    if (this->flyingRoll)
+    {
+        this->flyingRoll->draw();
+    }
 }

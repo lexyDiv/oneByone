@@ -25,7 +25,7 @@ public:
  
     Image *image = nullptr;
     bool special = false;
-    int flySpeed = 10;
+    int flySpeed = 30;
     int type;
     double cX;
     double cY;

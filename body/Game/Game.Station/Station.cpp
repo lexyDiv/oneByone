@@ -53,6 +53,7 @@ void Station::prog()
         this->roll->conor = this->conor;
         if (mouse.leftKeyDown)
         {
+            this->roll->conor += 90;
             this->game->flyingRoll = this->roll;
             this->roll = nullptr;
         }

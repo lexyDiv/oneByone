@@ -25,8 +25,10 @@ class Game
     void newRollCreating();
     void rollsToProg();
     void deleteProg(Roll* roll);
-    //void stationProg();
     void prog();
+
+    void flyingMove();
+    void flyingOutDel();
     
     void impulseRollCreate();
     void draw();

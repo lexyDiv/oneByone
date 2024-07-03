@@ -1,4 +1,5 @@
 #include "../WayLine/WayLine.cpp"
+#include "Game.h"
 
 void Game::getWayLine()
 {
@@ -101,7 +102,10 @@ void Game::prog()
     // this->speed += this->speedVector;
 
     this->station->prog();
+    this->flyingMove();
+    this->flyingOutDel();
 }
+
 
 void Game::impulseRollCreate()
 {
