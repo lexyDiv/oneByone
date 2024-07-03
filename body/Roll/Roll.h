@@ -62,6 +62,7 @@ public:
     void getWayLength();
     void getRotation();
     void updateConor();
+    void getDrawPosition();
     void move();
     void draw();
     Image *getImage(int type);

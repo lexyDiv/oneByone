@@ -10,7 +10,7 @@ public:
     bool endLevel = false;
     int check = 0;
     bool needFilter = false;
-    int speed = 150;
+    int speed = 15;
     int speedVector = -1;
     bool quit = false;
     double speedKoof = 0.1; // !!!!
@@ -22,6 +22,7 @@ public:
     Roll *impulseRoll = nullptr;
     Roll *flyingRoll = nullptr;
     Roll* specialRoll = nullptr;
+    Roll* colisionRoll = nullptr;
     rapid<Roll *> *rollsToCollision = new rapid<Roll *>;
 
     void getWayLine();

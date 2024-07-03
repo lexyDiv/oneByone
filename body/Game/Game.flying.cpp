@@ -24,11 +24,11 @@ void Game::getRollsToCheckCollision()
         }
         this->rollsToCollision->norm();
         // console.log("length = " + to_string(this->rollsToCollision->getLength()));
-        for (int i = 0; i < this->rollsToCollision->getLength(); i++)
-        {
-            Roll *roll = this->rollsToCollision->getItem(i);
-            ctx.FillRect(roll->x, roll->y, roll->diameter, roll->diameter, "red");
-        }
+        // for (int i = 0; i < this->rollsToCollision->getLength(); i++)
+        // {
+        //     Roll *roll = this->rollsToCollision->getItem(i);
+        //     ctx.FillRect(roll->x, roll->y, roll->diameter, roll->diameter, "red");
+        // }
     }
 }
 
@@ -71,45 +71,37 @@ void Game::flyingMove()
 {
     if (this->flyingRoll != nullptr)
     {
-
-        ////////////////////////
-        this->flyingRoll->cX += cos(degToRad(this->flyingRoll->conor)) * this->flyingRoll->flySpeed;
-        this->flyingRoll->cY += sin(degToRad(this->flyingRoll->conor)) * this->flyingRoll->flySpeed;
+        if (!this->rollsToCollision->getLength())
+        {
+            this->flyingRoll->cX += cos(degToRad(this->flyingRoll->conor)) * this->flyingRoll->flySpeed;
+            this->flyingRoll->cY += sin(degToRad(this->flyingRoll->conor)) * this->flyingRoll->flySpeed;
+        }
+        else
+        {
+            for (int i = 0; i < this->flyingRoll->flySpeed; i++)
+            {
+                Roll *roll = this->checkCollision();
+                if (roll != nullptr)
+                {
+                    this->colisionRoll = roll;
+                   // this->pause = true;
+                    this->specialRoll = this->flyingRoll;
+                    this->specialRoll->fatherRoll = roll;
+                    int index = this->rolls->indexOf(roll);
+                    this->rolls->splice(index + 1, this->specialRoll);
+                    this->flyingRoll = nullptr;
+                    roll = nullptr;
+                    return;
+                }
+                else
+                {
+                    this->flyingRoll->cX += cos(degToRad(this->flyingRoll->conor));
+                    this->flyingRoll->cY += sin(degToRad(this->flyingRoll->conor));
+                }
+            }
+        }
         this->flyingRoll->x = this->flyingRoll->cX - this->flyingRoll->mid;
         this->flyingRoll->y = this->flyingRoll->cY - this->flyingRoll->mid;
-
-        ///////////////////
-
-        // if (!this->rollsToCollision->getLength())
-        // {
-        //     this->flyingRoll->cX += cos(degToRad(this->flyingRoll->conor)) * this->flyingRoll->flySpeed;
-        //     this->flyingRoll->cY += sin(degToRad(this->flyingRoll->conor)) * this->flyingRoll->flySpeed;
-        // }
-        // else
-        // {
-        //     for (int i = 0; i < this->flyingRoll->flySpeed; i++)
-        //     {
-        //         Roll *roll = nullptr; // this->checkCollision();
-        //         if (roll != nullptr)
-        //         {
-        //             // this->pause = true;
-        //             this->specialRoll = this->flyingRoll;
-        //             this->specialRoll->fatherRoll = roll;
-        //             int index = this->rolls->indexOf(roll);
-        //             this->rolls->splice(index + 1, this->specialRoll);
-        //             this->flyingRoll = nullptr;
-        //             roll = nullptr;
-        //             return;
-        //         }
-        //         else
-        //         {
-        //             this->flyingRoll->cX += cos(degToRad(this->flyingRoll->conor));
-        //             this->flyingRoll->cY += sin(degToRad(this->flyingRoll->conor));
-        //         }
-        //     }
-        // }
-        // this->flyingRoll->x = this->flyingRoll->cX - this->flyingRoll->mid;
-        // this->flyingRoll->y = this->flyingRoll->cY - this->flyingRoll->mid;
     }
 }
 

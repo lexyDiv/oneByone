@@ -105,7 +105,7 @@ void Game::prog()
     this->getRollsToCheckCollision();
     this->flyingMove();
     this->flyingOutDel();
-  //  this->rollsToCollisionClear();  // !!
+    this->rollsToCollisionClear();  // !!
 }
 
 

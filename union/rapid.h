@@ -37,6 +37,11 @@ public:
 		return this->arr[index];
 	};
 
+	T getItem2(int index)
+	{
+		return this->arr[index];
+	};
+
 	class too
 	{
 	public:

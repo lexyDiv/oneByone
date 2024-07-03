@@ -1,4 +1,5 @@
 #include "../Game/Game.cpp"
+#include "Roll.h"
 
 Roll::Roll(){};
 
@@ -23,6 +24,7 @@ Roll::~Roll()
 
 void Roll::draw()
 {
+    this->getDrawPosition();
     ctx.DrawImage(this->image,
                   this->animX,
                   this->animY,
@@ -36,7 +38,7 @@ void Roll::draw()
                   255,
                   this->mid,
                   this->mid);
-    //  ctx.FillRect(this->cX, this->cY, 3, 3, "violet");
+      ctx.FillRect(this->cX, this->cY, 3, 3, "red");
 }
 
 Image *Roll::getImage(int type)
@@ -102,11 +104,15 @@ void Roll::updateConor()
     }
 };
 
+void Roll::getDrawPosition()
+{
+    this->x = this->cX - this->mid;
+    this->y = this->cY - this->mid;
+}
+
+
 void Roll::move()
 {
     this->getWayLength();
     this->updateConor();
-
-    this->x = this->cX - this->mid;
-    this->y = this->cY - this->mid;
 }

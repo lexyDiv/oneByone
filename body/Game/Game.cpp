@@ -34,8 +34,12 @@ void Game::draw()
 
     this->wayLine->drawPoints();
     this->station->draw();
-    if (this->flyingRoll)
+    if (this->flyingRoll != nullptr)
     {
         this->flyingRoll->draw();
     }
+    // if(this->colisionRoll != nullptr)
+    // {
+    //     ctx.StrokeRect(this->colisionRoll->x, this->colisionRoll->y, this->colisionRoll->diameter, this->colisionRoll->diameter, "violet");
+    // }
 }
