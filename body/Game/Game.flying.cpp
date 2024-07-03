@@ -77,6 +77,7 @@ void Game::flyingMove()
                 if (roll != nullptr)
                 {
                     this->pause = true;
+                    roll = nullptr;
                 }
                 else
                 {
