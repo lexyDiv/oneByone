@@ -24,10 +24,13 @@ public:
     Container *rightCont = nullptr;
  
     Image *image = nullptr;
+
+    //////////////////////
     bool father = false;
     Roll* sonRoll = nullptr;
     double conorToSonRoll;
     int sonRollPosition;
+    /////////////////////
 
     int flySpeed = 30;
     int type;

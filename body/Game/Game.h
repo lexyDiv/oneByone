@@ -5,6 +5,7 @@
 class Game
 {
 public:
+Roll* contactRoll = nullptr;
     bool pause = false;
     int level = 2;
     bool endLevel = false;

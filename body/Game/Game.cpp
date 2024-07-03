@@ -38,8 +38,12 @@ void Game::draw()
     {
         this->flyingRoll->draw();
     }
-    // if(this->colisionRoll != nullptr)
+
+    // this->rollsToCollision->forEach([](Roll* roll){
+    //     ctx.StrokeRect(roll->x, roll->y, roll->diameter, roll->diameter, "red");
+    // });
+    // if(this->contactRoll != nullptr)
     // {
-    //     ctx.StrokeRect(this->colisionRoll->x, this->colisionRoll->y, this->colisionRoll->diameter, this->colisionRoll->diameter, "violet");
+    //     ctx.StrokeRect(this->contactRoll->x, this->contactRoll->y, this->contactRoll->diameter, this->contactRoll->diameter, "violet");
     // }
 }
