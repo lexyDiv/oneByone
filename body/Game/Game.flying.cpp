@@ -3,6 +3,26 @@
 
 void Game::getRollsToCheckCollision()
 {
+    this->rollsToCollisionClear();
+    if (this->flyingRoll != nullptr)
+    {
+        this->rollsToCollision->backForce(20);
+        for (int i = 1; i < this->rolls->getLength(); i++)
+        {
+            Roll *roll = this->rolls->getItem(i);
+            PointF a = {this->flyingRoll->cX, this->flyingRoll->cY};
+            PointF b = {roll->cX, roll->cY};
+            Delta deltas = getDeltas(a, b);
+            double dis = getDis(deltas);
+            if (dis <= this->flyingRoll->flySpeed + this->flyingRoll->diameter)
+            {
+                this->rollsToCollision->push(roll);
+            }
+            roll = nullptr;
+        }
+        this->rollsToCollision->norm();
+         console.log("length = " + to_string(this->rollsToCollision->getLength()));
+    }
 }
 
 void Game::rollsToCollisionClear()
@@ -13,7 +33,6 @@ void Game::rollsToCollisionClear()
         if (rl != nullptr)
         {
             this->rollsToCollision->reDate(i, nullptr);
-            delete rl;
             rl = nullptr;
         }
     }

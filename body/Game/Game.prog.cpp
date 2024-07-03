@@ -102,6 +102,7 @@ void Game::prog()
     // this->speed += this->speedVector;
 
     this->station->prog();
+    this->getRollsToCheckCollision();
     this->flyingMove();
     this->flyingOutDel();
 }

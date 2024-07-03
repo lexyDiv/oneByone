@@ -245,13 +245,18 @@ inline int rapid<T>::getLength()
 template <typename T>
 inline void rapid<T>::clear()
 {
-	// this->length = 0;
-	// this->norm();
-	// this->left = 0;
-	// this->right = 0;
-	this->filter([](T item, int i){
-		return false;
-	});
+	this->right = this->length;
+	this->length = 0;
+	this->norm();
+	this->left = 0;
+	this->right = 0;
+
+
+	//  delete this->arr;
+	//  this->arr = this->createNewArr(0);
+	//  this->length = 0;
+	//  this->left = 0;
+	//  this->right = 0;
 }
 
 template <typename T>
