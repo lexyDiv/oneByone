@@ -21,7 +21,7 @@ public:
     rapid<Roll *> *rolls = new rapid<Roll *>;
     Roll *impulseRoll = nullptr;
     Roll *flyingRoll = nullptr;
-    Roll* specialRoll = nullptr;
+    bool unComplite = false;
     Roll* colisionRoll = nullptr;
     rapid<Roll *> *rollsToCollision = new rapid<Roll *>;
 

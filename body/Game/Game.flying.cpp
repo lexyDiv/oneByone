@@ -83,12 +83,13 @@ void Game::flyingMove()
                 Roll *roll = this->checkCollision();
                 if (roll != nullptr)
                 {
-                    this->colisionRoll = roll;
+                   // this->colisionRoll = roll;
                     // this->pause = true;
-                    this->specialRoll = this->flyingRoll;
-                    this->specialRoll->fatherRoll = roll;
+                    this->unComplite = true;
+                    this->flyingRoll->father = true;
                     int index = this->rolls->indexOf(roll);
-                    this->rolls->splice(index + 1, this->specialRoll);
+                    this->rolls->splice(index + 1, this->flyingRoll);
+                    roll->sonRoll = this->flyingRoll;
                     this->flyingRoll = nullptr;
                     roll = nullptr;
                     return;

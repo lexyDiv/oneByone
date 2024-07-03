@@ -43,7 +43,7 @@ void Station::prog()
     this->conor = radToDeg(getConor(deltas)) + 90;
     if (this->roll == nullptr &&
         this->game->flyingRoll == nullptr &&
-        this->game->specialRoll == nullptr)
+        !this->game->unComplite)
     {
         this->roll = new Roll(1, (double)this->x + this->gabX / 2,
                               (double)this->y + this->gabY / 2);
