@@ -47,8 +47,8 @@ void Game::rollsToProg()
     for (int i = 1; i < this->rolls->getLength(); i++)
     {
         Roll *roll = this->rolls->getItem(i);
-        if (roll != nullptr)
-        {
+      //  if (roll != nullptr)
+      //  {
             if (!roll->del)
             {
                 roll->prog(i);
@@ -59,7 +59,7 @@ void Game::rollsToProg()
                 this->rolls->reDate(i, nullptr);
                 this->needFilter = true;
             }
-        }
+       // }
         roll = nullptr;
     }
 }
@@ -105,6 +105,7 @@ void Game::prog()
     this->getRollsToCheckCollision();
     this->flyingMove();
     this->flyingOutDel();
+  //  this->rollsToCollisionClear();  // !!
 }
 
 

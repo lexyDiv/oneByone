@@ -24,7 +24,7 @@ public:
     Container *rightCont = nullptr;
  
     Image *image = nullptr;
-    Roll* special = nullptr;
+    Roll* fatherRoll = nullptr;
     int flySpeed = 30;
     int type;
     double cX;

@@ -2,8 +2,9 @@
 
 void Roll::prog(int index)
 {
-   // if (this->impulse)
-   // {
+
+    if (this->fatherRoll == nullptr)
+    {
         this->speed = 0;
         this->impulse = false;
 
@@ -34,20 +35,8 @@ void Roll::prog(int index)
                 this->speed = 0;
             }
         }
-   
-
-        
-
-       // this->kick();
-    // }
-    // else
-    // {
-    //     if (index)
-    //     {
-    //         // console.log("here"); // ok
-    //     }
-    // }
-    this->move();
+        this->move();
+    }
 };
 
 void Roll::impulsForvard()
@@ -105,14 +94,13 @@ void Roll::impulseProg()
     this->prevCx = this->cX;
     this->prevCy = this->cY;
 
-        this->goToSecond();
-    
+    this->goToSecond();
 
     for (int i = 0; i < this->game->speed; i++)
     {
         this->impulsForvard();
     }
-   // this->kick();
+    // this->kick();
     this->move();
 }
 
