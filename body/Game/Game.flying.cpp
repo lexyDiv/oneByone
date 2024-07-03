@@ -1,6 +1,25 @@
 #include "../Roll/Roll.impulseProg.cpp"
 #include "Game.h"
 
+void Game::getRollsToCheckCollision()
+{
+}
+
+void Game::rollsToCollisionClear()
+{
+    for (int i = 0; i < this->rollsToCollision->getLength(); i++)
+    {
+        Roll *rl = this->rollsToCollision->getItem(i);
+        if (rl != nullptr)
+        {
+            this->rollsToCollision->reDate(i, nullptr);
+            delete rl;
+            rl = nullptr;
+        }
+    }
+    this->rollsToCollision->clear();
+}
+
 void Game::flyingMove()
 {
     if (this->flyingRoll != nullptr)

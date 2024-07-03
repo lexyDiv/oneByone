@@ -4,7 +4,7 @@
 
 class Game
 {
-    public:
+public:
     int level = 2;
     bool endLevel = false;
     int check = 0;
@@ -13,23 +13,26 @@ class Game
     int speedVector = -1;
     bool quit = false;
     double speedKoof = 0.1; // !!!!
-    Station* station = new Station(this);
+    Station *station = new Station(this);
     string path = "levels/level" + to_string(this->level) + ".txt";
-    WayLine* wayLine = new WayLine();
+    WayLine *wayLine = new WayLine();
 
-    rapid<Roll*>* rolls = new rapid<Roll*>;
-    Roll* impulseRoll = nullptr;
-    Roll* flyingRoll = nullptr;
+    rapid<Roll *> *rolls = new rapid<Roll *>;
+    Roll *impulseRoll = nullptr;
+    Roll *flyingRoll = nullptr;
+    rapid<Roll *> *rollsToCollision = new rapid<Roll *>;
 
     void getWayLine();
     void newRollCreating();
     void rollsToProg();
-    void deleteProg(Roll* roll);
+    void deleteProg(Roll *roll);
     void prog();
 
+    void getRollsToCheckCollision();
+    void rollsToCollisionClear();
     void flyingMove();
     void flyingOutDel();
-    
+
     void impulseRollCreate();
     void draw();
 

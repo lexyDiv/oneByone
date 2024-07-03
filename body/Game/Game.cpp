@@ -12,6 +12,14 @@ Game::~Game()
                          {
         delete rl;
         rl = nullptr; });
+    if (this->flyingRoll != nullptr)
+    {
+        delete this->flyingRoll;
+        this->flyingRoll = nullptr;
+    }
+    this->rollsToCollisionClear();
+    delete this->rollsToCollision;
+    this->rollsToCollision = nullptr;
 };
 
 void Game::draw()
