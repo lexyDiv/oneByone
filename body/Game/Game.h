@@ -19,6 +19,7 @@ class Game
 
     rapid<Roll*>* rolls = new rapid<Roll*>;
     Roll* impulseRoll = nullptr;
+    Roll* flyingRoll = nullptr;
 
     void getWayLine();
     void newRollCreating();

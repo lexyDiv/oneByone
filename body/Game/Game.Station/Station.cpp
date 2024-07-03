@@ -41,16 +41,21 @@ void Station::prog()
     PointF b = {(double)mouse.x, (double)mouse.y};
     Delta deltas = getDeltas(b, a);
     this->conor = radToDeg(getConor(deltas)) + 90;
-    if (this->roll == nullptr)
+    if (this->roll == nullptr && this->game->flyingRoll == nullptr)
     {
         this->roll = new Roll(1, (double)this->x + this->gabX / 2,
                               (double)this->y + this->gabY / 2);
         this->roll->special = true;
         this->roll->conor = this->conor;
     }
-    else
+    else if (this->roll != nullptr)
     {
         this->roll->conor = this->conor;
+        if (mouse.leftKeyDown)
+        {
+            this->game->flyingRoll = this->roll;
+            this->roll = nullptr;
+        }
     }
 }
 
