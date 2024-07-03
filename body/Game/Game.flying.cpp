@@ -21,7 +21,7 @@ void Game::getRollsToCheckCollision()
             roll = nullptr;
         }
         this->rollsToCollision->norm();
-         console.log("length = " + to_string(this->rollsToCollision->getLength()));
+        // console.log("length = " + to_string(this->rollsToCollision->getLength()));
     }
 }
 
