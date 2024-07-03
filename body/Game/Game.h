@@ -22,7 +22,6 @@ public:
     Roll *impulseRoll = nullptr;
     Roll *flyingRoll = nullptr;
     bool unComplite = false;
-    Roll* colisionRoll = nullptr;
     rapid<Roll *> *rollsToCollision = new rapid<Roll *>;
 
     void getWayLine();

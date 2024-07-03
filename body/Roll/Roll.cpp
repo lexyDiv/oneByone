@@ -41,6 +41,8 @@ void Roll::draw()
       ctx.FillRect(this->cX, this->cY, 3, 3, "yellow");
 }
 
+
+
 Image *Roll::getImage(int type)
 {
     switch (type)

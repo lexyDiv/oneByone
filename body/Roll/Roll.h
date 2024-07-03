@@ -26,6 +26,7 @@ public:
     Image *image = nullptr;
     bool father = false;
     Roll* sonRoll = nullptr;
+    double conorToSonRoll;
     int flySpeed = 30;
     int type;
     double cX;
@@ -66,6 +67,7 @@ public:
     void getDrawPosition();
     void move();
     void draw();
+    void getConorToSonRoll();
     Image *getImage(int type);
 
 private:
