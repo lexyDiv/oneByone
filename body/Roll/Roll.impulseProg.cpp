@@ -38,7 +38,7 @@ void Roll::prog(int index)
         this->move();
         if(this->sonRoll)
         {
-           // console.log("programm here");
+           
         }
     }
 };
