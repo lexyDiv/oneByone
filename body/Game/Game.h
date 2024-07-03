@@ -10,7 +10,7 @@ public:
     bool endLevel = false;
     int check = 0;
     bool needFilter = false;
-    int speed = 15;
+    int speed = 150;
     int speedVector = -1;
     bool quit = false;
     double speedKoof = 0.1; // !!!!

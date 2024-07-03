@@ -27,6 +27,8 @@ public:
     bool father = false;
     Roll* sonRoll = nullptr;
     double conorToSonRoll;
+    int sonRollPosition;
+
     int flySpeed = 30;
     int type;
     double cX;

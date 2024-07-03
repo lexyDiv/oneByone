@@ -9,6 +9,8 @@ void Roll::getConorToSonRoll()
         PointF b = {this->cX, this->cY};
         Delta deltas = getDeltas(a, b);
         this->conorToSonRoll = getConor(deltas);
+        console.log("conorToSonRoll = " + to_string(radToDeg(this->conorToSonRoll)));
+        console.log("moveConor = " + to_string(radToDeg(this->leftCont->getConorToRight())));
     }
 }
 
@@ -94,7 +96,7 @@ void Game::flyingMove()
                 Roll *roll = this->checkCollision();
                 if (roll != nullptr)
                 {
-                    // this->pause = true;
+                     this->pause = true;
                     this->unComplite = true;
                     this->flyingRoll->father = true;
                     int index = this->rolls->indexOf(roll);
