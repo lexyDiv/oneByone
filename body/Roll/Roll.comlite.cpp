@@ -64,5 +64,14 @@ void Roll::getSonPointAndRotation()
     {
         PointF *rightSonPoint = this->getRightSonPoint();
         PointF *leftSonPoint = this->getLeftSonPoint();
+       
+        PointF a = {rightSonPoint->x, rightSonPoint->y};
+        PointF b = {this->sonRoll->cX, this->sonRoll->cY};
+        Delta deltas = getDeltas(a, b);
+        double disToRight = getDis(deltas);
+        a = {leftSonPoint->x, leftSonPoint->y};
+        deltas = getDeltas(a, b);
+        double disToLeft = getDis(deltas);
+               
     }
 }
