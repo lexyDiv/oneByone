@@ -87,6 +87,8 @@ double getConor(Delta &del)
     return conorData;
 };
 
+
+
 double getConor(Delta *del)
 {
     double conorData = atan2(del->deltaY, del->deltaX);

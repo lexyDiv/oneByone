@@ -1,8 +1,6 @@
 #include "../Roll/Roll.impulseProg.cpp"
 #include "Game.h"
 
-
-
 void Game::getRollsToCheckCollision()
 {
     if (this->flyingRoll != nullptr)
@@ -69,8 +67,13 @@ void Game::flyingMove()
                 this->flyingRoll->cX = roll->cX + cos(roll->conorToSonRoll) * roll->kickDis;
                 this->flyingRoll->cY = roll->cY + sin(roll->conorToSonRoll) * roll->kickDis;
                 roll->getSonPointAndRotation();
-                this->rolls->splice(this->rolls->indexOf(roll) + 1, this->flyingRoll);
+
+                //////////////
+                this->rolls->splice(this->rolls->indexOf(roll) + roll->sonRollPosition,
+                                    this->flyingRoll);
+                                    console.log("sonRotation = " + to_string(roll->sonRotation));
                 this->flyingRoll = nullptr;
+                roll = nullptr;
                 return;
             }
         }

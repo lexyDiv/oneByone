@@ -21,7 +21,7 @@ PointF *Roll::getRightSonPoint()
     rightRoll->game = this->game;
     rightRoll->forvardMove();
     PointF *rightSonPoint = new PointF{rightRoll->cX, rightRoll->cY};
-    this->game->LR[1] = rightSonPoint;
+    //this->game->LR[1] = rightSonPoint;
     delete rightRoll;
     rightRoll = nullptr;
     return rightSonPoint;
@@ -44,13 +44,12 @@ PointF *Roll::getLeftSonPoint()
         if (dis >= this->kickDis)
         {
             PointF *point = new PointF{leftRoll->cX, leftRoll->cY};
-            this->game->LR[0] = point;
+           // this->game->LR[0] = point;
             return point;
         }
         else
         {
             leftRoll->impulseBack();
-          
         }
     }
     /////
@@ -64,7 +63,7 @@ void Roll::getSonPointAndRotation()
     {
         PointF *rightSonPoint = this->getRightSonPoint();
         PointF *leftSonPoint = this->getLeftSonPoint();
-       
+
         PointF a = {rightSonPoint->x, rightSonPoint->y};
         PointF b = {this->sonRoll->cX, this->sonRoll->cY};
         Delta deltas = getDeltas(a, b);
@@ -72,6 +71,36 @@ void Roll::getSonPointAndRotation()
         a = {leftSonPoint->x, leftSonPoint->y};
         deltas = getDeltas(a, b);
         double disToLeft = getDis(deltas);
-               
+        this->sonRollPosition = disToLeft < disToRight ? 0 : 1;
+        b = {rightSonPoint->x, rightSonPoint->y};
+        deltas = getDeltas(a, b);
+        double leftToRightConor = radToDeg(getConor(deltas));
+        b = {this->sonRoll->cX, this->sonRoll->cY};
+        deltas = getDeltas(a, b);
+        double leftToSunRollConor = radToDeg(getConor(deltas));
+
+        if (leftToRightConor < 0)
+        {
+            leftToRightConor += 360;
+        }
+        if (leftToSunRollConor < 0)
+        {
+            leftToSunRollConor += 360;
+        }
+
+        if (leftToRightConor > leftToSunRollConor)
+        {
+           // console.log("LEFT");
+           this->sonRotation =  !this->sonRollPosition ? 1 : 0;
+        }
+        else
+        {
+            //console.log("RIGHT");
+            this->sonRotation =  !this->sonRollPosition ? 0 : 1;
+        }
+        delete rightSonPoint;
+        delete leftSonPoint;
+        rightSonPoint = nullptr;
+        leftSonPoint = nullptr;
     }
 }

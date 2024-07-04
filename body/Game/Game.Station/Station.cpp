@@ -22,8 +22,10 @@ void Station::getPosition(int level)
     }
     case 2:
     {
-        this->x = 250;
-        this->y = 200;
+       this->x = 250;
+       this->y = 200;
+        //  this->x = ctx.SCREEN_WIDTH - 200;
+        //  this->y = 50;
         return;
     }
     default:
