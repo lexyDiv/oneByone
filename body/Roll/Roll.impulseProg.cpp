@@ -65,6 +65,10 @@ void Roll::impulsForvard()
         else
         {
             this->del = true;
+            if(this->sonRoll)
+            {
+                this->sonRoll->del = true;
+            }
         }
     }
 }

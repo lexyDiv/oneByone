@@ -70,7 +70,7 @@ void Game::flyingMove()
             Roll *roll = this->checkCollision();
             if (roll != nullptr)
             {
-                this->pause = true;
+               // this->pause = true;
                 this->unComplite = true;
                 this->flyingRoll->father = true;
                 roll->sonRoll = this->flyingRoll;
