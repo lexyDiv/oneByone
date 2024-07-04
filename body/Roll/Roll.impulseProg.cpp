@@ -1,4 +1,4 @@
-#include "../Game/Game.prog.cpp"
+#include "Roll.comlite.cpp"
 
 void Roll::prog(int index)
 {
