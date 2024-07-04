@@ -5,7 +5,11 @@
 class Game
 {
 public:
+
+PointF *LR[2]{nullptr, nullptr};
 Roll* contactRoll = nullptr;
+////////////////////
+
     bool pause = false;
     int level = 2;
     bool endLevel = false;

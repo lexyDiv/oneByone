@@ -1,16 +1,7 @@
 #include "../Roll/Roll.impulseProg.cpp"
 #include "Game.h"
 
-void Roll::getConorToSonRoll()
-{
-    if (this->sonRoll != nullptr)
-    {
-        PointF a = {this->cX, this->cY};
-        PointF b = {this->sonRoll->cX, this->sonRoll->cY};
-        Delta deltas = getDeltas(a, b);
-        this->conorToSonRoll = getConor(deltas);
-    }
-}
+
 
 void Game::getRollsToCheckCollision()
 {
@@ -70,7 +61,7 @@ void Game::flyingMove()
             Roll *roll = this->checkCollision();
             if (roll != nullptr)
             {
-               // this->pause = true;
+                this->pause = true;
                 this->unComplite = true;
                 this->flyingRoll->father = true;
                 roll->sonRoll = this->flyingRoll;
@@ -79,6 +70,7 @@ void Game::flyingMove()
                 this->flyingRoll->cY = roll->cY + sin(roll->conorToSonRoll) * roll->kickDis;
                 this->rolls->splice(this->rolls->indexOf(roll) + 1, this->flyingRoll);
                 this->flyingRoll = nullptr;
+                roll->getSonPointAndRotation();
                 return;
             }
         }

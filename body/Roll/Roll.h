@@ -30,6 +30,8 @@ public:
     Roll* sonRoll = nullptr;
     double conorToSonRoll;
     int sonRollPosition;
+    int sonRotation;
+    PointF sonPoint;
     /////////////////////
 
     int flySpeed = 30;
@@ -72,7 +74,12 @@ public:
     void getDrawPosition();
     void move();
     void draw();
+    //////////////
     void getConorToSonRoll();
+    PointF* getRightSonPoint();
+    void getLeftSonPoint();
+    void getSonPointAndRotation();
+    ///////////////
     Image *getImage(int type);
 
 private:
