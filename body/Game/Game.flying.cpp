@@ -68,9 +68,9 @@ void Game::flyingMove()
                 roll->getConorToSonRoll();
                 this->flyingRoll->cX = roll->cX + cos(roll->conorToSonRoll) * roll->kickDis;
                 this->flyingRoll->cY = roll->cY + sin(roll->conorToSonRoll) * roll->kickDis;
+                roll->getSonPointAndRotation();
                 this->rolls->splice(this->rolls->indexOf(roll) + 1, this->flyingRoll);
                 this->flyingRoll = nullptr;
-                roll->getSonPointAndRotation();
                 return;
             }
         }

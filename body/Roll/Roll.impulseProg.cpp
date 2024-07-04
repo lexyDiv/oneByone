@@ -1,4 +1,5 @@
 #include "Roll.comlite.cpp"
+#include "Roll.h"
 
 void Roll::prog(int index)
 {
@@ -75,6 +76,24 @@ void Roll::impulsForvard()
                 this->sonRoll->del = true;
             }
         }
+    }
+}
+
+void Roll::impulseBack()
+{
+    double conor = this->rightCont->getConorToLeft();
+    this->cX = this->cX - cos(conor) * this->game->speedKoof;
+    this->cY = this->cY - sin(conor) * this->game->speedKoof;
+    PointF a = {(double)this->leftCont->wayPoint->x, (double)this->leftCont->wayPoint->y};
+    PointF b = {this->cX, this->cY};
+    Delta deltas = getDeltas(a, b);
+    double dis = getDis(deltas);
+    if(dis <= 1 * this->game->speedKoof)
+    {
+        this->cX = this->leftCont->wayPoint->x;
+        this->cY = this->leftCont->wayPoint->y;
+        this->rightCont = this->leftCont;
+        this->leftCont = this->rightCont->left;
     }
 }
 

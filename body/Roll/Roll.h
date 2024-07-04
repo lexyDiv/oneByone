@@ -67,6 +67,7 @@ public:
     ///////////
     void forvardMove();
     void impulsForvard();
+    void impulseBack();
     /////////////
     void goToSecond();
     void impulseProg();
@@ -80,7 +81,7 @@ public:
     //////////////
     void getConorToSonRoll();
     PointF* getRightSonPoint();
-    void getLeftSonPoint();
+    PointF* getLeftSonPoint();
     void getSonPointAndRotation();
     ///////////////
     Image *getImage(int type);
