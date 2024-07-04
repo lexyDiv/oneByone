@@ -64,7 +64,10 @@ public:
     ~Roll();
 
     void prog(int index);
+    ///////////
+    void forvardMove();
     void impulsForvard();
+    /////////////
     void goToSecond();
     void impulseProg();
     void kick();

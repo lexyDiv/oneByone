@@ -18,30 +18,35 @@ void Roll::prog(int index)
 
         this->speed++;
 
-        while (true)
-        {
-            PointF a = {this->cX, this->cY};
-            PointF b = {this->leftRoll->cX, this->leftRoll->cY};
-            Delta deltas = getDeltas(a, b);
-            double disToLeftRoll = getDis(deltas);
+        this->forvardMove();
 
-            if (disToLeftRoll >= this->kickDis)
-            {
-                break;
-            }
-            else
-            {
-                this->impulsForvard();
-                this->speed = 0;
-            }
-        }
         this->move();
-        if(this->sonRoll)
+        if (this->sonRoll)
         {
-           
         }
     }
 };
+
+void Roll::forvardMove()
+{
+    while (true)
+    {
+        PointF a = {this->cX, this->cY};
+        PointF b = {this->leftRoll->cX, this->leftRoll->cY};
+        Delta deltas = getDeltas(a, b);
+        double disToLeftRoll = getDis(deltas);
+
+        if (disToLeftRoll >= this->kickDis)
+        {
+            break;
+        }
+        else
+        {
+            this->impulsForvard();
+            this->speed = 0;
+        }
+    }
+}
 
 void Roll::impulsForvard()
 {
@@ -65,7 +70,7 @@ void Roll::impulsForvard()
         else
         {
             this->del = true;
-            if(this->sonRoll)
+            if (this->sonRoll)
             {
                 this->sonRoll->del = true;
             }
