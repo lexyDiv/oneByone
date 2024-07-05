@@ -71,7 +71,21 @@ void Game::flyingMove()
                 //////////////
                 this->rolls->splice(this->rolls->indexOf(roll) + roll->sonRollPosition,
                                     this->flyingRoll);
-                                    console.log("sonRotation = " + to_string(roll->sonRotation));
+console.log("sonRotation = " + to_string(roll->sonRotation));
+                // if(!roll->sonRollPosition)
+                // {
+                //     this->flyingRoll->leftRoll = roll->leftRoll;
+                //     this->flyingRoll->rightRoll = roll;
+                //     this->flyingRoll->leftRoll->rightRoll = this->flyingRoll;
+                //     roll->leftRoll = this->flyingRoll;
+                // }
+                // else
+                // {
+                //     this->flyingRoll->leftRoll = roll;
+                //     this->flyingRoll->rightRoll = roll->rightRoll;
+                //     this->flyingRoll->rightRoll->leftRoll = this->flyingRoll;
+                //     roll->rightRoll = this->flyingRoll;
+                // }
                 this->flyingRoll = nullptr;
                 roll = nullptr;
                 return;
