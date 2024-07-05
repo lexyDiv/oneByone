@@ -29,30 +29,30 @@ public:
 
     int flySpeed = 30;
     int type;
-    double cX;
-    double cY;
+    long double cX;
+    long double cY;
     int x;
     int y;
-    double prevCx;
-    double prevCy;
-    double way;
+    long double prevCx;
+    long double prevCy;
+    long double way;
     int diameter = 60;
     int mid = this->diameter / 2;
-    double liner = 2 * M_PI * (mid - 3);
+    long double liner = 2 * M_PI * (mid - 3);
     int kickDis = this->diameter - 3;
 
         //////////////////////
     bool father = false;
     Roll* sonRoll = nullptr;
-    double conorToSonRoll;
+    long double conorToSonRoll;
     int sonRollPosition;
     int sonRotation;
     PointF sonPoint;
-    double sonRotationIndex = 0.1;
-    double sonRotationWay = (liner * radToDeg(sonRotationIndex)) / radToDeg(360);
+    long double sonRotationIndex = 0.1;
+    long double sonRotationWay = (liner * radToDeg(sonRotationIndex)) / radToDeg(360);
     /////////////////////
 
-    double conor = 0;
+    long double conor = 0;
     int rotation = 1;
     int vector = 1;
     int speed;
@@ -64,7 +64,7 @@ public:
     int animH = 213;
     bool del = false;
     Roll();
-    Roll(int type, double cX, double cY);
+    Roll(int type, long double cX, long double cY);
     ~Roll();
 
     void prog(int index);

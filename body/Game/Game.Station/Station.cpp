@@ -39,16 +39,16 @@ void Station::getPosition(int level)
 
 void Station::prog()
 {
-    PointF a = {(double)this->x + 100, (double)this->y + 100};
-    PointF b = {(double)mouse.x, (double)mouse.y};
+    PointF a = {(long double)this->x + 100, (long double)this->y + 100};
+    PointF b = {(long double)mouse.x, (long double)mouse.y};
     Delta deltas = getDeltas(b, a);
     this->conor = radToDeg(getConor(deltas)) + 90;
     if (this->roll == nullptr &&
         this->game->flyingRoll == nullptr &&
         !this->game->unComplite)
     {
-        this->roll = new Roll(1, (double)this->x + this->gabX / 2,
-                              (double)this->y + this->gabY / 2);
+        this->roll = new Roll(1, (long double)this->x + this->gabX / 2,
+                              (long double)this->y + this->gabY / 2);
         this->roll->conor = this->conor;
     }
     else if (this->roll != nullptr)

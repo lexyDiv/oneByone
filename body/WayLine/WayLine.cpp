@@ -57,7 +57,7 @@ void WayLine::getAllConors()
             PointF a = {(float)nextCont->wayPoint->x, (float)nextCont->wayPoint->y};
             PointF b = {(float)cont->wayPoint->x, (float)cont->wayPoint->y};
             Delta deltas = getDeltas(a, b);
-            double conor = getConor(deltas);
+            long double conor = getConor(deltas);
             cont->setConorToRight(conor);
             nextCont = nullptr;
         }
@@ -67,7 +67,7 @@ void WayLine::getAllConors()
              PointF a = {(float)prevCont->wayPoint->x, (float)prevCont->wayPoint->y};
              PointF b = {(float)cont->wayPoint->x, (float)cont->wayPoint->y};
              Delta deltas = getDeltas(a, b);
-             double conor = getConor(deltas);
+             long double conor = getConor(deltas);
              cont->setConorToLeft(conor);
              prevCont = nullptr;
         }
@@ -138,22 +138,22 @@ WayLine::~WayLine()
    this->clear();
 };
 
-double Container::getConorToRight()
+long double Container::getConorToRight()
 {
     return this->conorToRight;
 }
 
-void Container::setConorToRight(double conor)
+void Container::setConorToRight(long double conor)
 {
     this->conorToRight = conor;
 }
 
-double Container::getConorToLeft()
+long double Container::getConorToLeft()
 {
     return this->conorToLeft;
 }
 
-void Container::setConorToLeft(double conor)
+void Container::setConorToLeft(long double conor)
 {
     this->conorToLeft = conor;
 }

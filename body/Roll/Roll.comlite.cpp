@@ -40,7 +40,7 @@ Roll *Roll::getLeftSonPoint()
         PointF a = {this->cX, this->cY};
         PointF b{leftRoll->cX, leftRoll->cY};
         Delta deltas = getDeltas(a, b);
-        double dis = getDis(deltas);
+        long double dis = getDis(deltas);
         if (dis >= this->kickDis)
         {
             // PointF *point = new PointF{leftRoll->cX, leftRoll->cY};
@@ -70,17 +70,17 @@ void Roll::getSonPointAndRotation()
         PointF a = {rightSonPoint.x, rightSonPoint.y};
         PointF b = {this->sonRoll->cX, this->sonRoll->cY};
         Delta deltas = getDeltas(a, b);
-        double disToRight = getDis(deltas);
+        long double disToRight = getDis(deltas);
         a = {leftSonPoint.x, leftSonPoint.y};
         deltas = getDeltas(a, b);
-        double disToLeft = getDis(deltas);
+        long double disToLeft = getDis(deltas);
         this->sonRollPosition = disToLeft < disToRight ? 0 : 1;
         b = {rightSonPoint.x, rightSonPoint.y};
         deltas = getDeltas(a, b);
-        double leftToRightConor = radToDeg(getConor(deltas));
+        long double leftToRightConor = radToDeg(getConor(deltas));
         b = {this->sonRoll->cX, this->sonRoll->cY};
         deltas = getDeltas(a, b);
-        double leftToSunRollConor = radToDeg(getConor(deltas));
+        long double leftToSunRollConor = radToDeg(getConor(deltas));
 
         if (leftToRightConor < 0)
         {
