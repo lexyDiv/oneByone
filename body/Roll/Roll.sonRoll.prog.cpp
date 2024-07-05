@@ -7,13 +7,13 @@ void Roll::sonRollOnPosition()
     {
         this->sonRoll->cX = this->cX + cos(this->conorToSonRoll) * this->kickDis;
         this->sonRoll->cY = this->cY + sin(this->conorToSonRoll) * this->kickDis;
-        if(this->sonRotation)
+        if(!this->sonRotation)
         {
-            this->sonRoll->conor += radToDeg(this->sonRotationIndex);
+            this->sonRoll->conor += radToDeg(this->sonRotationIndex) * 2;
         }
         else
         {
-            this->sonRoll->conor -= radToDeg(this->sonRotationIndex);
+            this->sonRoll->conor -= radToDeg(this->sonRotationIndex) * 2;
         }
     }
 }
@@ -26,7 +26,7 @@ void Roll::sonRollRotation()
     {
         // console.log("position = " + to_string(this->sonRollPosition));
         // console.log("rotation = " + to_string(this->sonRotation));
-        console.log("deg = " + to_string(radToDeg(0.1)));
+        //console.log("deg = " + to_string(radToDeg(0.1)));
         if(!this->sonRollPosition)
         {
             Roll* leftVirtualRoll = this->getLeftSonPoint();
@@ -40,6 +40,8 @@ void Roll::sonRollRotation()
                 this->conorToSonRoll -= this->sonRotationIndex;
                 //console.log("here 2");
             }
+            delete leftVirtualRoll;
+            leftVirtualRoll = nullptr;
         }
         this->sonRollOnPosition();
     }

@@ -20,9 +20,9 @@ void Roll::prog(int index)
 
         this->speed++;
 
-      //  this->sonRollRotation();
+        this->sonRollRotation();
 
-       // this->forvardMove();
+        this->forvardMove();
 
         this->move();
         if (this->sonRoll)
