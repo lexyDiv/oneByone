@@ -82,8 +82,8 @@ public:
     void draw();
     //////////////
     void getConorToSonRoll();
-    PointF* getRightSonPoint();
-    PointF* getLeftSonPoint();
+    Roll* getRightSonPoint();
+    Roll* getLeftSonPoint();
     void getSonPointAndRotation();
     ///////////////
     Image *getImage(int type);

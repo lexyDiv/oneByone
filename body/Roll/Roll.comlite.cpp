@@ -12,7 +12,7 @@ void Roll::getConorToSonRoll()
     }
 }
 
-PointF *Roll::getRightSonPoint()
+Roll *Roll::getRightSonPoint()
 {
     Roll *rightRoll = new Roll(1, this->cX, this->cY);
     rightRoll->leftRoll = this;
@@ -20,14 +20,14 @@ PointF *Roll::getRightSonPoint()
     rightRoll->rightCont = this->rightCont;
     rightRoll->game = this->game;
     rightRoll->forvardMove();
-    PointF *rightSonPoint = new PointF{rightRoll->cX, rightRoll->cY};
+   // PointF *rightSonPoint = new PointF{rightRoll->cX, rightRoll->cY};
     //this->game->LR[1] = rightSonPoint;
-    delete rightRoll;
-    rightRoll = nullptr;
-    return rightSonPoint;
+   // delete rightRoll;
+    //rightRoll = nullptr;
+    return rightRoll;
 }
 
-PointF *Roll::getLeftSonPoint()
+Roll *Roll::getLeftSonPoint()
 {
     Roll *leftRoll = new Roll(1, this->cX, this->cY);
     // leftRoll->rightRoll = this;
@@ -43,9 +43,9 @@ PointF *Roll::getLeftSonPoint()
         double dis = getDis(deltas);
         if (dis >= this->kickDis)
         {
-            PointF *point = new PointF{leftRoll->cX, leftRoll->cY};
+           // PointF *point = new PointF{leftRoll->cX, leftRoll->cY};
            // this->game->LR[0] = point;
-            return point;
+            return leftRoll;
         }
         else
         {
@@ -61,18 +61,21 @@ void Roll::getSonPointAndRotation()
 {
     if (this->sonRoll && this->leftCont != nullptr && this->rightCont != nullptr)
     {
-        PointF *rightSonPoint = this->getRightSonPoint();
-        PointF *leftSonPoint = this->getLeftSonPoint();
+        Roll *rightVirtualRoll = this->getRightSonPoint();
+        Roll *leftVirtualRoll = this->getLeftSonPoint();
 
-        PointF a = {rightSonPoint->x, rightSonPoint->y};
+        PointF rightSonPoint = {rightVirtualRoll->cX, rightVirtualRoll->cY};
+        PointF leftSonPoint = {leftVirtualRoll->cX, leftVirtualRoll->cY};
+
+        PointF a = {rightSonPoint.x, rightSonPoint.y};
         PointF b = {this->sonRoll->cX, this->sonRoll->cY};
         Delta deltas = getDeltas(a, b);
         double disToRight = getDis(deltas);
-        a = {leftSonPoint->x, leftSonPoint->y};
+        a = {leftSonPoint.x, leftSonPoint.y};
         deltas = getDeltas(a, b);
         double disToLeft = getDis(deltas);
         this->sonRollPosition = disToLeft < disToRight ? 0 : 1;
-        b = {rightSonPoint->x, rightSonPoint->y};
+        b = {rightSonPoint.x, rightSonPoint.y};
         deltas = getDeltas(a, b);
         double leftToRightConor = radToDeg(getConor(deltas));
         b = {this->sonRoll->cX, this->sonRoll->cY};
@@ -98,9 +101,9 @@ void Roll::getSonPointAndRotation()
             //console.log("RIGHT");
             this->sonRotation =  !this->sonRollPosition ? 0 : 1;
         }
-        delete rightSonPoint;
-        delete leftSonPoint;
-        rightSonPoint = nullptr;
-        leftSonPoint = nullptr;
+        delete leftVirtualRoll;
+        delete rightVirtualRoll;
+        leftVirtualRoll = nullptr;
+        rightVirtualRoll = nullptr;
     }
 }
