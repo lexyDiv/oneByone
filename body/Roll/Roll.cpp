@@ -80,11 +80,11 @@ void Roll::getRotation()
         WayPoint *prev = this->leftCont->wayPoint;
         if (next->x > prev->x)
         {
-            this->rotation = 1;
+          !this->speed ? this->rotation = 1 : this->rotation = -1;
         }
         else
         {
-            this->rotation = -1;
+           !this->speed ? this->rotation = -1 : this->rotation = 1;
         }
     }
 }

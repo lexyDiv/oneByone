@@ -17,7 +17,7 @@ void Roll::prog(int index)
         Delta deltas = getDeltas(a, b);
         long double disToLeftRoll = getDis(deltas);
 
-        this->speed += 2;
+        this->speed += 3;
 
         this->sonRollRotation();
 
@@ -37,26 +37,25 @@ void Roll::forvardMove()
         Delta deltas = getDeltas(a, b);
         long double disToLeftRoll = getDis(deltas);
 
-        PointF a2;
-        Delta deltas2;
-        long double dis2 = 1000;
+       
+        long double dis = 1000;
 
         if (this->sonRoll != nullptr)
         {
             this->sonRollCXCorrect();
-            a2 = {this->sonRoll->cX, this->sonRoll->cY};
-            deltas2 = getDeltas(a2, b);
-            dis2 = getDis(deltas2);
+            a = {this->sonRoll->cX, this->sonRoll->cY};
+            deltas = getDeltas(a, b);
+            dis = getDis(deltas);
         }
 
         if (this->leftRoll->sonRoll != nullptr)
         {
             b = {this->leftRoll->sonRoll->cX, this->leftRoll->sonRoll->cY};
-            deltas2 = getDeltas(a, b);
-            dis2 = getDis(deltas2);
+            deltas = getDeltas(a, b);
+            dis = getDis(deltas);
         }
 
-        if (disToLeftRoll >= this->kickDis && dis2 >= this->kickDis)
+        if (disToLeftRoll >= this->kickDis && dis >= this->kickDis)
         {
             break;
         }
