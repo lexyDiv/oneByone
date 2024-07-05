@@ -17,7 +17,7 @@ void Roll::prog(int index)
         Delta deltas = getDeltas(a, b);
         long double disToLeftRoll = getDis(deltas);
 
-        this->speed += 3;
+        this->speed += 2;
 
         this->sonRollRotation();
 
@@ -37,7 +37,6 @@ void Roll::forvardMove()
         Delta deltas = getDeltas(a, b);
         long double disToLeftRoll = getDis(deltas);
 
-       
         long double dis = 1000;
 
         if (this->sonRoll != nullptr)
@@ -68,7 +67,11 @@ void Roll::forvardMove()
             //}
         }
     }
+    this->reversMove();
+}
 
+void Roll::reversMove()
+{
     for (int i = 0; i < this->speed; i++)
     {
 
@@ -100,9 +103,15 @@ void Roll::forvardMove()
         else
         {
             this->impulseBack();
+            // PointF a = {(long double)this->leftCont->wayPoint->x,
+            // (long double)this->leftCont->wayPoint->y};
+            // PointF b = {this->cX, this->cY};
+            // Delta daltas = getDeltas(a, b);
+            // long double conor = getConor(deltas);
+            // this->cX = this->cX + cos(conor) * this->game->speedKoof;
+            // this->cY = this->cY + sin(conor) * this->game->speedKoof;
         }
     }
-    // this->sonRollProg();
 }
 
 void Roll::impulsForvard()
@@ -137,10 +146,8 @@ void Roll::impulsForvard()
 
 void Roll::impulseBack()
 {
-    long double conor = this->rightCont->getConorToLeft();
-    this->cX = this->cX - cos(conor) * this->game->speedKoof;
-    this->cY = this->cY - sin(conor) * this->game->speedKoof;
-    PointF a = {(long double)this->leftCont->wayPoint->x, (long double)this->leftCont->wayPoint->y};
+    PointF a = {(long double)this->leftCont->wayPoint->x,
+                (long double)this->leftCont->wayPoint->y};
     PointF b = {this->cX, this->cY};
     Delta deltas = getDeltas(a, b);
     long double dis = getDis(deltas);
@@ -151,6 +158,9 @@ void Roll::impulseBack()
         this->rightCont = this->leftCont;
         this->leftCont = this->rightCont->left;
     }
+    long double conor = this->rightCont->getConorToLeft();
+    this->cX = this->cX - cos(conor) * this->game->speedKoof;
+    this->cY = this->cY - sin(conor) * this->game->speedKoof;
 }
 
 void Roll::goToSecond()

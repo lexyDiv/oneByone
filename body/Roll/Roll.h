@@ -48,7 +48,7 @@ public:
     int sonRollPosition;
     int sonRotation;
     PointF sonPoint;
-    long double sonRotationIndex = 0.1;
+    long double sonRotationIndex = 0.2;
     long double sonRotationWay = (liner * radToDeg(sonRotationIndex)) / radToDeg(360);
     /////////////////////
 
@@ -70,6 +70,7 @@ public:
     void prog(int index);
     ///////////
     void forvardMove();
+    void reversMove();
     void impulsForvard();
     void impulseBack();
     void sonRollRotation();

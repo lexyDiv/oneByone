@@ -13,12 +13,12 @@ void Game::getWayLine()
 
 void Game::newRollCreating()
 {
-    long double disToImpulseRoll = 0.0f;
+    double disToImpulseRoll = 0.0f;
     if (this->impulseRoll != nullptr)
     {
         WayPoint *head = this->wayLine->getHead()->wayPoint;
-        PointF a = {(long double)head->x, (long double)head->y};
-        PointF b = {(long double)this->impulseRoll->cX, (long double)this->impulseRoll->cY};
+        PointF a = {(double)head->x, (double)head->y};
+        PointF b = {(double)this->impulseRoll->cX, (double)this->impulseRoll->cY};
         Delta deltas = getDeltas(a, b);
         disToImpulseRoll = getDis(deltas);
     }
