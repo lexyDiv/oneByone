@@ -89,6 +89,7 @@ public:
     Roll* getRightSonPoint();
     Roll* getLeftSonPoint();
     void getSonPointAndRotation();
+    void sonRollCXCorrect();
     void sonRollOnPosition();
     ///////////////
     Image *getImage(int type);

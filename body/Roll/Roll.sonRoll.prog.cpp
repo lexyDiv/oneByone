@@ -1,12 +1,17 @@
 #include "Roll.comlite.cpp"
 
+void Roll::sonRollCXCorrect()
+{
+    this->sonRoll->cX = this->cX + cos(this->conorToSonRoll) * this->kickDis;
+    this->sonRoll->cY = this->cY + sin(this->conorToSonRoll) * this->kickDis;
+}
+
 
 void Roll::sonRollOnPosition()
 {
     if(this->sonRoll != nullptr)
     {
-        this->sonRoll->cX = this->cX + cos(this->conorToSonRoll) * this->kickDis;
-        this->sonRoll->cY = this->cY + sin(this->conorToSonRoll) * this->kickDis;
+        this->sonRollCXCorrect();
         if(!this->sonRotation)
         {
             this->sonRoll->conor += radToDeg(this->sonRotationIndex) * 2;

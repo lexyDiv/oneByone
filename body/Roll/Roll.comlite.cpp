@@ -20,10 +20,10 @@ Roll *Roll::getRightSonPoint()
     rightRoll->rightCont = this->rightCont;
     rightRoll->game = this->game;
     rightRoll->forvardMove();
-   // PointF *rightSonPoint = new PointF{rightRoll->cX, rightRoll->cY};
-    //this->game->LR[1] = rightSonPoint;
-   // delete rightRoll;
-    //rightRoll = nullptr;
+    // PointF *rightSonPoint = new PointF{rightRoll->cX, rightRoll->cY};
+    // this->game->LR[1] = rightSonPoint;
+    // delete rightRoll;
+    // rightRoll = nullptr;
     return rightRoll;
 }
 
@@ -43,8 +43,8 @@ Roll *Roll::getLeftSonPoint()
         double dis = getDis(deltas);
         if (dis >= this->kickDis)
         {
-           // PointF *point = new PointF{leftRoll->cX, leftRoll->cY};
-           // this->game->LR[0] = point;
+            // PointF *point = new PointF{leftRoll->cX, leftRoll->cY};
+            // this->game->LR[0] = point;
             return leftRoll;
         }
         else
@@ -93,13 +93,13 @@ void Roll::getSonPointAndRotation()
 
         if (leftToRightConor > leftToSunRollConor)
         {
-           // console.log("LEFT");
-           this->sonRotation =  !this->sonRollPosition ? 1 : 0;
+            // console.log("LEFT");
+            this->sonRotation = !this->sonRollPosition ? 1 : 0;
         }
         else
         {
-            //console.log("RIGHT");
-            this->sonRotation =  !this->sonRollPosition ? 0 : 1;
+            // console.log("RIGHT");
+            this->sonRotation = !this->sonRollPosition ? 0 : 1;
         }
         delete leftVirtualRoll;
         delete rightVirtualRoll;
@@ -107,4 +107,5 @@ void Roll::getSonPointAndRotation()
         rightVirtualRoll = nullptr;
     }
 }
+
 

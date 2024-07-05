@@ -1,7 +1,6 @@
 #include "Roll.sonRoll.prog.cpp"
 #include "Roll.h"
 
-
 void Roll::prog(int index)
 {
 
@@ -25,9 +24,6 @@ void Roll::prog(int index)
         this->forvardMove();
 
         this->move();
-        if (this->sonRoll)
-        {
-        }
     }
 };
 
@@ -40,7 +36,19 @@ void Roll::forvardMove()
         Delta deltas = getDeltas(a, b);
         double disToLeftRoll = getDis(deltas);
 
-        if (disToLeftRoll >= this->kickDis)
+        PointF a2;
+        Delta deltas2;
+        double dis2 = 1000;
+
+        if (this->sonRoll)
+        {
+            this->sonRollCXCorrect();
+            a2 = {this->sonRoll->cX, this->sonRoll->cY};
+            deltas2 = getDeltas(a2, b);
+            dis2 = getDis(deltas2);
+        }
+
+        if (disToLeftRoll >= this->kickDis && dis2 >= this->kickDis)
         {
             break;
         }
@@ -92,7 +100,7 @@ void Roll::impulseBack()
     PointF b = {this->cX, this->cY};
     Delta deltas = getDeltas(a, b);
     double dis = getDis(deltas);
-    if(dis <= 1 * this->game->speedKoof)
+    if (dis <= 1 * this->game->speedKoof)
     {
         this->cX = this->leftCont->wayPoint->x;
         this->cY = this->leftCont->wayPoint->y;
@@ -100,8 +108,6 @@ void Roll::impulseBack()
         this->leftCont = this->rightCont->left;
     }
 }
-
-
 
 void Roll::goToSecond()
 {
