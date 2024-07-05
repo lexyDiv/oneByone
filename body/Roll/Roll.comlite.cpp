@@ -107,3 +107,4 @@ void Roll::getSonPointAndRotation()
         rightVirtualRoll = nullptr;
     }
 }
+
