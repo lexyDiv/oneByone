@@ -40,11 +40,18 @@ void Roll::forvardMove()
         Delta deltas2;
         double dis2 = 1000;
 
-        if (this->sonRoll)
+        if (this->sonRoll != nullptr)
         {
             this->sonRollCXCorrect();
             a2 = {this->sonRoll->cX, this->sonRoll->cY};
             deltas2 = getDeltas(a2, b);
+            dis2 = getDis(deltas2);
+        }
+
+        if (this->leftRoll->sonRoll != nullptr)
+        {
+            b = {this->leftRoll->sonRoll->cX, this->leftRoll->sonRoll->cY};
+            deltas2 = getDeltas(a, b);
             dis2 = getDis(deltas2);
         }
 
@@ -58,7 +65,8 @@ void Roll::forvardMove()
             this->speed = 0;
         }
     }
-    this->sonRollProg();
+    
+    //this->sonRollProg();
 }
 
 void Roll::impulsForvard()
