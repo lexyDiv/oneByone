@@ -1,4 +1,5 @@
 #include "Roll.sonRoll.prog.cpp"
+#include "Roll.h"
 
 
 void Roll::prog(int index)
@@ -18,6 +19,8 @@ void Roll::prog(int index)
         double disToLeftRoll = getDis(deltas);
 
         this->speed++;
+
+        this->sonRollRotation();
 
         this->forvardMove();
 
@@ -47,6 +50,7 @@ void Roll::forvardMove()
             this->speed = 0;
         }
     }
+    this->sonRollProg();
 }
 
 void Roll::impulsForvard()
@@ -96,6 +100,8 @@ void Roll::impulseBack()
         this->leftCont = this->rightCont->left;
     }
 }
+
+
 
 void Roll::goToSecond()
 {

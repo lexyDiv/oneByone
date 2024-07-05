@@ -68,6 +68,8 @@ public:
     void forvardMove();
     void impulsForvard();
     void impulseBack();
+    void sonRollRotation();
+    void sonRollProg();
     /////////////
     void goToSecond();
     void impulseProg();
