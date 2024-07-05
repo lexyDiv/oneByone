@@ -25,14 +25,7 @@ public:
  
     Image *image = nullptr;
 
-    //////////////////////
-    bool father = false;
-    Roll* sonRoll = nullptr;
-    double conorToSonRoll;
-    int sonRollPosition;
-    int sonRotation;
-    PointF sonPoint;
-    /////////////////////
+
 
     int flySpeed = 30;
     int type;
@@ -47,6 +40,17 @@ public:
     int mid = this->diameter / 2;
     double liner = 2 * M_PI * (mid - 3);
     int kickDis = this->diameter - 3;
+
+        //////////////////////
+    bool father = false;
+    Roll* sonRoll = nullptr;
+    double conorToSonRoll;
+    int sonRollPosition;
+    int sonRotation;
+    PointF sonPoint;
+    double sonRotationIndex = 0.1;
+    double sonRotationWay = (liner * radToDeg(sonRotationIndex)) / radToDeg(360);
+    /////////////////////
 
     double conor = 0;
     int rotation = 1;
