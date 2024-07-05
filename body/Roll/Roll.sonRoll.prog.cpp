@@ -4,7 +4,7 @@ void Roll::sonRollRotation()
 {
     if(this->sonRoll != nullptr)
     {
-        console.log("rotation");
+        
     }
 }
 
