@@ -55,7 +55,7 @@ void Roll::sonRollRotation()
             {
                 console.log("left");
                 this->game->pause = true;
-                this->sonRoll->readyInLine = true;
+                this->sonRoll->readyInLine = leftVirtualRoll;
                 b = {this->cX, this->cY};
                 deltas = getDeltas(b, a);
                 this->conorToSonRoll = getConor(deltas);
@@ -66,7 +66,7 @@ void Roll::sonRollRotation()
                 // this->sonRoll->game = this->game;
                 // this->sonRoll = nullptr;
             }
-            delete leftVirtualRoll;
+            // delete leftVirtualRoll;
             leftVirtualRoll = nullptr;
         }
         else
@@ -92,7 +92,7 @@ void Roll::sonRollRotation()
             {
                 console.log("right");
                 this->game->pause = true;
-                this->sonRoll->readyInLine = true;
+                this->sonRoll->readyInLine = rightVirtualRoll;
                 b = {this->cX, this->cY};
                 deltas = getDeltas(b, a);
                 this->conorToSonRoll = getConor(deltas);
@@ -103,7 +103,7 @@ void Roll::sonRollRotation()
                 // this->sonRoll->game = this->game;
                 // this->sonRoll = nullptr;
             }
-            delete rightVirtualRoll;
+            // delete rightVirtualRoll;
             rightVirtualRoll = nullptr;
         }
         this->sonRollOnPosition();
@@ -112,8 +112,36 @@ void Roll::sonRollRotation()
 
 void Roll::sonRollProg()
 {
-    if (this->sonRoll != nullptr)
+    if (this->sonRoll != nullptr && this->sonRoll->readyInLine != nullptr)
     {
-         console.log("prog");
+        Roll *virtualRoll = this->sonRoll->readyInLine;
+
+        this->sonRoll->leftCont = virtualRoll->leftCont;
+        this->sonRoll->rightCont = virtualRoll->rightCont;
+        this->sonRoll->father = false;
+       // this->game->unComplite = false;
+
+        if (!this->sonRollPosition)
+        {
+            this->sonRoll->leftRoll = this->leftRoll;
+            this->sonRoll->rightRoll = this;
+            this->sonRoll->leftRoll->rightRoll = this->sonRoll;
+            this->leftRoll = this->sonRoll;
+            this->sonRoll->game = this->game;
+        }
+        else
+        {
+            this->sonRoll->leftRoll = this;
+            this->sonRoll->rightRoll = this->rightRoll;
+            this->sonRoll->rightRoll->leftRoll = this->sonRoll;
+            this->rightRoll = this->sonRoll;
+            this->sonRoll->game = this->game;
+        }
+
+
+        delete this->sonRoll->readyInLine;
+        this->sonRoll->readyInLine = nullptr;
+        virtualRoll = nullptr;
+        this->sonRoll = nullptr;
     }
 }

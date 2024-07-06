@@ -71,7 +71,7 @@ void Game::flyingMove()
                 //////////////
                 this->rolls->splice(this->rolls->indexOf(roll) + roll->sonRollPosition,
                                     this->flyingRoll);
-
+                 this->rollWithSon = roll;
                 // if(!roll->sonRollPosition)
                 // {
                 //     this->flyingRoll->leftRoll = roll->leftRoll;

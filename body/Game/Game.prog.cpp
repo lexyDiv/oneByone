@@ -71,10 +71,10 @@ void Game::deleteProg(Roll *roll)
 
 void Game::prog()
 {
-    // if(this->unComplite)
-    // {
-    //     this->pause = true;
-    // }
+    if(this->unComplite)
+    {
+        this->pause = true;
+    }
     this->getWayLine();
 
     this->newRollCreating();
@@ -107,7 +107,10 @@ void Game::prog()
     this->getRollsToCheckCollision();
     this->flyingMove();
     this->flyingOutDel();
-    
+    if(this->rollWithSon != nullptr)
+    {
+        this->rollWithSon->sonRollProg();
+    }
     this->rollsToCollision->clear();
 }
 

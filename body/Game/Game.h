@@ -5,7 +5,7 @@
 class Game
 {
 public:
-
+Roll *rollWithSon = nullptr;
 PointF *LR[2]{nullptr, nullptr};
 Roll* contactRoll = nullptr;
 ////////////////////
