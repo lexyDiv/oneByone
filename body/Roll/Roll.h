@@ -48,8 +48,9 @@ public:
     int sonRollPosition;
     int sonRotation;
     PointF sonPoint;
-    double sonRotationIndex = 0.2;
+    double sonRotationIndex = 0.1;
     double sonRotationWay = (liner * radToDeg(sonRotationIndex)) / 360;
+    bool readyInLine = false;
     /////////////////////
 
     double conor = 0;
