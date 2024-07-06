@@ -11,14 +11,14 @@ Roll* contactRoll = nullptr;
 ////////////////////
 
     bool pause = false;
-    int level = 1;
+    int level = 2;
     bool endLevel = false;
     int check = 0;
     bool needFilter = false;
     int speed =  50; // bug
     int speedVector = -1;
     bool quit = false;
-    long double speedKoof = 0.1; // !!!!
+    double speedKoof = 0.1; // !!!!
     Station *station = new Station(this);
     string path = "levels/level" + to_string(this->level) + ".txt";
     WayLine *wayLine = new WayLine();

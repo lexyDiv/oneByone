@@ -13,7 +13,7 @@ class Station
     int y;
     int gabX = 200;
     int gabY = 200;
-    long double conor = 0;
+    double conor = 0;
     Station(Game* game);
     Game* game = nullptr;
     Roll* roll = nullptr;

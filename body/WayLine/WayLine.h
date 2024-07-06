@@ -21,10 +21,10 @@ public:
     WayPoint *wayPoint;
     Container *left = nullptr;
     Container *right = nullptr;
-    long double getConorToRight();
-    void setConorToRight(long double conor);
-    long double getConorToLeft();
-    void setConorToLeft(long double conor);
+    double getConorToRight();
+    void setConorToRight(double conor);
+    double getConorToLeft();
+    void setConorToLeft(double conor);
 
 
     Container(WayPoint *wayPoint)
@@ -38,8 +38,8 @@ public:
     }
 
 private:
-    long double conorToRight;
-    long double conorToLeft;
+    double conorToRight;
+    double conorToLeft;
 };
 
 class WayLine

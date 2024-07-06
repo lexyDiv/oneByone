@@ -38,70 +38,70 @@ int intRand(int start, int finish)
 
 struct PointF
 {
-    long double x;
-    long double y;
+    double x;
+    double y;
 };
 
 struct Delta
 {
-    long double deltaX;
-    long double deltaY;
+    double deltaX;
+    double deltaY;
 };
 
 
 Delta getDeltas(PointF &a, PointF &b)
 {
-    long double deltaX = b.x - a.x;
-    long double deltaY = b.y - a.y;
+    double deltaX = b.x - a.x;
+    double deltaY = b.y - a.y;
     return {deltaX, deltaY};
 }
 
 Delta getDeltas(PointF *a, PointF *b)
 {
-    long double deltaX = b->x - a->x;
-    long double deltaY = b->y - a->y;
+    double deltaX = b->x - a->x;
+    double deltaY = b->y - a->y;
     return {deltaX, deltaY};
 }
 
 
 
 
-long double getDis(Delta &del)
+double getDis(Delta &del)
 {
-    long double c = sqrt(del.deltaX * del.deltaX + del.deltaY * del.deltaY);
+    double c = sqrt(del.deltaX * del.deltaX + del.deltaY * del.deltaY);
     return c;
 };
 
 
-long double getDis(Delta *del)
+double getDis(Delta *del)
 {
-    long double c = sqrt(del->deltaX * del->deltaX + del->deltaY * del->deltaY);
+    double c = sqrt(del->deltaX * del->deltaX + del->deltaY * del->deltaY);
     return c;
 };
 
 
 
-long double getConor(Delta &del)
+double getConor(Delta &del)
 {
-    long double conorData = atan2(del.deltaY, del.deltaX);
+    double conorData = atan2(del.deltaY, del.deltaX);
     return conorData;
 };
 
 
 
-long double getConor(Delta *del)
+double getConor(Delta *del)
 {
-    long double conorData = atan2(del->deltaY, del->deltaX);
+    double conorData = atan2(del->deltaY, del->deltaX);
     return conorData;
 };
 
 
-long double radToDeg(long double rad)
+double radToDeg(double rad)
 {
     return rad * 180 / M_PI;
 }
 
-long double degToRad(long double deg)
+double degToRad(double deg)
 {
     return deg * (M_PI / 180);
 }

@@ -15,7 +15,7 @@ void Roll::prog(int index)
         PointF a = {this->cX, this->cY};
         PointF b = {this->leftRoll->cX, this->leftRoll->cY};
         Delta deltas = getDeltas(a, b);
-        long double disToLeftRoll = getDis(deltas);
+        double disToLeftRoll = getDis(deltas);
 
         this->speed += 3;
 
@@ -35,9 +35,9 @@ void Roll::forvardMove()
         PointF a = {this->cX, this->cY};
         PointF b = {this->leftRoll->cX, this->leftRoll->cY};
         Delta deltas = getDeltas(a, b);
-        long double disToLeftRoll = getDis(deltas);
+        double disToLeftRoll = getDis(deltas);
 
-        long double dis = 1000;
+        double dis = 1000;
 
         if (this->sonRoll != nullptr)
         {
@@ -78,8 +78,8 @@ void Roll::reversMove()
         PointF a = {this->cX, this->cY};
         PointF b = {this->leftRoll->cX, this->leftRoll->cY};
         Delta deltas = getDeltas(a, b);
-        long double dis = getDis(deltas);
-        long double dis2 = 1000;
+        double dis = getDis(deltas);
+        double dis2 = 1000;
 
         if (this->sonRoll != nullptr)
         {
@@ -103,11 +103,11 @@ void Roll::reversMove()
         else
         {
             this->impulseBack();
-            // PointF a = {(long double)this->leftCont->wayPoint->x,
-            // (long double)this->leftCont->wayPoint->y};
+            // PointF a = {(double)this->leftCont->wayPoint->x,
+            // (double)this->leftCont->wayPoint->y};
             // PointF b = {this->cX, this->cY};
             // Delta daltas = getDeltas(a, b);
-            // long double conor = getConor(deltas);
+            // double conor = getConor(deltas);
             // this->cX = this->cX + cos(conor) * this->game->speedKoof;
             // this->cY = this->cY + sin(conor) * this->game->speedKoof;
         }
@@ -116,25 +116,34 @@ void Roll::reversMove()
 
 void Roll::impulsForvard()
 {
+    PointF a;
+    PointF b;
 
-    if (this->rightCont != nullptr &&
-        (int)this->cX == this->rightCont->wayPoint->x &&
-        (int)this->rightCont->wayPoint->y == this->cY)
+    if (this->rightCont != nullptr && this->rightCont->right)
     {
-        this->cX = this->rightCont->wayPoint->x;
-        this->cY = this->rightCont->wayPoint->y;
-        this->leftCont = this->rightCont;
-        this->rightCont = this->leftCont->right;
+        PointF a = {(double)this->rightCont->wayPoint->x,
+                    (double)this->rightCont->wayPoint->y};
+        PointF b = {this->cX, this->cY};
+        Delta deltas = getDeltas(a, b);
+        double dis = getDis(deltas);
+        if (dis <= 1 * this->game->speedKoof)
+        {
+            this->cX = this->rightCont->wayPoint->x;
+            this->cY = this->rightCont->wayPoint->y;
+            this->leftCont = this->rightCont;
+            this->rightCont = this->leftCont->right;
+           // console.log("this is worcking");
+        }
     }
 
-    long double conor = this->leftCont->getConorToRight();
+    double conor = this->leftCont->getConorToRight();
     this->cX = this->cX - cos(conor) * this->game->speedKoof;
     this->cY = this->cY - sin(conor) * this->game->speedKoof;
-    PointF a = {(long double)this->cX, (long double)this->cY};
-    PointF b = {(long double)this->rightCont->wayPoint->x,
-                (long double)this->rightCont->wayPoint->y};
+    a = {(double)this->cX, (double)this->cY};
+    b = {(double)this->rightCont->wayPoint->x,
+         (double)this->rightCont->wayPoint->y};
     Delta nextContDeltas = getDeltas(a, b);
-    long double nextContDis = getDis(nextContDeltas);
+    double nextContDis = getDis(nextContDeltas);
     if (nextContDis <= 1 * this->game->speedKoof)
     {
         if (this->rightCont->right != nullptr)
@@ -157,31 +166,21 @@ void Roll::impulsForvard()
 
 void Roll::impulseBack()
 {
-
-    if ((int)this->cX == this->leftCont->wayPoint->x &&
-        (int)this->cY == this->leftCont->wayPoint->y)
-    {
-        this->cX = this->leftCont->wayPoint->x;
-        this->cY = this->leftCont->wayPoint->y;
-        this->rightCont = this->leftCont;
-        this->leftCont = this->rightCont->left;
-    }
-
-    long double conor = this->rightCont->getConorToLeft();
-    this->cX = this->cX - cos(conor) * this->game->speedKoof;
-    this->cY = this->cY - sin(conor) * this->game->speedKoof;
-    PointF a = {(long double)this->leftCont->wayPoint->x,
-                (long double)this->leftCont->wayPoint->y};
+    PointF a = {(double)this->leftCont->wayPoint->x,
+                (double)this->leftCont->wayPoint->y};
     PointF b = {this->cX, this->cY};
     Delta deltas = getDeltas(a, b);
-    long double dis = getDis(deltas);
-    if (dis <= 1 * this->game->speedKoof)
+    double dis = getDis(deltas);
+    if (dis < 1 * this->game->speedKoof)
     {
         this->cX = this->leftCont->wayPoint->x;
         this->cY = this->leftCont->wayPoint->y;
         this->rightCont = this->leftCont;
         this->leftCont = this->rightCont->left;
     }
+    double conor = this->rightCont->getConorToLeft();
+    this->cX = this->cX - cos(conor) * this->game->speedKoof;
+    this->cY = this->cY - sin(conor) * this->game->speedKoof;
 }
 
 void Roll::goToSecond()
@@ -195,7 +194,7 @@ void Roll::goToSecond()
             PointF a = {this->cX, this->cY};
             PointF b = {secondRoll->cX, secondRoll->cY};
             Delta deltas = getDeltas(a, b);
-            long double disToSecondRoll = getDis(deltas);
+            double disToSecondRoll = getDis(deltas);
             if (disToSecondRoll <= this->diameter)
             {
                 break;
@@ -230,7 +229,7 @@ void Roll::kick()
         PointF a = {this->cX, this->cY};
         PointF b = {this->rightRoll->cX, this->rightRoll->cY};
         Delta deltas = getDeltas(a, b);
-        long double dis = getDis(deltas);
+        double dis = getDis(deltas);
         if (dis < this->kickDis)
         {
             this->rightRoll->impulse = true;
