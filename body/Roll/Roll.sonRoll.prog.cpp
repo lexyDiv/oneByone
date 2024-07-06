@@ -45,22 +45,19 @@ void Roll::sonRollRotation()
                 this->conorToSonRoll -= this->sonRotationIndex;
                 // console.log("here 2");
             }
-        //     this->sonRollCXCorrect();
-        //     PointF a = {leftVirtualRoll->cX, leftVirtualRoll->cY};
-        //     PointF b = {this->sonRoll->cX, this->sonRoll->cY};
-        //     Delta deltas = getDeltas(a, b);
-        //    // double dis = getDis(deltas);
-        //     double conorToLeft = radToDeg(getConor(deltas));
-        //     double conorToSonRollOnDeg = radToDeg(this->conorToSonRoll);
-        //     // double oneConor = oneOnDeg < 0 ? oneOnDeg += 360 : oneOnDeg;
-        //     // double tooConor =conorToLeft < 0 ? conorToLeft += 360 : conorToLeft;
-        //     console.log("left dis = ");
+             this->sonRollCXCorrect();
+             PointF a = {leftVirtualRoll->cX, leftVirtualRoll->cY};
+             PointF b = {this->sonRoll->cX, this->sonRoll->cY};
+             Delta deltas = getDeltas(a, b);
+             double dis = getDis(deltas);
+     
     
-        //     if(0)
-        //     {
-                
-        //         this->game->pause = true;
-        //     }
+            if(dis <= this->sonRotationWay)
+            {
+                console.log("left");
+                this->game->pause = true;
+               // this->sonRoll = nullptr;
+            }
             delete leftVirtualRoll;
             leftVirtualRoll = nullptr;
         }
@@ -77,16 +74,18 @@ void Roll::sonRollRotation()
                 this->conorToSonRoll -= this->sonRotationIndex;
                //  console.log("here 2");
             }
-            // this->sonRollCXCorrect();
-            // PointF a = {rightVirtualRoll->cX, rightVirtualRoll->cY};
-            // PointF b = {this->sonRoll->cX, this->sonRoll->cY};
-            // Delta deltas = getDeltas(a, b);
-            // double dis = getDis(deltas);
-            // console.log("right dis = " + to_string(dis));
-            // if(dis <= this->sonRotationWay * 6)
-            // {
-            //     this->game->pause = true;
-            // }
+            this->sonRollCXCorrect();
+            PointF a = {rightVirtualRoll->cX, rightVirtualRoll->cY};
+            PointF b = {this->sonRoll->cX, this->sonRoll->cY};
+            Delta deltas = getDeltas(a, b);
+            double dis = getDis(deltas);
+            
+            if(dis <= this->sonRotationWay)
+            {
+                console.log("right");
+                this->game->pause = true;
+               // this->sonRoll = nullptr;
+            }
             delete rightVirtualRoll;
             rightVirtualRoll = nullptr;
         }

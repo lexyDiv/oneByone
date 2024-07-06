@@ -71,10 +71,10 @@ void Game::deleteProg(Roll *roll)
 
 void Game::prog()
 {
-    if(this->unComplite)
-    {
-        this->pause = true;
-    }
+    // if(this->unComplite)
+    // {
+    //     this->pause = true;
+    // }
     this->getWayLine();
 
     this->newRollCreating();

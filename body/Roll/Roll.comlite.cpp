@@ -19,7 +19,7 @@ Roll *Roll::getRightSonPoint()
     rightRoll->leftCont = this->leftCont;
     rightRoll->rightCont = this->rightCont;
     rightRoll->game = this->game;
-    rightRoll->forvardMove();
+    rightRoll->forvardMove(true);
     // PointF *rightSonPoint = new PointF{rightRoll->cX, rightRoll->cY};
     // this->game->LR[1] = rightSonPoint;
     // delete rightRoll;

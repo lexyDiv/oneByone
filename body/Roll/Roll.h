@@ -69,7 +69,7 @@ public:
 
     void prog(int index);
     ///////////
-    void forvardMove();
+    void forvardMove(bool special);
     void reversMove();
     void impulsForvard();
     void impulseBack();

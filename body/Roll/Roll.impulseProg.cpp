@@ -21,13 +21,13 @@ void Roll::prog(int index)
 
         this->sonRollRotation();
 
-        this->forvardMove();
+        this->forvardMove(false);
 
         this->move();
     }
 };
 
-void Roll::forvardMove()
+void Roll::forvardMove(bool special)
 {
     int iter = 0;
     while (true)
@@ -47,7 +47,7 @@ void Roll::forvardMove()
             dis = getDis(deltas);
         }
 
-        if (this->leftRoll->sonRoll != nullptr)
+        if (this->leftRoll->sonRoll != nullptr && !special)
         {
             b = {this->leftRoll->sonRoll->cX, this->leftRoll->sonRoll->cY};
             deltas = getDeltas(a, b);
