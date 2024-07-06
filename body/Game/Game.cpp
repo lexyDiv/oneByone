@@ -51,7 +51,7 @@ void Game::draw()
     {
         Roll *roll = this->controllRoll;
        // ctx.StrokeRect(roll->x, roll->y, roll->kickDis, roll->kickDis, "red");
-       ctx.FillRect(roll->leftCont->wayPoint->x, roll->leftCont->wayPoint->y, 5, 5, "yellow");
-       ctx.FillRect(roll->rightCont->wayPoint->x, roll->rightCont->wayPoint->y, 5, 5, "green");
+       //ctx.FillRect(roll->leftCont->wayPoint->x, roll->leftCont->wayPoint->y, 5, 5, "yellow");
+      /// ctx.FillRect(roll->rightCont->wayPoint->x, roll->rightCont->wayPoint->y, 5, 5, "green");
     }
 }
