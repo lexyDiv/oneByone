@@ -17,7 +17,7 @@ void Station::getPosition(int level)
     case 1:
     {
         this->x = 100;
-        this->y = 200;
+        this->y = 400;
         return;
     }
     case 2:

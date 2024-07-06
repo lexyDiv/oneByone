@@ -61,6 +61,7 @@ void Roll::getSonPointAndRotation()
 {
     if (this->sonRoll && this->leftCont != nullptr && this->rightCont != nullptr)
     {
+       
         Roll *rightVirtualRoll = this->getRightSonPoint();
         Roll *leftVirtualRoll = this->getLeftSonPoint();
 
