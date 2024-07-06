@@ -49,7 +49,7 @@ public:
     int sonRotation;
     PointF sonPoint;
     double sonRotationIndex = 0.2;
-    double sonRotationWay = (liner * radToDeg(sonRotationIndex)) / radToDeg(360);
+    double sonRotationWay = (liner * radToDeg(sonRotationIndex)) / 360;
     /////////////////////
 
     double conor = 0;

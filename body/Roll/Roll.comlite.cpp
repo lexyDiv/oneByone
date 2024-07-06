@@ -35,13 +35,14 @@ Roll *Roll::getLeftSonPoint()
     leftRoll->leftCont = this->leftCont;
     leftRoll->game = this->game;
     /////
+    int iter = 0;
     while (true)
     {
         PointF a = {this->cX, this->cY};
         PointF b{leftRoll->cX, leftRoll->cY};
         Delta deltas = getDeltas(a, b);
         double dis = getDis(deltas);
-        if (dis >= this->kickDis)
+        if (dis >= this->kickDis || iter == 1000)
         {
             // PointF *point = new PointF{leftRoll->cX, leftRoll->cY};
             // this->game->LR[0] = point;
@@ -51,6 +52,7 @@ Roll *Roll::getLeftSonPoint()
         {
             leftRoll->impulseBack();
         }
+        iter ++;
     }
     /////
 

@@ -26,6 +26,9 @@ void Roll::sonRollRotation()
 {
     if (this->sonRoll != nullptr)
     {
+       // console.log("rot way = " + to_string(this->sonRotationWay));
+       // console.log("liner = " + to_string(this->liner));
+        //console.log("this is sonRollRitation");
         // console.log("position = " + to_string(this->sonRollPosition));
         // console.log("rotation = " + to_string(this->sonRotation));
         // console.log("deg = " + to_string(radToDeg(0.1)));
@@ -42,6 +45,22 @@ void Roll::sonRollRotation()
                 this->conorToSonRoll -= this->sonRotationIndex;
                 // console.log("here 2");
             }
+        //     this->sonRollCXCorrect();
+        //     PointF a = {leftVirtualRoll->cX, leftVirtualRoll->cY};
+        //     PointF b = {this->sonRoll->cX, this->sonRoll->cY};
+        //     Delta deltas = getDeltas(a, b);
+        //    // double dis = getDis(deltas);
+        //     double conorToLeft = radToDeg(getConor(deltas));
+        //     double conorToSonRollOnDeg = radToDeg(this->conorToSonRoll);
+        //     // double oneConor = oneOnDeg < 0 ? oneOnDeg += 360 : oneOnDeg;
+        //     // double tooConor =conorToLeft < 0 ? conorToLeft += 360 : conorToLeft;
+        //     console.log("left dis = ");
+    
+        //     if(0)
+        //     {
+                
+        //         this->game->pause = true;
+        //     }
             delete leftVirtualRoll;
             leftVirtualRoll = nullptr;
         }
@@ -58,6 +77,16 @@ void Roll::sonRollRotation()
                 this->conorToSonRoll -= this->sonRotationIndex;
                //  console.log("here 2");
             }
+            // this->sonRollCXCorrect();
+            // PointF a = {rightVirtualRoll->cX, rightVirtualRoll->cY};
+            // PointF b = {this->sonRoll->cX, this->sonRoll->cY};
+            // Delta deltas = getDeltas(a, b);
+            // double dis = getDis(deltas);
+            // console.log("right dis = " + to_string(dis));
+            // if(dis <= this->sonRotationWay * 6)
+            // {
+            //     this->game->pause = true;
+            // }
             delete rightVirtualRoll;
             rightVirtualRoll = nullptr;
         }

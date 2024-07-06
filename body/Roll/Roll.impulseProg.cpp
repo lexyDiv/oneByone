@@ -54,7 +54,7 @@ void Roll::forvardMove()
             dis = getDis(deltas);
         }
 
-        if (disToLeftRoll >= this->kickDis && dis >= this->kickDis)
+        if ((disToLeftRoll >= this->kickDis && dis >= this->kickDis) || iter == 1000)
         {
             break;
         }
@@ -66,6 +66,7 @@ void Roll::forvardMove()
             this->speed = 0;
             //}
         }
+        iter ++;
     }
     this->reversMove();
 }
