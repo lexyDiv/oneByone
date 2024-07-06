@@ -57,7 +57,7 @@ void Roll::sonRollRotation()
             {
 
                 // this->game->pause = true;
-                this->sonRoll->readyInLine = leftVirtualRoll;
+                this->sonRoll->readyInLine = true;
                 b = {this->cX, this->cY};
                 deltas = getDeltas(b, a);
                 this->conorToSonRoll = getConor(deltas);
@@ -68,9 +68,8 @@ void Roll::sonRollRotation()
                 // this->sonRoll->game = this->game;
                 // this->sonRoll = nullptr;
             }
-            // delete leftVirtualRoll;
+             delete leftVirtualRoll;
 
-            this->saveRotDis = dis;
 
             leftVirtualRoll = nullptr;
         }
@@ -99,7 +98,7 @@ void Roll::sonRollRotation()
             {
                 
                 // this->game->pause = true;
-                this->sonRoll->readyInLine = rightVirtualRoll;
+                this->sonRoll->readyInLine = true;
                 b = {this->cX, this->cY};
                 deltas = getDeltas(b, a);
                 this->conorToSonRoll = getConor(deltas);
@@ -110,8 +109,7 @@ void Roll::sonRollRotation()
                 // this->sonRoll->game = this->game;
                 // this->sonRoll = nullptr;
             }
-            // delete rightVirtualRoll;
-            this->saveRotDis = dis;
+             delete rightVirtualRoll;
             rightVirtualRoll = nullptr;
         }
         this->sonRollOnPosition();
@@ -120,7 +118,7 @@ void Roll::sonRollRotation()
 
 void Roll::sonRollProg()
 {
-    if (this->sonRoll != nullptr && this->sonRoll->readyInLine != nullptr)
+    if (this->sonRoll != nullptr && this->sonRoll->readyInLine)
     {
         Roll *virtualRoll;
 
@@ -155,15 +153,13 @@ void Roll::sonRollProg()
         this->sonRoll->cX = virtualRoll->cX;
         this->sonRoll->cY = virtualRoll->cY;
         this->sonRoll->father = false;
+        this->sonRoll->readyInLine = false;
 
         this->game->controllRoll = this->sonRoll;
 
-        delete this->sonRoll->readyInLine;
-        this->sonRoll->readyInLine = nullptr;
         delete virtualRoll;
         virtualRoll = nullptr;
         this->sonRoll = nullptr;
         this->game->rollWithSon = nullptr;
-        this->saveRotDis = 1000;
     }
 }
