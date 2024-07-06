@@ -38,7 +38,7 @@ void Roll::draw()
                   255,
                   this->mid,
                   this->mid);
-      ctx.FillRect(this->cX, this->cY, 3, 3, "yellow");
+      //ctx.FillRect(this->cX, this->cY, 3, 3, "yellow");
 }
 
 

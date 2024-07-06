@@ -51,10 +51,10 @@ void Roll::sonRollRotation()
             Delta deltas = getDeltas(a, b);
             double dis = getDis(deltas);
 
-            if (dis <= this->sonRotationWay)
+            if (dis <= this->sonRotationWay * 1.5)
             {
-                console.log("left");
-                this->game->pause = true;
+                //console.log("left");
+                //this->game->pause = true;
                 this->sonRoll->readyInLine = leftVirtualRoll;
                 b = {this->cX, this->cY};
                 deltas = getDeltas(b, a);
@@ -88,10 +88,10 @@ void Roll::sonRollRotation()
             Delta deltas = getDeltas(a, b);
             double dis = getDis(deltas);
 
-            if (dis <= this->sonRotationWay)
+            if (dis <= this->sonRotationWay * 1.5)
             {
-                console.log("right");
-                this->game->pause = true;
+                //console.log("right");
+                //this->game->pause = true;
                 this->sonRoll->readyInLine = rightVirtualRoll;
                 b = {this->cX, this->cY};
                 deltas = getDeltas(b, a);
@@ -118,8 +118,11 @@ void Roll::sonRollProg()
 
         this->sonRoll->leftCont = virtualRoll->leftCont;
         this->sonRoll->rightCont = virtualRoll->rightCont;
+        this->sonRoll->cX = virtualRoll->cX;
+        this->sonRoll->cY = virtualRoll->cY;
         this->sonRoll->father = false;
-       // this->game->unComplite = false;
+       
+        this->game->unComplite = false;
 
         if (!this->sonRollPosition)
         {
@@ -138,10 +141,12 @@ void Roll::sonRollProg()
             this->sonRoll->game = this->game;
         }
 
+        this->game->controllRoll = this->sonRoll;
 
         delete this->sonRoll->readyInLine;
         this->sonRoll->readyInLine = nullptr;
         virtualRoll = nullptr;
         this->sonRoll = nullptr;
+        this->game->rollWithSon = nullptr;
     }
 }

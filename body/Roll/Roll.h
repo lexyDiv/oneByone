@@ -51,7 +51,6 @@ public:
     double sonRotationIndex = 0.1;
     double sonRotationWay = (liner * radToDeg(sonRotationIndex)) / 360;
     Roll *readyInLine = nullptr;
-   // bool isNew
     /////////////////////
 
     double conor = 0;
