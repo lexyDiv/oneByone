@@ -307,4 +307,4 @@ Console::~Console()
     this->strArr = nullptr;
 };
 
-Console console(5000);
+Console console(10000);

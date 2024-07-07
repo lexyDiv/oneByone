@@ -35,14 +35,17 @@ Roll *Roll::getLeftSonPoint()
     leftRoll->leftCont = this->leftCont;
     leftRoll->game = this->game;
     /////
-    int iter = 0;
+   // int iter = 0;
     while (true)
     {
         PointF a = {this->cX, this->cY};
         PointF b{leftRoll->cX, leftRoll->cY};
         Delta deltas = getDeltas(a, b);
         double dis = getDis(deltas);
-        if (dis >= this->kickDis || iter == 1000)
+        //console.log("dis = " + to_string(dis));
+        if (dis >= this->kickDis 
+       // || iter == 10000
+        )
         {
             // PointF *point = new PointF{leftRoll->cX, leftRoll->cY};
             // this->game->LR[0] = point;
@@ -52,7 +55,7 @@ Roll *Roll::getLeftSonPoint()
         {
             leftRoll->impulseBack();
         }
-        iter ++;
+        //iter ++;
     }
     /////
 
@@ -66,6 +69,12 @@ void Roll::getSonPointAndRotation()
        
         Roll *rightVirtualRoll = this->getRightSonPoint();
         Roll *leftVirtualRoll = this->getLeftSonPoint();
+
+        ///////////////////////////////
+        //  this->game->LR[0] = new PointF{leftVirtualRoll->cX, leftVirtualRoll->cY};
+        //  this->game->LR[1] = new PointF{rightVirtualRoll->cX, rightVirtualRoll->cY};
+        //  this->game->pause = true;
+        //////////////////////
 
         PointF rightSonPoint = {rightVirtualRoll->cX, rightVirtualRoll->cY};
         PointF leftSonPoint = {leftVirtualRoll->cX, leftVirtualRoll->cY};

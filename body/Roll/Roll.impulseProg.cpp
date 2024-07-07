@@ -29,7 +29,7 @@ void Roll::prog(int index)
 
 void Roll::forvardMove(bool special)
 {
-    int iter = 0;
+   // int iter = 0;
     while (true)
     {
         PointF a = {this->cX, this->cY};
@@ -54,7 +54,9 @@ void Roll::forvardMove(bool special)
             dis = getDis(deltas);
         }
 
-        if ((disToLeftRoll >= this->kickDis && dis >= this->kickDis) || iter == 1000)
+        if ((disToLeftRoll >= this->kickDis && dis >= this->kickDis) 
+       // || iter == 1000
+        )
         {
             break;
         }
@@ -66,7 +68,7 @@ void Roll::forvardMove(bool special)
             this->speed = 0;
             //}
         }
-        iter ++;
+       // iter ++;
     }
     this->reversMove();
 }
