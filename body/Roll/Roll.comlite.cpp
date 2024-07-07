@@ -35,16 +35,16 @@ Roll *Roll::getLeftSonPoint()
     leftRoll->leftCont = this->leftCont;
     leftRoll->game = this->game;
     /////
-   // int iter = 0;
+    // int iter = 0;
     while (true)
     {
         PointF a = {this->cX, this->cY};
         PointF b{leftRoll->cX, leftRoll->cY};
         Delta deltas = getDeltas(a, b);
         double dis = getDis(deltas);
-        //console.log("dis = " + to_string(dis));
-        if (dis >= this->kickDis 
-       // || iter == 10000
+        // console.log("dis = " + to_string(dis));
+        if (dis >= this->kickDis
+            // || iter == 10000
         )
         {
             // PointF *point = new PointF{leftRoll->cX, leftRoll->cY};
@@ -55,7 +55,7 @@ Roll *Roll::getLeftSonPoint()
         {
             leftRoll->impulseBack();
         }
-        //iter ++;
+        // iter ++;
     }
     /////
 
@@ -66,7 +66,7 @@ void Roll::getSonPointAndRotation()
 {
     if (this->sonRoll && this->leftCont != nullptr && this->rightCont != nullptr)
     {
-       
+
         Roll *rightVirtualRoll = this->getRightSonPoint();
         Roll *leftVirtualRoll = this->getLeftSonPoint();
 
@@ -87,37 +87,57 @@ void Roll::getSonPointAndRotation()
         deltas = getDeltas(a, b);
         double disToLeft = getDis(deltas);
         this->sonRollPosition = disToLeft < disToRight ? 0 : 1;
-        b = {rightSonPoint.x, rightSonPoint.y};
-        deltas = getDeltas(a, b);
-        double leftToRightConor = radToDeg(getConor(deltas));
-        b = {this->sonRoll->cX, this->sonRoll->cY};
-        deltas = getDeltas(a, b);
-        double leftToSunRollConor = radToDeg(getConor(deltas));
 
-        if (leftToRightConor < 0)
-        {
-            leftToRightConor += 360;
-        }
-        if (leftToSunRollConor < 0)
-        {
-            leftToSunRollConor += 360;
-        }
+        double virtualConor = this->conorToSonRoll;
 
-        if (leftToRightConor > leftToSunRollConor)
+        if (!this->sonRollPosition)
         {
-             console.log("LEFT");
-            this->sonRotation = !this->sonRollPosition ? 1 : 0;
+            virtualConor += 0.1;
+            PointF virtualPoint = {this->cX + cos(virtualConor) * this->kickDis,
+                                   this->cY + sin(virtualConor) * this->kickDis};
+            deltas = getDeltas(leftSonPoint, virtualPoint);
+            double disToLeftSonPoint = getDis(deltas);
+            this->sonRotation = disToLeftSonPoint < disToLeft ? 0 : 1;
         }
         else
         {
-             console.log("RIGHT");
-            this->sonRotation = !this->sonRollPosition ? 0 : 1;
+            virtualConor += 0.1;
+            PointF virtualPoint = {this->cX + cos(virtualConor) * this->kickDis,
+                                   this->cY + sin(virtualConor) * this->kickDis};
+            deltas = getDeltas(rightSonPoint, virtualPoint);
+            double disToRightSonPoint = getDis(deltas);
+            this->sonRotation = disToRightSonPoint < disToRight ? 0 : 1;
         }
+
+        // b = {rightSonPoint.x, rightSonPoint.y};
+        // deltas = getDeltas(a, b);
+        // double leftToRightConor = radToDeg(getConor(deltas));
+        // b = {this->sonRoll->cX, this->sonRoll->cY};
+        // deltas = getDeltas(a, b);
+        // double leftToSunRollConor = radToDeg(getConor(deltas));
+
+        // if (leftToRightConor < 0)
+        // {
+        //     leftToRightConor += 360;
+        // }
+        // if (leftToSunRollConor < 0)
+        // {
+        //     leftToSunRollConor += 360;
+        // }
+
+        // if (leftToRightConor > leftToSunRollConor)
+        // {
+        //      console.log("LEFT");
+        //     this->sonRotation = !this->sonRollPosition ? 1 : 0;
+        // }
+        // else
+        // {
+        //      console.log("RIGHT");
+        //     this->sonRotation = !this->sonRollPosition ? 0 : 1;
+        // }
         delete leftVirtualRoll;
         delete rightVirtualRoll;
         leftVirtualRoll = nullptr;
         rightVirtualRoll = nullptr;
     }
 }
-
-
