@@ -51,7 +51,7 @@ void Roll::sonRollRotation()
             Delta deltas = getDeltas(a, b);
             double dis = getDis(deltas);
 
-            console.log("left dis = " + to_string(dis));
+          //  console.log("left dis = " + to_string(dis));
 
             if (dis <= this->sonRotationWay)
             {
@@ -92,7 +92,7 @@ void Roll::sonRollRotation()
             Delta deltas = getDeltas(a, b);
             double dis = getDis(deltas);
 
-            console.log("right dis = " + to_string(dis));
+           // console.log("right dis = " + to_string(dis));
 
             if (dis <= this->sonRotationWay)
             {

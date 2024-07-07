@@ -96,12 +96,12 @@ void Roll::getSonPointAndRotation()
 
         if (leftToRightConor > leftToSunRollConor)
         {
-            // console.log("LEFT");
+             console.log("LEFT");
             this->sonRotation = !this->sonRollPosition ? 1 : 0;
         }
         else
         {
-            // console.log("RIGHT");
+             console.log("RIGHT");
             this->sonRotation = !this->sonRollPosition ? 0 : 1;
         }
         delete leftVirtualRoll;
