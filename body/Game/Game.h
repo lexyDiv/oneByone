@@ -12,7 +12,7 @@ Roll* contactRoll = nullptr;
 ////////////////////
 
     bool pause = false;
-    int level = 2;
+    int level = 1;
     bool endLevel = false;
     int check = 0;
     bool needFilter = false;

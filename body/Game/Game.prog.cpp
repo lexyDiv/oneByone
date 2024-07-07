@@ -47,6 +47,10 @@ void Game::rollsToProg()
         }
         else
         {
+            if(roll == this->rollWithSon)
+            {
+                this->unComplite = false;
+            }
             this->deleteProg(roll);
             this->rolls->reDate(i, nullptr);
             this->needFilter = true;
@@ -107,7 +111,7 @@ void Game::prog()
     this->getRollsToCheckCollision();
     this->flyingMove();
     this->flyingOutDel();
-    if(this->rollWithSon != nullptr)
+    if (this->rollWithSon != nullptr)
     {
         this->rollWithSon->sonRollProg();
     }

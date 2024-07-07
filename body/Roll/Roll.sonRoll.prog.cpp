@@ -53,7 +53,7 @@ void Roll::sonRollRotation()
 
             //  console.log("left dis = " + to_string(dis));
 
-            if (dis > this->saveDisToSon)
+            if (dis * 0.8 > this->saveDisToSon)
             {
 
                 // this->game->pause = true;
@@ -68,7 +68,14 @@ void Roll::sonRollRotation()
                 // this->sonRoll->game = this->game;
                 // this->sonRoll = nullptr;
             }
-            this->saveDisToSon = dis;
+            if(this->saveDisToSon > 995)
+            {
+                this->saveDisToSon--;
+            }
+            else
+            {
+                this->saveDisToSon = dis;
+            }
             delete leftVirtualRoll;
 
             leftVirtualRoll = nullptr;
@@ -94,7 +101,7 @@ void Roll::sonRollRotation()
 
             // console.log("right dis = " + to_string(dis));
 
-            if (dis > this->saveDisToSon)
+            if (dis * 0.8 > this->saveDisToSon)
             {
 
                 // this->game->pause = true;
@@ -109,7 +116,14 @@ void Roll::sonRollRotation()
                 // this->sonRoll->game = this->game;
                 // this->sonRoll = nullptr;
             }
-            this->saveDisToSon = dis;
+            if(this->saveDisToSon > 995)
+            {
+                this->saveDisToSon--;
+            }
+            else
+            {
+                this->saveDisToSon = dis;
+            }
             delete rightVirtualRoll;
             rightVirtualRoll = nullptr;
         }
