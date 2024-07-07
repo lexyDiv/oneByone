@@ -51,9 +51,9 @@ void Roll::sonRollRotation()
             Delta deltas = getDeltas(a, b);
             double dis = getDis(deltas);
 
-          //  console.log("left dis = " + to_string(dis));
+            //  console.log("left dis = " + to_string(dis));
 
-            if (dis <= this->sonRotationWay)
+            if (dis > this->saveDisToSon)
             {
 
                 // this->game->pause = true;
@@ -68,8 +68,8 @@ void Roll::sonRollRotation()
                 // this->sonRoll->game = this->game;
                 // this->sonRoll = nullptr;
             }
-             delete leftVirtualRoll;
-
+            this->saveDisToSon = dis;
+            delete leftVirtualRoll;
 
             leftVirtualRoll = nullptr;
         }
@@ -92,11 +92,11 @@ void Roll::sonRollRotation()
             Delta deltas = getDeltas(a, b);
             double dis = getDis(deltas);
 
-           // console.log("right dis = " + to_string(dis));
+            // console.log("right dis = " + to_string(dis));
 
-            if (dis <= this->sonRotationWay)
+            if (dis > this->saveDisToSon)
             {
-                
+
                 // this->game->pause = true;
                 this->sonRoll->readyInLine = true;
                 b = {this->cX, this->cY};
@@ -109,7 +109,8 @@ void Roll::sonRollRotation()
                 // this->sonRoll->game = this->game;
                 // this->sonRoll = nullptr;
             }
-             delete rightVirtualRoll;
+            this->saveDisToSon = dis;
+            delete rightVirtualRoll;
             rightVirtualRoll = nullptr;
         }
         this->sonRollOnPosition();
@@ -121,8 +122,6 @@ void Roll::sonRollProg()
     if (this->sonRoll != nullptr && this->sonRoll->readyInLine)
     {
         Roll *virtualRoll;
-
-        
 
         this->game->unComplite = false;
 
@@ -157,6 +156,7 @@ void Roll::sonRollProg()
 
         this->game->controllRoll = this->sonRoll;
 
+        this->saveDisToSon = 1000;
         delete virtualRoll;
         virtualRoll = nullptr;
         this->sonRoll = nullptr;
