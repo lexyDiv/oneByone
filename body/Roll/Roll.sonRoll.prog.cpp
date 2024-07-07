@@ -34,7 +34,7 @@ void Roll::sonRollRotation()
         // console.log("deg = " + to_string(radToDeg(0.1)));
         if (!this->sonRollPosition)
         {
-            Roll *leftVirtualRoll = this->getLeftSonPoint();
+           // Roll *leftVirtualRoll = this->getLeftSonPoint();
             if (!this->sonRotation)
             {
                 this->conorToSonRoll += this->sonRotationIndex;
@@ -46,18 +46,18 @@ void Roll::sonRollRotation()
                 // console.log("here 2");
             }
             // this->sonRollCXCorrect();
-            PointF a = {leftVirtualRoll->cX, leftVirtualRoll->cY};
-            PointF b = {this->sonRoll->cX, this->sonRoll->cY};
-            Delta deltas = getDeltas(a, b);
-            double dis = getDis(deltas);
+           // PointF a = {leftVirtualRoll->cX, leftVirtualRoll->cY};
+          //  PointF b = {this->sonRoll->cX, this->sonRoll->cY};
+         ////   Delta deltas = getDeltas(a, b);
+         //   double dis = getDis(deltas);
 
             //  console.log("left dis = " + to_string(dis));
 
-            if (dis > this->saveDisToSon)
-            {
+          //  if (dis > this->saveDisToSon)
+          //  {
 
                 // this->game->pause = true;
-                this->sonRoll->readyInLine = true;
+            //    this->sonRoll->readyInLine = true;
                 // b = {this->cX, this->cY};
                 // deltas = getDeltas(b, a);
                 // this->conorToSonRoll = getConor(deltas);
@@ -68,22 +68,22 @@ void Roll::sonRollRotation()
                 // this->leftRoll = this->sonRoll;
                 // this->sonRoll->game = this->game;
                 // this->sonRoll = nullptr;
-            }
-            if (this->saveDisToSon > 995)
-            {
-                this->saveDisToSon--;
-            }
-            else
-            {
-                this->saveDisToSon = dis;
-            }
-            delete leftVirtualRoll;
+         //   }
+            // if (this->saveDisToSon > 995)
+            // {
+            //     this->saveDisToSon--;
+            // }
+            // else
+            // {
+            //     this->saveDisToSon = dis;
+            // }
+         //   delete leftVirtualRoll;
 
-            leftVirtualRoll = nullptr;
+          //  leftVirtualRoll = nullptr;
         }
         else
         {
-            Roll *rightVirtualRoll = this->getRightSonPoint();
+           // Roll *rightVirtualRoll = this->getRightSonPoint();
             if (!this->sonRotation)
             {
                 this->conorToSonRoll += this->sonRotationIndex;
@@ -95,18 +95,18 @@ void Roll::sonRollRotation()
                 //  console.log("here 2");
             }
             // this->sonRollCXCorrect();
-            PointF a = {rightVirtualRoll->cX, rightVirtualRoll->cY};
-            PointF b = {this->sonRoll->cX, this->sonRoll->cY};
-            Delta deltas = getDeltas(a, b);
-            double dis = getDis(deltas);
+          //  PointF a = {rightVirtualRoll->cX, rightVirtualRoll->cY};
+           // PointF b = {this->sonRoll->cX, this->sonRoll->cY};
+          //  Delta deltas = getDeltas(a, b);
+          //  double dis = getDis(deltas);
 
             // console.log("right dis = " + to_string(dis));
 
-            if (dis > this->saveDisToSon)
-            {
+          //  if (dis > this->saveDisToSon)
+          //  {
 
                 // this->game->pause = true;
-                this->sonRoll->readyInLine = true;
+            //    this->sonRoll->readyInLine = true;
                 // b = {this->cX, this->cY};
                 // deltas = getDeltas(b, a);
                 // this->conorToSonRoll = getConor(deltas);
@@ -116,17 +116,17 @@ void Roll::sonRollRotation()
                 // this->rightRoll = this->sonRoll;
                 // this->sonRoll->game = this->game;
                 // this->sonRoll = nullptr;
-            }
-            if (this->saveDisToSon > 995)
-            {
-                this->saveDisToSon--;
-            }
-            else
-            {
-                this->saveDisToSon = dis;
-            }
-            delete rightVirtualRoll;
-            rightVirtualRoll = nullptr;
+         //   }
+            // if (this->saveDisToSon > 995)
+            // {
+            //     this->saveDisToSon--;
+            // }
+            // else
+            // {
+            //     this->saveDisToSon = dis;
+            // }
+            // delete rightVirtualRoll;
+            // rightVirtualRoll = nullptr;
         }
         this->sonRollOnPosition();
     }
