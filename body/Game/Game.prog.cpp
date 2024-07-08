@@ -118,6 +118,8 @@ void Game::prog()
     this->rollsToCollision->clear();
 }
 
+
+
 void Game::impulseRollCreate()
 {
     Container *head = this->wayLine->getHead();
