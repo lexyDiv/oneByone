@@ -5,10 +5,10 @@
 class Game
 {
 public:
-Roll *controllRoll = nullptr;
+//Roll *controllRoll = nullptr;
 Roll *rollWithSon = nullptr;
-PointF *LR[2]{nullptr, nullptr};
-Roll* contactRoll = nullptr;
+// PointF *LR[2]{nullptr, nullptr};
+// Roll* contactRoll = nullptr;
 ////////////////////
 
     bool pause = false;
@@ -25,10 +25,12 @@ Roll* contactRoll = nullptr;
     WayLine *wayLine = new WayLine();
 
     rapid<Roll *> *rolls = new rapid<Roll *>;
+    vector<Roll *> rolls2;
     Roll *impulseRoll = nullptr;
     Roll *flyingRoll = nullptr;
     bool unComplite = false;
-    rapid<Roll *> *rollsToCollision = new rapid<Roll *>;
+    //rapid<Roll *> *rollsToCollision = new rapid<Roll *>;
+    vector<Roll *> rollsToCollision;
 
     void getWayLine();
     void newRollCreating();

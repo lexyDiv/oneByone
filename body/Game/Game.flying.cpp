@@ -5,20 +5,20 @@ void Game::getRollsToCheckCollision()
 {
     if (this->flyingRoll != nullptr)
     {
-        this->rollsToCollision->backForce(this->rolls->getLength());
-        for (int i = 1; i < this->rolls->getLength(); i++)
+       // this->rollsToCollision->backForce(this->rolls->getLength());
+        for (int i = 1; i < this->rolls2.size(); i++)
         {
-            Roll *roll = this->rolls->getItem(i);
+            Roll *roll = this->rolls2[i];
             PointF a = {roll->cX, roll->cY};
             PointF b = {this->flyingRoll->cX, this->flyingRoll->cY};
             Delta deltas = getDeltas(a, b);
             double dis = getDis(deltas);
             if (dis <= roll->diameter + this->flyingRoll->flySpeed * 2)
             {
-                this->rollsToCollision->push(roll);
+                this->rollsToCollision.push_back(roll);
             }
         }
-        this->rollsToCollision->norm();
+        
         // if(this->rollsToCollision->getLength())
         // {
         //     console.log("length = " + to_string(this->rollsToCollision->getLength()));
@@ -30,9 +30,9 @@ Roll *Game::checkCollision()
 {
     if (this->flyingRoll != nullptr)
     {
-        for (int i = 0; i < this->rollsToCollision->getLength(); i++)
+        for (int i = 0; i < this->rollsToCollision.size(); i++)
         {
-            Roll *roll = this->rollsToCollision->getItem(i);
+            Roll *roll = this->rollsToCollision[i];
             PointF a = {this->flyingRoll->cX, this->flyingRoll->cY};
             PointF b = {roll->cX, roll->cY};
             Delta deltas = getDeltas(a, b);
@@ -69,8 +69,19 @@ void Game::flyingMove()
                 roll->getSonPointAndRotation();
 
                 //////////////
-                this->rolls->splice(this->rolls->indexOf(roll) + roll->sonRollPosition,
-                                    this->flyingRoll);
+                // this->rolls->splice(this->rolls->indexOf(roll) + roll->sonRollPosition,
+                //                     this->flyingRoll);
+                int index;
+                for(int i = 0; i < this->rolls2.size(); i++)
+                {
+                    if(this->rolls2[i] == roll)
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+                this->rolls2.emplace(this->rolls2.begin()+(index + roll->sonRollPosition),
+                this->flyingRoll);
                  this->rollWithSon = roll;
                 // if(!roll->sonRollPosition)
                 // {

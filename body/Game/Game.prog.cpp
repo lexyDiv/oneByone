@@ -23,8 +23,10 @@ void Game::newRollCreating()
         disToImpulseRoll = getDis(deltas);
     }
 
-    if (!this->rolls->getLength() ||
-        (disToImpulseRoll && disToImpulseRoll >= this->rolls->getItem(0)->kickDis))
+    if (!this->rolls2.size() ||
+        (disToImpulseRoll && disToImpulseRoll >= this->rolls2[0]->kickDis)
+        //this->rolls->getItem(0)->kickDis)
+        )
     {
         if (this->check < 3)
         {
@@ -36,25 +38,25 @@ void Game::newRollCreating()
 
 void Game::rollsToProg()
 {
-    for (int i = 1; i < this->rolls->getLength(); i++)
+    for (int i = 1; i < this->rolls2.size(); i++)
     {
-        Roll *roll = this->rolls->getItem(i);
+        Roll *roll = this->rolls2[i];
         //  if (roll != nullptr)
         //  {
-        if (!roll->del)
-        {
+        // if (!roll->del)
+        // {
             roll->prog(i);
-        }
-        else
-        {
-            if(roll == this->rollWithSon)
-            {
-                this->unComplite = false;
-            }
-            this->deleteProg(roll);
-            this->rolls->reDate(i, nullptr);
-            this->needFilter = true;
-        }
+        // }
+        // else
+        // {
+        //     if(roll == this->rollWithSon)
+        //     {
+        //         this->unComplite = false;
+        //     }
+        //     this->deleteProg(roll);
+        //     this->rolls->reDate(i, nullptr);
+        //     this->needFilter = true;
+        // }
         // }
         roll = nullptr;
     }
@@ -83,39 +85,24 @@ void Game::prog()
 
     this->newRollCreating();
 
-    if (this->impulseRoll != nullptr && !this->impulseRoll->del)
+    if (this->impulseRoll != nullptr)
     {
         this->impulseRoll->impulseProg();
     }
-    else
-    {
-        if (this->impulseRoll != nullptr)
-        {
-            this->deleteProg(impulseRoll);
-            this->rolls->reDate(0, nullptr);
-            this->impulseRoll = nullptr;
-            this->endLevel = true;
-            this->needFilter = true;
-        }
-    }
 
-    this->rollsToProg();
 
-    // if (this->speed == 150 || this->speed == 0)
-    // {
-    //     this->speedVector = -this->speedVector;
-    // }
-    // this->speed += this->speedVector;
+     this->rollsToProg();
 
-    this->station->prog();
-    this->getRollsToCheckCollision();
-    this->flyingMove();
-    this->flyingOutDel();
+
+     this->station->prog();
+     this->getRollsToCheckCollision();
+     this->flyingMove();
+     this->flyingOutDel();
     if (this->rollWithSon != nullptr)
     {
         this->rollWithSon->sonRollProg();
     }
-    this->rollsToCollision->clear();
+     this->rollsToCollision.clear();
 }
 
 
@@ -127,15 +114,13 @@ void Game::impulseRollCreate()
                              head->wayPoint->x,
                              head->wayPoint->y);
     this->impulseRoll = newRoll;
-    this->rolls->frontForce(1);
-    this->rolls->unshift(newRoll);
-    this->rolls->norm();
+    this->rolls2.emplace(this->rolls2.begin(), newRoll);
     newRoll->leftCont = head;
     newRoll->rightCont = head->right;
     newRoll->game = this;
-    if (this->rolls->getLength() > 1)
+    if (this->rolls2.size() > 1)
     {
-        Roll *secondRoll = this->rolls->getItem(1);
+        Roll *secondRoll = this->rolls2[1];
         newRoll->rightRoll = secondRoll;
         secondRoll->leftRoll = newRoll;
     }
