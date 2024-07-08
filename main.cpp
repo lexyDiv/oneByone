@@ -6,60 +6,63 @@ void goWork()
     while (!game->quit)
     {
 
-         listenner(e, game);
-         console.proc(mouse.x, mouse.y, mouse.leftKey);
-         if(!game->pause)
-         {
+        listenner(e, game);
+        console.proc(mouse.x, mouse.y, mouse.leftKey);
+        if (!game->pause)
+        {
             game->prog();
-         }
-         mouse.defaultKeys();
-         this_thread::sleep_for(chrono::milliseconds(25));
+        }
+        mouse.defaultKeys();
+        this_thread::sleep_for(chrono::milliseconds(25));
     }
 }
 
-// class Hz
-// {
-//     public:
-//     int x;
-//     Hz(int x)
-//     {
-//        this->x = x;
-//     }
-// };
+//////////////////
 
+class Unit;
 
+class Cell
+{
+public:
+    int x;
+     Unit *unit;
+    Cell(int x)
+    {
+        this->x = x;
+    };
+    Cell(){};
+};
+
+class Unit
+{
+public:
+    int type;
+    Cell *cell;
+    Cell cells[1000];
+    Unit(int type)
+    {
+        this->type = type;
+    };
+    Unit(){};
+};
 
 int main()
 {
+   // Cell cell(10);
+    Unit unit(0);
+    // unit.cell = &cell;
+    // unit.cells[0] = &cell;
+  
+   for(int i = 0; i < 100; i++)
+   {
+    Cell cell(i);
+    cell.unit = &unit;
+    unit.cells[i] = cell;
+   }
+   console.log("unit.cells[2] = " + to_string(unit.cells[0].unit->cells[999].x));
+    // rapid<Roll> arr;
 
-//    rapid<Hz*>* ar = new rapid<Hz*>;
-//    Hz* a = new Hz(99);
-//    Hz* b = new Hz(100);
-//    Hz* c = new Hz(46);
-//    ar->frontForce(3);
-//    ar->unshift(a);
-//    ar->norm();
-//    ar->frontForce(200);
-//    ar->unshift(b);
-//    ar->norm();
-//    ar->splice(0, c);
-
-
-//     console.log("ar[0]->x = " + to_string(ar->getItem(0)->x));
-//     console.log("ar[1]->x = " + to_string(ar->getItem(1)->x));
-//     console.log("ar[2]->x = " + to_string(ar->getItem(2)->x));
-
-    // rapid<WayPoint> testArr = fs.read<WayPoint>("levels/level1.txt", sizeof(WayPoint));
-    // wayLine->update(testArr);
-
-    // for (int i = 0; i < 10; i++)
-    // {
-    //     WayPoint *wayPoint = new WayPoint(i * 10, 10);
-    //     wayLine->push(wayPoint);
-    //     wayPoint = nullptr;
-    // }
-    // Container* testCont = wayLine->getItem(2, wayLine->getHead());
-    // console.log("index : 2 = " + to_string(testCont->wayPoint->x));
+    ///////////////
 
     ctx.getFont();
     bool quit = false;
@@ -75,7 +78,7 @@ int main()
         // th.;
         ctx.CreateDrawZone(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
         ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "white");
-       // ctx.DrawImage(spiral, 0, 0, 512, 512, 0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
+        // ctx.DrawImage(spiral, 0, 0, 512, 512, 0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
         game->draw();
         // wayLine->drawPoints();
 
@@ -92,7 +95,6 @@ int main()
     game = nullptr;
     delete wayLine;
     wayLine = nullptr;
-
 
     th.join();
 
