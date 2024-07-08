@@ -11,6 +11,7 @@ Roll *rollWithSon = nullptr;
 // Roll* contactRoll = nullptr;
 ////////////////////
 void deleter();
+vector<Roll *> rollsOnDelete;
 
     bool pause = false;
     int level = 1;

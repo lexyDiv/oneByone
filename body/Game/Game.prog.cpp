@@ -10,20 +10,34 @@ void Game::deleter()
         if(roll->del)
         {
             is.push_back(i);
-           // delete roll;
-           // roll = nullptr;
-            //this->rolls2.erase(this->rolls2.cbegin() + 1);
-           // i--;
         }
     }
     
     for(int i = 0; i < is.size(); i++)
     {
         Roll *roll = this->rolls2[is[i]];
-        delete roll;
         roll = nullptr;
         this->rolls2.erase(this->rolls2.cbegin() + is[i]);
     }
+
+    vector<int> delIndexes;
+    for(int i = 0; i < this->rollsOnDelete.size(); i++)
+    {
+        Roll *roll = this->rollsOnDelete[i];
+        if(roll->del)
+        {
+            delete roll;
+            roll = nullptr;
+            delIndexes.push_back(i);
+        }
+    }
+
+    for(int i = 0; i < delIndexes.size(); i++)
+    {
+        int index = delIndexes[i];
+        this->rollsOnDelete.erase(this->rollsOnDelete.cbegin() + index);
+    }
+
 }
 
 void Game::getWayLine()
@@ -134,6 +148,7 @@ void Game::impulseRollCreate()
     Roll *newRoll = new Roll(intRand(1, 6),
                              head->wayPoint->x,
                              head->wayPoint->y);
+    this->rollsOnDelete.push_back(newRoll);
     this->impulseRoll = newRoll;
     this->rolls2.emplace(this->rolls2.begin(), newRoll);
     newRoll->leftCont = head;

@@ -114,7 +114,8 @@ void Game::flyingOutDel()
         int gab = this->flyingRoll->diameter;
         if (x > ctx.SCREEN_WIDTH || x + gab < 0 || y > ctx.SCREEN_HEIGHT || y + gab < 0)
         {
-            delete this->flyingRoll;
+          //  delete this->flyingRoll;
+            this->flyingRoll->del = true;
             this->flyingRoll = nullptr;
         }
     }
