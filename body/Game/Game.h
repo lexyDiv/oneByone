@@ -10,6 +10,7 @@ Roll *rollWithSon = nullptr;
 // PointF *LR[2]{nullptr, nullptr};
 // Roll* contactRoll = nullptr;
 ////////////////////
+void deleter();
 
     bool pause = false;
     int level = 1;

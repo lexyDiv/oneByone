@@ -20,6 +20,8 @@ Roll::~Roll()
     this->rightCont = nullptr;
     this->leftRoll = nullptr;
     this->rightRoll = nullptr;
+    this->image = nullptr;
+    console.log("Roll * deleted !!!");
 }
 
 void Roll::draw()

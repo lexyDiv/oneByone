@@ -1,6 +1,31 @@
 #include "../WayLine/WayLine.cpp"
 #include "Game.h"
 
+void Game::deleter()
+{
+    vector<int> is;
+    for(int i = 0; i < this->rolls2.size(); i++)
+    {
+        Roll* roll = this->rolls2[i];
+        if(roll->del)
+        {
+            is.push_back(i);
+           // delete roll;
+           // roll = nullptr;
+            //this->rolls2.erase(this->rolls2.cbegin() + 1);
+           // i--;
+        }
+    }
+    
+    for(int i = 0; i < is.size(); i++)
+    {
+        Roll *roll = this->rolls2[is[i]];
+        delete roll;
+        roll = nullptr;
+        this->rolls2.erase(this->rolls2.cbegin() + is[i]);
+    }
+}
+
 void Game::getWayLine()
 {
     if (!this->wayLine->getLength())
@@ -61,12 +86,7 @@ void Game::rollsToProg()
         roll = nullptr;
     }
 
-    if (this->needFilter)
-    {
-        this->rolls->filter([](Roll *roll, int i)
-                            { return roll != nullptr; });
-        this->needFilter = false;
-    }
+
 }
 
 void Game::deleteProg(Roll *roll)
@@ -103,6 +123,7 @@ void Game::prog()
         this->rollWithSon->sonRollProg();
     }
      this->rollsToCollision.clear();
+     this->deleter();
 }
 
 
