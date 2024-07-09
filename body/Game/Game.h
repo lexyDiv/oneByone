@@ -15,7 +15,7 @@ void deleter();
 vector<Roll *> rollsOnDelete;
 
     bool pause = false;
-    int level = 1;
+    int level = 2;
     bool endLevel = false;
     int check = 0;
     bool needFilter = false;

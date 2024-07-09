@@ -5,26 +5,26 @@ void Game::tryDelProg()
 {
     if (this->tryDel)
     {
-        this->pause = true;
+       // this->pause = true;
         this->tryDel = false;
         int leftI = 20;
-        int rightI = 24;
+        int rightI = 34;
         Roll *leftRoll = this->rolls2[leftI];
         Roll *rightRoll = this->rolls2[rightI];
          leftRoll->rightRoll = rightRoll;
          rightRoll->leftRoll = leftRoll;
-         vector<int> indexes;
+        // vector<int> indexes;
         for (int i = leftI + 1; i < rightI; i++)
         {
-            indexes.push_back(i);
-            this->rolls2[i]->show = false;
-           // this->rolls2[i]->del = true;
+          //  indexes.push_back(i);
+            //this->rolls2[i]->show = false;
+            this->rolls2[i]->del = true;
            // this->rolls2[i]->cX = 10000;
         }
-        for(int i = 0; i < indexes.size(); i++)
-        {
-            this->rolls2.erase(this->rolls2.cbegin() + indexes[i] - i);
-        }
+        // for(int i = 0; i < indexes.size(); i++)
+        // {
+        //     this->rolls2.erase(this->rolls2.cbegin() + indexes[i] - i);
+        // }
         
     }
 }
@@ -38,22 +38,24 @@ void Game::deleter()
         if (
             roll->rightCont == this->wayLine->tale)
         {
-            roll->show = false;
+            roll->del = true;
             if (roll->sonRoll != nullptr)
             {
-                roll->sonRoll->show = false;
+                roll->sonRoll->del = true;
+                this->rollWithSon = nullptr;
+                this->unComplite = false;
             }
         }
-        if (!roll->show)
-        {
-            double x = roll->cX;
-            double y = roll->cY;
-            if (x < 0 || x > ctx.SCREEN_WIDTH || y < 0 || y > ctx.SCREEN_HEIGHT)
-            {
-                roll->del = true;
-                // console.log("need del");
-            }
-        }
+        // if (!roll->show)
+        // {
+        //     double x = roll->cX;
+        //     double y = roll->cY;
+        //     if (x < 0 || x > ctx.SCREEN_WIDTH || y < 0 || y > ctx.SCREEN_HEIGHT)
+        //     {
+        //         roll->del = true;
+        //         // console.log("need del");
+        //     }
+        // }
     }
 
     vector<int> is;
@@ -70,7 +72,7 @@ void Game::deleter()
     {
         Roll *roll = this->rolls2[is[i]];
         roll = nullptr;
-        this->rolls2.erase(this->rolls2.cbegin() + is[i]);
+        this->rolls2.erase(this->rolls2.cbegin() + is[i] - i);
     }
 
     vector<int> delIndexes;
@@ -87,7 +89,7 @@ void Game::deleter()
 
     for (int i = 0; i < delIndexes.size(); i++)
     {
-        int index = delIndexes[i];
+        int index = delIndexes[i] - i;
         this->rollsOnDelete.erase(this->rollsOnDelete.cbegin() + index);
     }
 }
