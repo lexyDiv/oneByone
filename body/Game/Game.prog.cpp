@@ -1,6 +1,34 @@
 #include "../WayLine/WayLine.cpp"
 #include "Game.h"
 
+void Game::tryDelProg()
+{
+    if (this->tryDel)
+    {
+        this->pause = true;
+        this->tryDel = false;
+        int leftI = 20;
+        int rightI = 24;
+        Roll *leftRoll = this->rolls2[leftI];
+        Roll *rightRoll = this->rolls2[rightI];
+         leftRoll->rightRoll = rightRoll;
+         rightRoll->leftRoll = leftRoll;
+         vector<int> indexes;
+        for (int i = leftI + 1; i < rightI; i++)
+        {
+            indexes.push_back(i);
+            this->rolls2[i]->show = false;
+           // this->rolls2[i]->del = true;
+           // this->rolls2[i]->cX = 10000;
+        }
+        for(int i = 0; i < indexes.size(); i++)
+        {
+            this->rolls2.erase(this->rolls2.cbegin() + indexes[i] - i);
+        }
+        
+    }
+}
+
 void Game::deleter()
 {
 
@@ -23,7 +51,7 @@ void Game::deleter()
             if (x < 0 || x > ctx.SCREEN_WIDTH || y < 0 || y > ctx.SCREEN_HEIGHT)
             {
                 roll->del = true;
-                //console.log("need del");
+                // console.log("need del");
             }
         }
     }
@@ -159,6 +187,7 @@ void Game::prog()
     }
 
     this->rollsToCollision.clear();
+    this->tryDelProg();
     this->deleter();
 }
 

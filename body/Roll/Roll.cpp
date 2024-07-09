@@ -21,13 +21,13 @@ Roll::~Roll()
     this->leftRoll = nullptr;
     this->rightRoll = nullptr;
     this->image = nullptr;
-    //  console.log("Roll * deleted !!!");
+      console.log("Roll * deleted !!!");
 }
 
 void Roll::draw()
 {
-    if (this->show)
-    {
+   // if (this->show)
+    //{
         this->getDrawPosition();
         ctx.DrawImage(this->image,
                       this->animX,
@@ -42,7 +42,7 @@ void Roll::draw()
                       255,
                       this->mid,
                       this->mid);
-    }
+  //  }
     // ctx.FillRect(this->cX, this->cY, 3, 3, "yellow");
 }
 

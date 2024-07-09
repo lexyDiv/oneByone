@@ -6,7 +6,7 @@ void Roll::prog(int index)
 
     if (!this->father)
     {
-      
+
         // this->speed = 0;
         this->impulse = false;
 

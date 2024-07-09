@@ -5,11 +5,12 @@
 class Game
 {
 public:
+
+bool tryDel = false;
+void tryDelProg();
 //Roll *controllRoll = nullptr;
 Roll *rollWithSon = nullptr;
-// PointF *LR[2]{nullptr, nullptr};
-// Roll* contactRoll = nullptr;
-////////////////////
+
 void deleter();
 vector<Roll *> rollsOnDelete;
 

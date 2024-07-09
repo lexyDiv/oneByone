@@ -21,7 +21,8 @@ void listenner(SDL_Event e, Game* game)
             {
                 //console.log("eneter");
               //  game->speed++;
-                  game->pause = false;
+                //  game->pause = false;
+                game->tryDel = true;
             }
         }
         if (e.type == SDL_MOUSEMOTION)
