@@ -12,10 +12,12 @@ void tryDelProg();
 Roll *rollWithSon = nullptr;
 
 void deleter();
-vector<Roll *> rollsOnDelete;
+Roll* rollsOnDelete[1000];
+void pushOnRollsOnDelete(Roll *roll);
+void rollsOnDeleteProg();
 
     bool pause = false;
-    int level = 2;
+    int level = 1;
     bool endLevel = false;
     int check = 0;
     bool needFilter = false;

@@ -2,6 +2,10 @@
 
 Game::Game()
 {
+    for(int i = 0; i < 1000; i ++)
+    {
+        this->rollsOnDelete[i] = nullptr;
+    }
 }
 
 Game::~Game()
