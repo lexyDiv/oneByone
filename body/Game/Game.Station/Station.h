@@ -1,10 +1,9 @@
 #pragma once
 
 
-#include "../../../union/FS/FS.cpp"
+#include "../../Groups/Group.h"
 
-class Game;
-class Roll;
+
 
 class Station
 {

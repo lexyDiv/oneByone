@@ -1,4 +1,4 @@
-#include "../../Roll/Roll.cpp"
+#include "../../Groups/Group.cpp"
 
 Station::Station(Game *game)
 {
