@@ -24,6 +24,10 @@ void listenner(SDL_Event e, Game* game)
                 //  game->pause = false;
                 game->tryDel = true;
             }
+            if(e.key.keysym.scancode == 44)
+            {
+                game->pause = false;
+            }
         }
         if (e.type == SDL_MOUSEMOTION)
         {

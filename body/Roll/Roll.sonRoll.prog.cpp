@@ -152,9 +152,7 @@ void Roll::sonRollProg()
             if(dis <= this->sonRotationWay * 3){
             this->sonRoll->leftRoll = this->leftRoll;
             this->sonRoll->rightRoll = this;
-            if(this->sonRoll->leftRoll != nullptr){
-            this->sonRoll->leftRoll->rightRoll = this->sonRoll;
-            }
+            this->leftRoll->rightRoll = this->sonRoll;
             this->leftRoll = this->sonRoll;
             this->sonRoll->game = this->game;
             out = true;
@@ -184,6 +182,12 @@ void Roll::sonRollProg()
 
         if (out)
         {
+            if(this == this->game->rolls2[this->game->rolls2.size() - 2])
+            {
+                console.log("here");
+                this->game->pause = true;
+            }
+           // console.log("sonRoll on position");
             this->sonRoll->leftCont = virtualRoll->leftCont;
             this->sonRoll->rightCont = virtualRoll->rightCont;
             this->sonRoll->cX = virtualRoll->cX;
