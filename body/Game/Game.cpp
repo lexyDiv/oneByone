@@ -18,6 +18,15 @@ Game::~Game()
         delete this->flyingRoll;
         this->flyingRoll = nullptr;
     }
+    for(int i = 0; i < 1000; i ++)
+    {
+        Roll *roll = this->rollsOnDelete[i];
+        if(roll != nullptr)
+        {
+            delete roll;
+            roll = nullptr;
+        }
+    };
     this->rollsToCollision.clear();
     //delete this->rollsToCollision;
     //this->rollsToCollision = nullptr;
@@ -28,7 +37,12 @@ void Game::draw()
 
     for(int i = 0; i < this->rolls2.size(); i++)
     {
-        this->rolls2[i]->draw(i);
+        Roll *roll = this->rolls2[i];
+        roll->draw(i);
+        if(roll->sonRoll != nullptr)
+        {
+            roll->sonRoll->draw();
+        }
     }
 
 

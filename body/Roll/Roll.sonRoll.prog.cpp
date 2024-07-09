@@ -34,41 +34,50 @@ void Roll::sonRollRotation()
         // console.log("deg = " + to_string(radToDeg(0.1)));
         if (!this->sonRollPosition)
         {
-           // Roll *leftVirtualRoll = this->getLeftSonPoint();
-            if (!this->sonRotation)
+            Roll *leftVirtualRoll = this->getLeftSonPoint();
+
+            PointF a = {leftVirtualRoll->cX, leftVirtualRoll->cY};
+            PointF b = {this->sonRoll->cX, this->sonRoll->cY};
+            Delta deltas = getDeltas(a, b);
+            double dis = getDis(deltas);
+
+            if (dis > this->sonRotationWay *2)
             {
-                this->conorToSonRoll += this->sonRotationIndex;
-                //  console.log("here");
-            }
-            else
-            {
-                this->conorToSonRoll -= this->sonRotationIndex;
-                // console.log("here 2");
+                if (!this->sonRotation)
+                {
+                    this->conorToSonRoll += this->sonRotationIndex;
+                    //  console.log("here");
+                }
+                else
+                {
+                    this->conorToSonRoll -= this->sonRotationIndex;
+                    // console.log("here 2");
+                }
             }
             // this->sonRollCXCorrect();
-           // PointF a = {leftVirtualRoll->cX, leftVirtualRoll->cY};
-          //  PointF b = {this->sonRoll->cX, this->sonRoll->cY};
-         ////   Delta deltas = getDeltas(a, b);
-         //   double dis = getDis(deltas);
+            // PointF a = {leftVirtualRoll->cX, leftVirtualRoll->cY};
+            //  PointF b = {this->sonRoll->cX, this->sonRoll->cY};
+            ////   Delta deltas = getDeltas(a, b);
+            //   double dis = getDis(deltas);
 
             //  console.log("left dis = " + to_string(dis));
 
-          //  if (dis > this->saveDisToSon)
-          //  {
+            //  if (dis > this->saveDisToSon)
+            //  {
 
-                // this->game->pause = true;
+            // this->game->pause = true;
             //    this->sonRoll->readyInLine = true;
-                // b = {this->cX, this->cY};
-                // deltas = getDeltas(b, a);
-                // this->conorToSonRoll = getConor(deltas);
+            // b = {this->cX, this->cY};
+            // deltas = getDeltas(b, a);
+            // this->conorToSonRoll = getConor(deltas);
 
-                // this->sonRoll->leftRoll = this->leftRoll;
-                // this->sonRoll->rightRoll = this;
-                // this->sonRoll->leftRoll->rightRoll = this->sonRoll;
-                // this->leftRoll = this->sonRoll;
-                // this->sonRoll->game = this->game;
-                // this->sonRoll = nullptr;
-         //   }
+            // this->sonRoll->leftRoll = this->leftRoll;
+            // this->sonRoll->rightRoll = this;
+            // this->sonRoll->leftRoll->rightRoll = this->sonRoll;
+            // this->leftRoll = this->sonRoll;
+            // this->sonRoll->game = this->game;
+            // this->sonRoll = nullptr;
+            //   }
             // if (this->saveDisToSon > 995)
             // {
             //     this->saveDisToSon--;
@@ -77,46 +86,55 @@ void Roll::sonRollRotation()
             // {
             //     this->saveDisToSon = dis;
             // }
-         //   delete leftVirtualRoll;
+            //   delete leftVirtualRoll;
 
-          //  leftVirtualRoll = nullptr;
+            //  leftVirtualRoll = nullptr;
         }
         else
         {
-           // Roll *rightVirtualRoll = this->getRightSonPoint();
-            if (!this->sonRotation)
+            Roll *rightVirtualRoll = this->getRightSonPoint();
+
+            PointF a = {rightVirtualRoll->cX, rightVirtualRoll->cY};
+            PointF b = {this->sonRoll->cX, this->sonRoll->cY};
+            Delta deltas = getDeltas(a, b);
+            double dis = getDis(deltas);
+
+            if (dis > this->sonRotationWay * 2)
             {
-                this->conorToSonRoll += this->sonRotationIndex;
-                //  console.log("here");
-            }
-            else
-            {
-                this->conorToSonRoll -= this->sonRotationIndex;
-                //  console.log("here 2");
+                if (!this->sonRotation)
+                {
+                    this->conorToSonRoll += this->sonRotationIndex;
+                    //  console.log("here");
+                }
+                else
+                {
+                    this->conorToSonRoll -= this->sonRotationIndex;
+                    //  console.log("here 2");
+                }
             }
             // this->sonRollCXCorrect();
-          //  PointF a = {rightVirtualRoll->cX, rightVirtualRoll->cY};
-           // PointF b = {this->sonRoll->cX, this->sonRoll->cY};
-          //  Delta deltas = getDeltas(a, b);
-          //  double dis = getDis(deltas);
+            //  PointF a = {rightVirtualRoll->cX, rightVirtualRoll->cY};
+            // PointF b = {this->sonRoll->cX, this->sonRoll->cY};
+            //  Delta deltas = getDeltas(a, b);
+            //  double dis = getDis(deltas);
 
             // console.log("right dis = " + to_string(dis));
 
-          //  if (dis > this->saveDisToSon)
-          //  {
+            //  if (dis > this->saveDisToSon)
+            //  {
 
-                // this->game->pause = true;
+            // this->game->pause = true;
             //    this->sonRoll->readyInLine = true;
-                // b = {this->cX, this->cY};
-                // deltas = getDeltas(b, a);
-                // this->conorToSonRoll = getConor(deltas);
-                // this->sonRoll->leftRoll = this;
-                // this->sonRoll->rightRoll = this->rightRoll;
-                // this->sonRoll->rightRoll->leftRoll = this->sonRoll;
-                // this->rightRoll = this->sonRoll;
-                // this->sonRoll->game = this->game;
-                // this->sonRoll = nullptr;
-         //   }
+            // b = {this->cX, this->cY};
+            // deltas = getDeltas(b, a);
+            // this->conorToSonRoll = getConor(deltas);
+            // this->sonRoll->leftRoll = this;
+            // this->sonRoll->rightRoll = this->rightRoll;
+            // this->sonRoll->rightRoll->leftRoll = this->sonRoll;
+            // this->rightRoll = this->sonRoll;
+            // this->sonRoll->game = this->game;
+            // this->sonRoll = nullptr;
+            //   }
             // if (this->saveDisToSon > 995)
             // {
             //     this->saveDisToSon--;
@@ -149,13 +167,14 @@ void Roll::sonRollProg()
             Delta deltas = getDeltas(a, b);
             double dis = getDis(deltas);
 
-            if(dis <= this->sonRotationWay * 3){
-            this->sonRoll->leftRoll = this->leftRoll;
-            this->sonRoll->rightRoll = this;
-            this->leftRoll->rightRoll = this->sonRoll;
-            this->leftRoll = this->sonRoll;
-            this->sonRoll->game = this->game;
-            out = true;
+            if (dis <= this->sonRotationWay * 2)
+            {
+                this->sonRoll->leftRoll = this->leftRoll;
+                this->sonRoll->rightRoll = this;
+                this->leftRoll->rightRoll = this->sonRoll;
+                this->leftRoll = this->sonRoll;
+                this->sonRoll->game = this->game;
+                out = true;
             }
         }
         else
@@ -167,28 +186,43 @@ void Roll::sonRollProg()
             Delta deltas = getDeltas(a, b);
             double dis = getDis(deltas);
 
-            if(dis <= this->sonRotationWay * 3){
-            this->sonRoll->leftRoll = this;
-            this->sonRoll->rightRoll = this->rightRoll;
-            if (this->sonRoll->rightRoll != nullptr)
+            if (dis <= this->sonRotationWay * 2)
             {
-                this->sonRoll->rightRoll->leftRoll = this->sonRoll;
-            }
-            this->rightRoll = this->sonRoll;
-            this->sonRoll->game = this->game;
-            out = true;
+                this->sonRoll->leftRoll = this;
+                this->sonRoll->rightRoll = this->rightRoll;
+                if (this->sonRoll->rightRoll != nullptr)
+                {
+                    this->sonRoll->rightRoll->leftRoll = this->sonRoll;
+                }
+                this->rightRoll = this->sonRoll;
+                this->sonRoll->game = this->game;
+                out = true;
             }
         }
 
         if (out)
         {
-            if(this == this->game->rolls2[this->game->rolls2.size() - 2])
+            // if (this == this->game->rolls2[this->game->rolls2.size() - 1])
+            // {
+            //    // console.log("here");
+            //     this->game->pause = true;
+            //     this->game->needForPause = true;
+            // }
+            // // console.log("sonRoll on position");
+
+            int index;
+            for (int i = 0; i < this->game->rolls2.size(); i++)
             {
-                console.log("here");
-                this->game->pause = true;
-                this->game->needForPause = true;
+                if (this->game->rolls2[i] == this)
+                {
+                    index = i;
+                    break;
+                }
             }
-           // console.log("sonRoll on position");
+
+            this->game->rolls2.emplace(this->game->rolls2.cbegin() + (index + this->sonRollPosition),
+                                       this->sonRoll);
+
             this->sonRoll->leftCont = virtualRoll->leftCont;
             this->sonRoll->rightCont = virtualRoll->rightCont;
             this->sonRoll->cX = virtualRoll->cX;

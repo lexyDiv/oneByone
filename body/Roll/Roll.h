@@ -17,6 +17,9 @@ class Game;
 class Roll
 {
 public:
+
+bool isLast = false;
+/////////
     Game *game = nullptr;
     Roll *leftRoll = nullptr;
     Roll *rightRoll = nullptr;
@@ -48,7 +51,7 @@ public:
     int sonRollPosition;
     int sonRotation;
     PointF sonPoint;
-    double sonRotationIndex = 0.1;
+    double sonRotationIndex = 0.2;
     double sonRotationWay = (liner * radToDeg(sonRotationIndex)) / 360;
     double saveDisToSon = 1000;
     bool readyInLine = false;

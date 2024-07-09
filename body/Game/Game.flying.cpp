@@ -72,17 +72,19 @@ void Game::flyingMove()
                 //////////////
                 // this->rolls->splice(this->rolls->indexOf(roll) + roll->sonRollPosition,
                 //                     this->flyingRoll);
-                int index;
-                for(int i = 0; i < this->rolls2.size(); i++)
-                {
-                    if(this->rolls2[i] == roll)
-                    {
-                        index = i;
-                        break;
-                    }
-                }
-                this->rolls2.emplace(this->rolls2.begin()+(index + roll->sonRollPosition),
-                this->flyingRoll);
+                // int index;
+                // for(int i = 0; i < this->rolls2.size(); i++)
+                // {
+                //     if(this->rolls2[i] == roll)
+                //     {
+                //         index = i;
+                //         break;
+                //     }
+                // }
+                // this->rolls2.emplace(this->rolls2.begin()+(index + roll->sonRollPosition),
+                // this->flyingRoll);
+
+
                  this->rollWithSon = roll;
                 // if(!roll->sonRollPosition)
                 // {

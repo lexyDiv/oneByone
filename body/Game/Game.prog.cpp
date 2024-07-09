@@ -30,7 +30,7 @@ void Game::rollsOnDeleteProg()
 
 void Game::tryDelProg()
 {
-    if (this->tryDel)
+    if (this->tryDel && this->unComplite == false && this->rolls2.size() > 35)
     {
         // this->pause = true;
         this->tryDel = false;
@@ -159,21 +159,67 @@ void Game::newRollCreating()
 void Game::rollsToProg()
 {
 
-   for(int i = 0; i < this->rolls2.size(); i++)
-   {
-       Roll *roll = this->rolls2[i];
-       if(!roll->father)
-       {
-          if(i && i < this->rolls2.size() - 2)
-          {
-            roll->leftRoll = this->rolls2[i - 1];
-            roll->rightRoll = this->rolls2[i + 1];
-          }
-       }
-   }
+    //    for(int i = 0; i < this->rolls2.size(); i++)
+    //    {
+    //        Roll *roll = this->rolls2[i];
+
+    //       if(i && i < this->rolls2.size() - 2)
+    //       {
+    //           if(roll->leftRoll != this->rolls2[i - 1] ||
+    //           roll->rightRoll != this->rolls2[i + 1])
+    //           {
+    //             this->pause = true;
+    //             console.log("My index = " + to_string(i));
+    //             int leftRollIndex = -1;
+    //             for(int k = 0; k < this->rolls2.size(); k++)
+    //             {
+    //                 if(this->rolls2[k] == roll->leftRoll)
+    //                 {
+    //                     leftRollIndex = k;
+    //                    // break;
+    //                 }
+    //               double expe = this->rolls2[k]->cX;
+    //             }
+    //             console.log("My left roll index = " + to_string(leftRollIndex));
+
+    //             if(i && i < this->rolls2.size() - 2)
+    //           {
+    //             roll->leftRoll = this->rolls2[i - 1];
+    //             roll->rightRoll = this->rolls2[i + 1];
+    //           }
+    //           if(!i)
+    //           {
+    //             roll->leftRoll = nullptr;
+    //             roll->rightRoll = this->rolls2[i + 1];
+    //           }
+
+    //           if(i == this->rolls2.size() - 1)
+    //           {
+    //             roll->leftRoll = this->rolls2[i - 1];
+    //             roll->rightRoll = nullptr;
+    //           }
+
+    //            // return;
+    //           }
+    //       }
+    //    }
+
+    for (int i = 0; i < this->rolls2.size(); i++)
+    {
+        Roll *roll = this->rolls2[i];
+        if (i < this->rolls2.size() - 1)
+        {
+            roll->isLast = false;
+        }
+        else
+        {
+            roll->isLast = true;
+        }
+    }
 
     for (int i = 1; i < this->rolls2.size(); i++)
     {
+
         Roll *roll = this->rolls2[i];
         //  if (roll != nullptr)
         //  {
@@ -204,10 +250,10 @@ void Game::deleteProg(Roll *roll)
 
 void Game::prog()
 {
-    if(this->unComplite || this->needForPause)
-    {
-        this->pause = true;
-    }
+    // if(this->unComplite || this->needForPause)
+    // {
+    //     this->pause = true;
+    // }
     this->getWayLine();
 
     this->newRollCreating();

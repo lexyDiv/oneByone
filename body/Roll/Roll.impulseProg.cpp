@@ -24,7 +24,7 @@ void Roll::prog(int index)
 
         if (this->leftRoll != nullptr && this->leftRoll->speed)
         {
-            this->speed = 500;
+            this->speed += 3;
         }
 
         this->forvardMove(false);
