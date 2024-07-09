@@ -21,29 +21,30 @@ Roll::~Roll()
     this->leftRoll = nullptr;
     this->rightRoll = nullptr;
     this->image = nullptr;
-    console.log("Roll * deleted !!!");
+    //  console.log("Roll * deleted !!!");
 }
 
 void Roll::draw()
 {
-    this->getDrawPosition();
-    ctx.DrawImage(this->image,
-                  this->animX,
-                  this->animY,
-                  this->animW,
-                  this->animH,
-                  this->x,
-                  this->y,
-                  this->diameter,
-                  this->diameter, SDL_FLIP_NONE,
-                  this->conor,
-                  255,
-                  this->mid,
-                  this->mid);
-      //ctx.FillRect(this->cX, this->cY, 3, 3, "yellow");
+    if (this->show)
+    {
+        this->getDrawPosition();
+        ctx.DrawImage(this->image,
+                      this->animX,
+                      this->animY,
+                      this->animW,
+                      this->animH,
+                      this->x,
+                      this->y,
+                      this->diameter,
+                      this->diameter, SDL_FLIP_NONE,
+                      this->conor,
+                      255,
+                      this->mid,
+                      this->mid);
+    }
+    // ctx.FillRect(this->cX, this->cY, 3, 3, "yellow");
 }
-
-
 
 Image *Roll::getImage(int type)
 {
@@ -82,11 +83,11 @@ void Roll::getRotation()
         WayPoint *prev = this->leftCont->wayPoint;
         if (next->x > prev->x)
         {
-          !this->speed ? this->rotation = 1 : this->rotation = -1;
+            !this->speed ? this->rotation = 1 : this->rotation = -1;
         }
         else
         {
-           !this->speed ? this->rotation = -1 : this->rotation = 1;
+            !this->speed ? this->rotation = -1 : this->rotation = 1;
         }
     }
 }
@@ -113,7 +114,6 @@ void Roll::getDrawPosition()
     this->x = this->cX - this->mid;
     this->y = this->cY - this->mid;
 }
-
 
 void Roll::move()
 {

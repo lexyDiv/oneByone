@@ -45,6 +45,7 @@ private:
 class WayLine
 {
 public:
+Container *tale = nullptr;
     WayLine();
     int getLength();
 
@@ -62,6 +63,5 @@ public:
 
 private:
     Container *head = nullptr;
-    Container *tale = nullptr;
     int length = 0;
 };

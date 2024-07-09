@@ -3,17 +3,32 @@
 
 void Game::deleter()
 {
+
+    //    for(int i = 0; i < this->rolls2.size(); i++)
+    //    {
+    //        Roll *roll = this->rolls2[i];
+    //        if(roll != nullptr && roll->rightCont != nullptr &&
+    //        roll->rightCont == this->wayLine->tale)
+    //        {
+    //            roll->del = true;
+    //            if(roll->sonRoll != nullptr)
+    //            {
+    //               //roll->sonRoll->del = true;
+    //            }
+    //        }
+    //    }
+
     vector<int> is;
-    for(int i = 0; i < this->rolls2.size(); i++)
+    for (int i = 0; i < this->rolls2.size(); i++)
     {
-        Roll* roll = this->rolls2[i];
-        if(roll->del)
+        Roll *roll = this->rolls2[i];
+        if (roll->del)
         {
             is.push_back(i);
         }
     }
-    
-    for(int i = 0; i < is.size(); i++)
+
+    for (int i = 0; i < is.size(); i++)
     {
         Roll *roll = this->rolls2[is[i]];
         roll = nullptr;
@@ -21,10 +36,10 @@ void Game::deleter()
     }
 
     vector<int> delIndexes;
-    for(int i = 0; i < this->rollsOnDelete.size(); i++)
+    for (int i = 0; i < this->rollsOnDelete.size(); i++)
     {
         Roll *roll = this->rollsOnDelete[i];
-        if(roll->del)
+        if (roll->del)
         {
             delete roll;
             roll = nullptr;
@@ -32,12 +47,11 @@ void Game::deleter()
         }
     }
 
-    for(int i = 0; i < delIndexes.size(); i++)
+    for (int i = 0; i < delIndexes.size(); i++)
     {
         int index = delIndexes[i];
         this->rollsOnDelete.erase(this->rollsOnDelete.cbegin() + index);
     }
-
 }
 
 void Game::getWayLine()
@@ -64,8 +78,8 @@ void Game::newRollCreating()
 
     if (!this->rolls2.size() ||
         (disToImpulseRoll && disToImpulseRoll >= this->rolls2[0]->kickDis)
-        //this->rolls->getItem(0)->kickDis)
-        )
+        // this->rolls->getItem(0)->kickDis)
+    )
     {
         if (this->check < 3)
         {
@@ -84,7 +98,7 @@ void Game::rollsToProg()
         //  {
         // if (!roll->del)
         // {
-            roll->prog(i);
+        roll->prog(i);
         // }
         // else
         // {
@@ -99,8 +113,6 @@ void Game::rollsToProg()
         // }
         roll = nullptr;
     }
-
-
 }
 
 void Game::deleteProg(Roll *roll)
@@ -124,23 +136,21 @@ void Game::prog()
         this->impulseRoll->impulseProg();
     }
 
+    this->rollsToProg();
 
-     this->rollsToProg();
+    this->station->prog();
+    this->getRollsToCheckCollision();
+    this->flyingMove();
+    this->flyingOutDel();
 
-
-     this->station->prog();
-     this->getRollsToCheckCollision();
-     this->flyingMove();
-     this->flyingOutDel();
     if (this->rollWithSon != nullptr)
     {
-        this->rollWithSon->sonRollProg();
+            this->rollWithSon->sonRollProg(); 
     }
-     this->rollsToCollision.clear();
-     this->deleter();
+
+    this->rollsToCollision.clear();
+    this->deleter();
 }
-
-
 
 void Game::impulseRollCreate()
 {

@@ -6,6 +6,7 @@ void Roll::prog(int index)
 
     if (!this->father)
     {
+      
         // this->speed = 0;
         this->impulse = false;
 
@@ -29,7 +30,7 @@ void Roll::prog(int index)
 
 void Roll::forvardMove(bool special)
 {
-   // int iter = 0;
+    // int iter = 0;
     while (true)
     {
         PointF a = {this->cX, this->cY};
@@ -54,8 +55,8 @@ void Roll::forvardMove(bool special)
             dis = getDis(deltas);
         }
 
-        if ((disToLeftRoll >= this->kickDis && dis >= this->kickDis) 
-       // || iter == 1000
+        if ((disToLeftRoll >= this->kickDis && dis >= this->kickDis)
+            // || iter == 1000
         )
         {
             break;
@@ -68,7 +69,7 @@ void Roll::forvardMove(bool special)
             this->speed = 0;
             //}
         }
-       // iter ++;
+        // iter ++;
     }
     this->reversMove();
 }
@@ -106,13 +107,6 @@ void Roll::reversMove()
         else
         {
             this->impulseBack();
-            // PointF a = {(double)this->leftCont->wayPoint->x,
-            // (double)this->leftCont->wayPoint->y};
-            // PointF b = {this->cX, this->cY};
-            // Delta daltas = getDeltas(a, b);
-            // double conor = getConor(deltas);
-            // this->cX = this->cX + cos(conor) * this->game->speedKoof;
-            // this->cY = this->cY + sin(conor) * this->game->speedKoof;
         }
     }
 }
@@ -135,7 +129,7 @@ void Roll::impulsForvard()
             this->cY = this->rightCont->wayPoint->y;
             this->leftCont = this->rightCont;
             this->rightCont = this->leftCont->right;
-           // console.log("this is worcking");
+            // console.log("this is worcking");
         }
     }
 
@@ -158,11 +152,18 @@ void Roll::impulsForvard()
         }
         else
         {
-            this->del = true;
-            if (this->sonRoll)
-            {
-                this->sonRoll->del = true;
-            }
+           // if (this->sonRoll == nullptr)
+           // {
+        //    if(this == this->game->rollWithSon)
+        //    {
+        //     this->game->rollWithSon = nullptr;
+        //    }
+                this->show = false;
+                if (this->sonRoll)
+                {
+                    this->sonRoll->show = false;
+                }
+           // }
         }
     }
 }
