@@ -50,10 +50,7 @@ void Game::tryDelProg()
             this->rolls2[i]->del = true;
             // this->rolls2[i]->cX = 10000;
         }
-        // for(int i = 0; i < indexes.size(); i++)
-        // {
-        //     this->rolls2.erase(this->rolls2.cbegin() + indexes[i] - i);
-        // }
+      
     }
 }
 
