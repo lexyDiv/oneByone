@@ -18,7 +18,8 @@ public:
 	void norm();
 	void print();
 	void printArr();
-	rapid<T> *filter(function<bool(T item, int index)> fn);
+	// rapid<T> *filter(function<bool(T item, int index)> fn);
+	void filter(function<bool(T item, int index)> fn);
 	rapid<T> *sort(function<bool(T a, T b)> fn);
 	T min(function<int(T item)> fn);
 	T max(function<int(T item)> fn);
@@ -28,8 +29,15 @@ public:
 	int indexOf(T item);
 	int getLength();
 	void clear();
+	void reDate(int index, T item);
+	void splice(int index, T item);
 
 	T &getItem(int index)
+	{
+		return this->arr[index];
+	};
+
+	T getItem2(int index)
 	{
 		return this->arr[index];
 	};
@@ -48,14 +56,15 @@ public:
 
 private:
 	int length = 0;
-	T *arr = new T[0];
 	int left = 0;
 	int right = 0;
 	T *frontCopy(T *newArr);
 	T *backCopy(T *newArr);
+	T *backCopy2(T *newArr);
 	T *createNewArr(int force);
 	void copy(T *newArr);
 	rapid<T> *createRapid();
+	T *arr = new T[0];
 };
 
 template <typename T>
@@ -117,21 +126,6 @@ inline void rapid<T>::unshift(T item)
 };
 
 template <typename T>
-inline void rapid<T>::norm()
-{
-	if (this->right)
-	{
-		this->copy(this->frontCopy(this->createNewArr(0)));
-		this->right = 0;
-	}
-	else if (this->left)
-	{
-		this->copy(this->backCopy(this->createNewArr(0)));
-		this->left = 0;
-	}
-};
-
-template <typename T>
 inline void rapid<T>::print()
 {
 	cout << "===========================================" << endl;
@@ -154,19 +148,24 @@ inline void rapid<T>::printArr()
 };
 
 template <typename T>
-inline rapid<T> *rapid<T>::filter(function<bool(T item, int index)> fn)
+inline void rapid<T>::filter(function<bool(T item, int index)> fn)
 {
-	rapid *newRapid = this->createRapid();
+	T *newArr = new T[this->length];
+	int nInd = 0;
 	for (int i = 0; i < this->length; i++)
 	{
 		T item = this->arr[i];
 		if (fn(item, i))
 		{
-			newRapid->push(item);
+			newArr[nInd] = item;
+			nInd++;
 		}
 	}
-	newRapid->norm();
-	return newRapid;
+	this->right = this->length - nInd;
+	this->length = nInd;
+	delete this->arr;
+	this->arr = newArr;
+	this->norm();
 };
 
 template <typename T>
@@ -252,10 +251,42 @@ inline int rapid<T>::getLength()
 template <typename T>
 inline void rapid<T>::clear()
 {
+	delete[] this->arr;
+	this->arr = this->createNewArr(0);
 	this->length = 0;
-	this->norm();
 	this->left = 0;
 	this->right = 0;
+}
+
+template <typename T>
+inline void rapid<T>::reDate(int index, T item)
+{
+	this->arr[index] = item;
+}
+
+template <typename T>
+inline void rapid<T>::splice(int index, T item)
+{
+	this->norm();
+	T *newArr = this->createNewArr(1);
+	for (int i = 0; i <= this->length; i++)
+	{
+		if (i < index)
+		{
+			newArr[i] = this->arr[i];
+		}
+		else if (i == index)
+		{
+			newArr[i] = item;
+		}
+		else
+		{
+			newArr[i] = this->arr[i - 1];
+		}
+	}
+	this->length++;
+	delete[] this->arr;
+	this->arr = newArr;
 };
 
 template <typename T>
@@ -287,16 +318,6 @@ inline T *rapid<T>::frontCopy(T *newArr)
 };
 
 template <typename T>
-inline T *rapid<T>::backCopy(T *newArr)
-{
-	for (int i = this->length - 1; i >= 0; i--)
-	{
-		newArr[i] = this->arr[this->left + i];
-	};
-	return newArr;
-};
-
-template <typename T>
 inline T *rapid<T>::createNewArr(int force)
 {
 	return new T[this->length + force];
@@ -316,4 +337,39 @@ inline rapid<T> *rapid<T>::createRapid()
 	rapid<T> *newRapid = new rapid<T>;
 	newRapid->backForce(this->length);
 	return newRapid;
+};
+
+template <typename T>
+inline T *rapid<T>::backCopy(T *newArr)
+{
+	for (int i = 0; i < this->length; i++)
+	{
+		newArr[i + this->left] = this->arr[i];
+	};
+	return newArr;
+};
+
+template <typename T>
+inline T *rapid<T>::backCopy2(T *newArr)
+{
+	for (int i = 0; i < this->length; i++)
+	{
+		newArr[i] = this->arr[i + this->left];
+	};
+	return newArr;
+};
+
+template <typename T>
+inline void rapid<T>::norm()
+{
+	if (this->right)
+	{
+		this->copy(this->frontCopy(this->createNewArr(0)));
+		this->right = 0;
+	}
+	else if (this->left)
+	{
+		this->copy(this->backCopy2(this->createNewArr(0)));
+		this->left = 0;
+	}
 };

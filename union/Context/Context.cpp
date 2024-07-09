@@ -28,7 +28,7 @@ Context::Context(int SCREEN_WIDTH, int SCREEN_HEIGHT)
                                          this->SCREEN_WIDTH,
                                          this->SCREEN_HEIGHT,
                                          SDL_WINDOW_OPENGL
-                                         // | SDL_WINDOW_FULLSCREEN
+                                        //  | SDL_WINDOW_FULLSCREEN
         );
         if (this->gWindow == NULL)
         {
@@ -488,6 +488,6 @@ Context::~Context()
     this->font = nullptr;
 }
 
-Context ctx(800, 600);
+Context ctx(1600, 900);
 SDL_Renderer *Image::gRenderer = ctx.getRenderer();
 

@@ -1,4 +1,5 @@
-#include "WayLine.h"
+
+#include "../Game/Game.h"
 
 WayLine::WayLine(){};
 
@@ -27,7 +28,7 @@ Container *WayLine::getItem(int index, Container *cont)
     return cont;
 }
 
-void WayLine::update(rapid<WayPoint> &arr)
+void WayLine::update(rapid<WayPoint> &arr, int level)
 {
     for (int i = 0; i < arr.getLength(); i++)
     {
@@ -35,6 +36,49 @@ void WayLine::update(rapid<WayPoint> &arr)
         WayPoint *nPnt = new WayPoint(pnt.x, pnt.y);
         this->push(nPnt);
         nPnt = nullptr;
+    }
+    if (level == 1)
+    {
+        WayPoint *startPoint = new WayPoint(-150, 600);
+        this->unshift(startPoint);
+    }
+    else if (level == 2)
+    {
+        WayPoint *startPoint = new WayPoint(1500, -600);
+        this->unshift(startPoint);
+    }
+    this->getAllConors();
+}
+
+void WayLine::getAllConors()
+{
+    for (int i = 0; i < this->length; i++)
+    {
+        Container *cont = this->getItem(i, this->getHead());
+        if (i < this->length - 1)
+        {
+            Container *nextCont = cont->right;
+            PointF a = {(double)nextCont->wayPoint->x,
+                        (double)nextCont->wayPoint->y};
+            PointF b = {(double)cont->wayPoint->x,
+                        (double)cont->wayPoint->y};
+            Delta deltas = getDeltas(a, b);
+            double conor = getConor(deltas);
+            cont->setConorToRight(conor);
+            nextCont = nullptr;
+        }
+        if (i)
+        {
+            Container *prevCont = cont->left;
+            PointF a = {(double)prevCont->wayPoint->x,
+                        (double)prevCont->wayPoint->y};
+            PointF b = {(double)cont->wayPoint->x,
+                        (double)cont->wayPoint->y};
+            Delta deltas = getDeltas(a, b);
+            double conor = getConor(deltas);
+            cont->setConorToLeft(conor);
+            prevCont = nullptr;
+        }
     }
 }
 
@@ -57,6 +101,25 @@ void WayLine::push(WayPoint *wayPoint)
     this->length++;
 }
 
+void WayLine::unshift(WayPoint *wayPoint)
+{
+    Container *container = new Container(wayPoint);
+    if (!this->length)
+    {
+        this->head = container;
+        this->tale = container;
+        this->head->right = this->tale;
+        this->tale->left = this->head;
+    }
+    else
+    {
+        this->head->left = container;
+        container->right = this->head;
+        this->head = container;
+    }
+    this->length++;
+}
+
 void WayLine::drawPoints()
 {
     for (int i = 0; i < this->length; i++)
@@ -68,7 +131,7 @@ void WayLine::drawPoints()
     }
 }
 
-WayLine::~WayLine()
+void WayLine::clear()
 {
     for (int i = 0; i < this->length; i++)
     {
@@ -76,4 +139,30 @@ WayLine::~WayLine()
         delete cont;
         cont = nullptr;
     }
+    this->length = 0;
+}
+
+WayLine::~WayLine()
+{
+    this->clear();
 };
+
+double Container::getConorToRight()
+{
+    return this->conorToRight;
+}
+
+void Container::setConorToRight(double conor)
+{
+    this->conorToRight = conor;
+}
+
+double Container::getConorToLeft()
+{
+    return this->conorToLeft;
+}
+
+void Container::setConorToLeft(double conor)
+{
+    this->conorToLeft = conor;
+}

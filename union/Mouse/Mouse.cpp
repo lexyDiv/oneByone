@@ -50,4 +50,60 @@ void Mouse::upKey(int keyCode)
     }
 }
 
+////
+
+void Mouse::keyDown(int keyCode)
+{
+    switch (keyCode)
+    {
+    case 1:
+    {
+        this->leftKeyDown = true;
+        break;
+    }
+    case 2:
+    {
+        this->midKeyDown = true;
+        break;
+    }
+    case 3:
+    {
+        this->rightKeyDown = true;
+        break;
+    }
+    }
+}
+
+void Mouse::keyUp(int keyCode)
+{
+    switch (keyCode)
+    {
+    case 1:
+    {
+        this->leftKeyUp = true;
+        break;
+    }
+    case 2:
+    {
+        this->midKeyUp = true;
+        break;
+    }
+    case 3:
+    {
+        this->rightKeyUp = true;
+        break;
+    }
+    }
+}
+
+void Mouse::defaultKeys()
+{
+    this->leftKeyDown = false;
+    this->leftKeyUp = false;
+    this->midKeyDown = false;
+    this->midKeyUp = false;
+    this->rightKeyDown = false;
+    this->rightKeyUp = false;
+}
+
 Mouse mouse;
