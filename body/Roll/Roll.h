@@ -18,8 +18,8 @@ class Roll
 {
 public:
 
-bool isLast = false;
-/////////
+// bool isLast = false;
+// /////////
     Game *game = nullptr;
     Roll *leftRoll = nullptr;
     Roll *rightRoll = nullptr;

@@ -159,85 +159,12 @@ void Game::newRollCreating()
 void Game::rollsToProg()
 {
 
-    //    for(int i = 0; i < this->rolls2.size(); i++)
-    //    {
-    //        Roll *roll = this->rolls2[i];
-
-    //       if(i && i < this->rolls2.size() - 2)
-    //       {
-    //           if(roll->leftRoll != this->rolls2[i - 1] ||
-    //           roll->rightRoll != this->rolls2[i + 1])
-    //           {
-    //             this->pause = true;
-    //             console.log("My index = " + to_string(i));
-    //             int leftRollIndex = -1;
-    //             for(int k = 0; k < this->rolls2.size(); k++)
-    //             {
-    //                 if(this->rolls2[k] == roll->leftRoll)
-    //                 {
-    //                     leftRollIndex = k;
-    //                    // break;
-    //                 }
-    //               double expe = this->rolls2[k]->cX;
-    //             }
-    //             console.log("My left roll index = " + to_string(leftRollIndex));
-
-    //             if(i && i < this->rolls2.size() - 2)
-    //           {
-    //             roll->leftRoll = this->rolls2[i - 1];
-    //             roll->rightRoll = this->rolls2[i + 1];
-    //           }
-    //           if(!i)
-    //           {
-    //             roll->leftRoll = nullptr;
-    //             roll->rightRoll = this->rolls2[i + 1];
-    //           }
-
-    //           if(i == this->rolls2.size() - 1)
-    //           {
-    //             roll->leftRoll = this->rolls2[i - 1];
-    //             roll->rightRoll = nullptr;
-    //           }
-
-    //            // return;
-    //           }
-    //       }
-    //    }
-
-    for (int i = 0; i < this->rolls2.size(); i++)
-    {
-        Roll *roll = this->rolls2[i];
-        if (i < this->rolls2.size() - 1)
-        {
-            roll->isLast = false;
-        }
-        else
-        {
-            roll->isLast = true;
-        }
-    }
+    this->rolls2[this->rolls2.size() - 1]->rightRoll = nullptr;
 
     for (int i = 1; i < this->rolls2.size(); i++)
     {
-
         Roll *roll = this->rolls2[i];
-        //  if (roll != nullptr)
-        //  {
-        // if (!roll->del)
-        // {
         roll->prog(i);
-        // }
-        // else
-        // {
-        //     if(roll == this->rollWithSon)
-        //     {
-        //         this->unComplite = false;
-        //     }
-        //     this->deleteProg(roll);
-        //     this->rolls->reDate(i, nullptr);
-        //     this->needFilter = true;
-        // }
-        // }
         roll = nullptr;
     }
 }

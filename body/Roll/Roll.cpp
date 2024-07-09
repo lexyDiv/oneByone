@@ -15,13 +15,13 @@ Roll::Roll(int type, double cX, double cY)
 
 Roll::~Roll()
 {
-    if(this->isLast)
-    {
-        if(this->leftRoll != nullptr)
-        {
-            this->leftRoll->rightRoll = nullptr;
-        }
-    }
+    // if(this->isLast)
+    // {
+    //     if(this->leftRoll != nullptr)
+    //     {
+    //         this->leftRoll->rightRoll = nullptr;
+    //     }
+    // }
     this->image = nullptr;
     this->leftCont = nullptr;
     this->rightCont = nullptr;
