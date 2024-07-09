@@ -28,7 +28,7 @@ void Game::draw()
 
     for(int i = 0; i < this->rolls2.size(); i++)
     {
-        this->rolls2[i]->draw();
+        this->rolls2[i]->draw(i);
     }
 
 

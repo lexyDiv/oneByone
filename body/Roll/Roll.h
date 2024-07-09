@@ -88,7 +88,7 @@ public:
     void updateConor();
     void getDrawPosition();
     void move();
-    void draw();
+    void draw(int i = 0);
     //////////////
     void getConorToSonRoll();
     Roll* getRightSonPoint();

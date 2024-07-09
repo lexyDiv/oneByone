@@ -23,6 +23,7 @@ void listenner(SDL_Event e, Game* game)
               //  game->speed++;
                 //  game->pause = false;
                 game->tryDel = true;
+                game->needForPause = false;
             }
             if(e.key.keysym.scancode == 44)
             {

@@ -22,8 +22,12 @@ void Roll::prog(int index)
 
         this->sonRollRotation();
 
-        this->forvardMove(false);
+        if (this->leftRoll != nullptr && this->leftRoll->speed)
+        {
+            this->speed = 500;
+        }
 
+        this->forvardMove(false);
         this->move();
     }
 };
@@ -152,13 +156,12 @@ void Roll::impulsForvard()
         }
         else
         {
-  
-                // this->show = false;
-                // if (this->sonRoll)
-                // {
-                //     this->sonRoll->show = false;
-                // }
-           
+
+            // this->show = false;
+            // if (this->sonRoll)
+            // {
+            //     this->sonRoll->show = false;
+            // }
         }
     }
 }

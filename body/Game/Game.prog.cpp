@@ -158,6 +158,20 @@ void Game::newRollCreating()
 
 void Game::rollsToProg()
 {
+
+   for(int i = 0; i < this->rolls2.size(); i++)
+   {
+       Roll *roll = this->rolls2[i];
+       if(!roll->father)
+       {
+          if(i && i < this->rolls2.size() - 2)
+          {
+            roll->leftRoll = this->rolls2[i - 1];
+            roll->rightRoll = this->rolls2[i + 1];
+          }
+       }
+   }
+
     for (int i = 1; i < this->rolls2.size(); i++)
     {
         Roll *roll = this->rolls2[i];
@@ -190,10 +204,10 @@ void Game::deleteProg(Roll *roll)
 
 void Game::prog()
 {
-    // if(this->unComplite)
-    // {
-    //     this->pause = true;
-    // }
+    if(this->unComplite || this->needForPause)
+    {
+        this->pause = true;
+    }
     this->getWayLine();
 
     this->newRollCreating();

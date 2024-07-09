@@ -186,6 +186,7 @@ void Roll::sonRollProg()
             {
                 console.log("here");
                 this->game->pause = true;
+                this->game->needForPause = true;
             }
            // console.log("sonRoll on position");
             this->sonRoll->leftCont = virtualRoll->leftCont;

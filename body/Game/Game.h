@@ -17,6 +17,7 @@ void pushOnRollsOnDelete(Roll *roll);
 void rollsOnDeleteProg();
 
     bool pause = false;
+    bool needForPause = false;
     int level = 1;
     bool endLevel = false;
     int check = 0;
