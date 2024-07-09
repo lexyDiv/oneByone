@@ -6,10 +6,10 @@ class Game
 {
 public:
 
+vector<Group> groups;
 
 
-
-
+/////////////////////////////////////////// groopps
 
 bool tryDel = false;
 void tryDelProg();

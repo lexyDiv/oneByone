@@ -150,7 +150,7 @@ void Game::newRollCreating()
         if (this->check < 3)
         {
             this->impulseRollCreate();
-            // this->check++;
+             this->check++;
         }
     }
 }
@@ -184,10 +184,13 @@ void Game::prog()
 
     this->newRollCreating();
 
+
+
     if (this->impulseRoll != nullptr)
     {
         this->impulseRoll->impulseProg();
     }
+
 
     this->rollsToProg();
 
