@@ -13,7 +13,8 @@ void Game::getRollsToCheckCollision()
             PointF b = {this->flyingRoll->cX, this->flyingRoll->cY};
             Delta deltas = getDeltas(a, b);
             double dis = getDis(deltas);
-            if (dis <= roll->diameter + this->flyingRoll->flySpeed * 2)
+            if (dis <= roll->diameter + this->flyingRoll->flySpeed * 2
+            && roll->show)
             {
                 this->rollsToCollision.push_back(roll);
             }

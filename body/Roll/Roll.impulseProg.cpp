@@ -152,18 +152,13 @@ void Roll::impulsForvard()
         }
         else
         {
-           // if (this->sonRoll == nullptr)
-           // {
-        //    if(this == this->game->rollWithSon)
-        //    {
-        //     this->game->rollWithSon = nullptr;
-        //    }
-                this->show = false;
-                if (this->sonRoll)
-                {
-                    this->sonRoll->show = false;
-                }
-           // }
+  
+                // this->show = false;
+                // if (this->sonRoll)
+                // {
+                //     this->sonRoll->show = false;
+                // }
+           
         }
     }
 }

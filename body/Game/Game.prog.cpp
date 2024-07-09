@@ -4,19 +4,29 @@
 void Game::deleter()
 {
 
-    //    for(int i = 0; i < this->rolls2.size(); i++)
-    //    {
-    //        Roll *roll = this->rolls2[i];
-    //        if(roll != nullptr && roll->rightCont != nullptr &&
-    //        roll->rightCont == this->wayLine->tale)
-    //        {
-    //            roll->del = true;
-    //            if(roll->sonRoll != nullptr)
-    //            {
-    //               //roll->sonRoll->del = true;
-    //            }
-    //        }
-    //    }
+    for (int i = 0; i < this->rolls2.size(); i++)
+    {
+        Roll *roll = this->rolls2[i];
+        if (
+            roll->rightCont == this->wayLine->tale)
+        {
+            roll->show = false;
+            if (roll->sonRoll != nullptr)
+            {
+                roll->sonRoll->show = false;
+            }
+        }
+        if (!roll->show)
+        {
+            double x = roll->cX;
+            double y = roll->cY;
+            if (x < 0 || x > ctx.SCREEN_WIDTH || y < 0 || y > ctx.SCREEN_HEIGHT)
+            {
+                roll->del = true;
+                //console.log("need del");
+            }
+        }
+    }
 
     vector<int> is;
     for (int i = 0; i < this->rolls2.size(); i++)
@@ -145,7 +155,7 @@ void Game::prog()
 
     if (this->rollWithSon != nullptr)
     {
-            this->rollWithSon->sonRollProg(); 
+        this->rollWithSon->sonRollProg();
     }
 
     this->rollsToCollision.clear();

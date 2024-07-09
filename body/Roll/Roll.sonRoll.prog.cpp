@@ -149,7 +149,7 @@ void Roll::sonRollProg()
             Delta deltas = getDeltas(a, b);
             double dis = getDis(deltas);
 
-            if(dis <= this->sonRotationWay * 2){
+            if(dis <= this->sonRotationWay * 3){
             this->sonRoll->leftRoll = this->leftRoll;
             this->sonRoll->rightRoll = this;
             this->sonRoll->leftRoll->rightRoll = this->sonRoll;
@@ -167,7 +167,7 @@ void Roll::sonRollProg()
             Delta deltas = getDeltas(a, b);
             double dis = getDis(deltas);
 
-            if(dis <= this->sonRotationWay * 2){
+            if(dis <= this->sonRotationWay * 3){
             this->sonRoll->leftRoll = this;
             this->sonRoll->rightRoll = this->rightRoll;
             if (this->sonRoll->rightRoll != nullptr)
