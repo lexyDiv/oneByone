@@ -152,7 +152,9 @@ void Roll::sonRollProg()
             if(dis <= this->sonRotationWay * 3){
             this->sonRoll->leftRoll = this->leftRoll;
             this->sonRoll->rightRoll = this;
+            if(this->sonRoll->leftRoll != nullptr){
             this->sonRoll->leftRoll->rightRoll = this->sonRoll;
+            }
             this->leftRoll = this->sonRoll;
             this->sonRoll->game = this->game;
             out = true;
