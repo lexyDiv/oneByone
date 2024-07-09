@@ -34,26 +34,24 @@ void Roll::sonRollRotation()
         // console.log("deg = " + to_string(radToDeg(0.1)));
         if (!this->sonRollPosition)
         {
-            Roll *leftVirtualRoll = this->getLeftSonPoint();
+            // Roll *leftVirtualRoll = this->getLeftSonPoint();
 
-            PointF a = {leftVirtualRoll->cX, leftVirtualRoll->cY};
-            PointF b = {this->sonRoll->cX, this->sonRoll->cY};
-            Delta deltas = getDeltas(a, b);
-            double dis = getDis(deltas);
+            // PointF a = {leftVirtualRoll->cX, leftVirtualRoll->cY};
+            // PointF b = {this->sonRoll->cX, this->sonRoll->cY};
+            // Delta deltas = getDeltas(a, b);
+            // double dis = getDis(deltas);
 
-            if (dis > this->sonRotationWay *2)
+            if (!this->sonRotation)
             {
-                if (!this->sonRotation)
-                {
-                    this->conorToSonRoll += this->sonRotationIndex;
-                    //  console.log("here");
-                }
-                else
-                {
-                    this->conorToSonRoll -= this->sonRotationIndex;
-                    // console.log("here 2");
-                }
+                this->conorToSonRoll += this->sonRotationIndex;
+                //  console.log("here");
             }
+            else
+            {
+                this->conorToSonRoll -= this->sonRotationIndex;
+                // console.log("here 2");
+            }
+
             // this->sonRollCXCorrect();
             // PointF a = {leftVirtualRoll->cX, leftVirtualRoll->cY};
             //  PointF b = {this->sonRoll->cX, this->sonRoll->cY};
@@ -92,26 +90,24 @@ void Roll::sonRollRotation()
         }
         else
         {
-            Roll *rightVirtualRoll = this->getRightSonPoint();
+            // Roll *rightVirtualRoll = this->getRightSonPoint();
 
-            PointF a = {rightVirtualRoll->cX, rightVirtualRoll->cY};
-            PointF b = {this->sonRoll->cX, this->sonRoll->cY};
-            Delta deltas = getDeltas(a, b);
-            double dis = getDis(deltas);
+            // PointF a = {rightVirtualRoll->cX, rightVirtualRoll->cY};
+            // PointF b = {this->sonRoll->cX, this->sonRoll->cY};
+            // Delta deltas = getDeltas(a, b);
+            // double dis = getDis(deltas);
 
-            if (dis > this->sonRotationWay * 2)
+            if (!this->sonRotation)
             {
-                if (!this->sonRotation)
-                {
-                    this->conorToSonRoll += this->sonRotationIndex;
-                    //  console.log("here");
-                }
-                else
-                {
-                    this->conorToSonRoll -= this->sonRotationIndex;
-                    //  console.log("here 2");
-                }
+                this->conorToSonRoll += this->sonRotationIndex;
+                //  console.log("here");
             }
+            else
+            {
+                this->conorToSonRoll -= this->sonRotationIndex;
+                //  console.log("here 2");
+            }
+
             // this->sonRollCXCorrect();
             //  PointF a = {rightVirtualRoll->cX, rightVirtualRoll->cY};
             // PointF b = {this->sonRoll->cX, this->sonRoll->cY};
@@ -167,7 +163,23 @@ void Roll::sonRollProg()
             Delta deltas = getDeltas(a, b);
             double dis = getDis(deltas);
 
-            if (dis <= this->sonRotationWay * 2)
+            double virtualConor = this->conorToSonRoll;
+
+            if (!this->sonRotation)
+            {
+                virtualConor += 0.1;
+            }
+            else
+            {
+                virtualConor -= 0.1;
+            }
+
+            b = {this->cX + cos(virtualConor) * this->kickDis,
+                 this->cY + sin(virtualConor) * this->kickDis};
+            deltas = getDeltas(a, b);
+            double virtualDis = getDis(deltas);
+
+            if (dis < virtualDis)
             {
                 this->sonRoll->leftRoll = this->leftRoll;
                 this->sonRoll->rightRoll = this;
@@ -186,7 +198,23 @@ void Roll::sonRollProg()
             Delta deltas = getDeltas(a, b);
             double dis = getDis(deltas);
 
-            if (dis <= this->sonRotationWay * 2)
+            double virtualConor = this->conorToSonRoll;
+
+            if (!this->sonRotation)
+            {
+                virtualConor += 0.1;
+            }
+            else
+            {
+                virtualConor -= 0.1;
+            }
+
+            b = {this->cX + cos(virtualConor) * this->kickDis,
+                 this->cY + sin(virtualConor) * this->kickDis};
+            deltas = getDeltas(a, b);
+            double virtualDis = getDis(deltas);
+
+            if (dis < virtualDis)
             {
                 this->sonRoll->leftRoll = this;
                 this->sonRoll->rightRoll = this->rightRoll;
@@ -230,6 +258,7 @@ void Roll::sonRollProg()
             this->sonRoll->father = false;
             this->sonRoll->readyInLine = false;
             this->game->unComplite = false;
+            this->sonRoll->speed = this->speed;
             // this->game->controllRoll = this->sonRoll;
             this->sonRoll = nullptr;
             this->game->rollWithSon = nullptr;

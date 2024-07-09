@@ -18,14 +18,15 @@ void Roll::prog(int index)
         Delta deltas = getDeltas(a, b);
         double disToLeftRoll = getDis(deltas);
 
-        this->speed += 3;
+        this->speed += 1;
 
         this->sonRollRotation();
 
         if (this->leftRoll != nullptr && this->leftRoll->speed)
         {
-            this->speed += 3;
+            this->speed = 500;
         }
+        
 
         this->forvardMove(false);
         this->move();

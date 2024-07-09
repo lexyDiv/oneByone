@@ -38,6 +38,8 @@ void Game::tryDelProg()
         int rightI = 34;
         Roll *leftRoll = this->rolls2[leftI];
         Roll *rightRoll = this->rolls2[rightI];
+        rightRoll->speed = 0;
+        leftRoll->speed = 0;
         leftRoll->rightRoll = rightRoll;
         rightRoll->leftRoll = leftRoll;
         // vector<int> indexes;
