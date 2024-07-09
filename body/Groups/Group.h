@@ -7,7 +7,7 @@ class Roll;
 
 class Group
 {
-    public:
+public:
     Game *game = nullptr;
     vector<Roll *> arr;
     void addRoll(Roll *roll);

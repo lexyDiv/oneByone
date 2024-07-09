@@ -18,6 +18,7 @@ class Roll
 {
 public:
 
+   Group *group = nullptr;
 // bool isLast = false;
 // /////////
     Game *game = nullptr;
