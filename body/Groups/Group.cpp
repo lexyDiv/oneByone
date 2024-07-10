@@ -1,10 +1,15 @@
 #include "../Roll/Roll.cpp"
-#include "Group.h"
+
 
 void Group::addRoll(Roll *roll)
 {
     roll->group = this;
     this->arr.push_back(roll);
+}
+
+int Group::length()
+{
+    return this->arr.size();
 }
 
 Group::Group(Game *game)
@@ -18,5 +23,7 @@ Group::~Group()
     {
         Roll *roll = this->arr[i];
         roll->group = nullptr;
+        roll = nullptr;
     }
+    this->game = nullptr;
 };

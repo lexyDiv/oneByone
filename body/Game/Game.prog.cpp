@@ -224,4 +224,5 @@ void Game::impulseRollCreate()
     }
     newRoll = nullptr;
     head = nullptr;
+    this->getGroups();
 }

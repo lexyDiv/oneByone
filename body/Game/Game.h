@@ -6,7 +6,7 @@ class Game
 {
 public:
 
-vector<Group> groups;
+vector<Group *> groups;
 int getTypeNewRoll();
 void getGroups();
 

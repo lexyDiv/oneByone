@@ -263,6 +263,10 @@ void Roll::sonRollProg()
             this->sonRoll = nullptr;
             this->game->rollWithSon = nullptr;
             this->saveDisToSon = 1000;
+
+            this->game->getGroups();
+           // this->game->pause = true;
+           // console.log("groups length = " + to_string(this->game->groups.size()));
         }
 
         delete virtualRoll;

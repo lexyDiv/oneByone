@@ -11,6 +11,7 @@ public:
     Game *game = nullptr;
     vector<Roll *> arr;
     void addRoll(Roll *roll);
+    int length();
     Group(Game *game);
     ~Group();
 };
