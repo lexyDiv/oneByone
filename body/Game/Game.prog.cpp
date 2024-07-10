@@ -70,6 +70,10 @@ void Game::deleter()
                 this->rollWithSon = nullptr;
                 this->unComplite = false;
             }
+            if(roll == this->impulseRoll)
+            {
+                this->impulseRoll = nullptr;
+            }
         }
         // if (!roll->show)
         // {
@@ -147,7 +151,7 @@ void Game::newRollCreating()
         // this->rolls->getItem(0)->kickDis)
     )
     {
-        if (this->check < 3)
+        if (this->check < 2)
         {
             this->impulseRollCreate();
              this->check++;
@@ -158,7 +162,10 @@ void Game::newRollCreating()
 void Game::rollsToProg()
 {
 
-    this->rolls2[this->rolls2.size() - 1]->rightRoll = nullptr;
+    if(this->rolls2.size())
+    {
+        this->rolls2[this->rolls2.size() - 1]->rightRoll = nullptr;
+    }
 
     for (int i = 1; i < this->rolls2.size(); i++)
     {
