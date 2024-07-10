@@ -1,17 +1,7 @@
 #include "../Game/Game.cpp"
 #include "Roll.h"
 
-void Roll::localDelProg()
-{
-    if(this->localDel > 1)
-    {
-        this->localDel--;
-    }
-    else if(this->localDel == 1)
-    {
-        this->show = false;
-    }
-}
+
 
 Roll::Roll(){};
 

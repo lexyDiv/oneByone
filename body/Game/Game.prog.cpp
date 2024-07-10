@@ -171,10 +171,7 @@ void Game::rollsToProg()
     for (int i = 1; i < this->rolls2.size(); i++)
     {
         Roll *roll = this->rolls2[i];
-        if(!this->endLevel)
-        {
-            roll->localDelProg();
-        }
+
         roll->prog(i);
         roll = nullptr;
     }
@@ -217,8 +214,10 @@ void Game::prog()
     }
 
     this->rollsToCollision.clear();
+    ///////////////////////////////////////////////////////////
     this->getGroups();
     this->groupsProg();
+    /////////////////////////////////////////////////////////////
    // this->tryDelProg();
     this->deleter();
 }

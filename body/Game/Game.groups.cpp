@@ -18,9 +18,8 @@ int Game::getTypeNewRoll()
 
 void Game::getGroups()
 {
-    
-    this->deleteGroups();
 
+    this->deleteGroups();
     this->groups.clear();
 
     for (int i = 0; i < this->rolls2.size(); i++)
@@ -53,11 +52,15 @@ void Game::getGroups()
             group = nullptr;
         }
     }
+    if (this->groups.size())
+    {
+        console.log("groups : " + to_string(this->groups.size())); // ok
+    }
 }
 
 void Game::groupsProg()
 {
-    // console.log("groups : " + to_string(this->groups.size())); // ok
+
     for (int i = 0; i < this->groups.size(); i++)
     {
         Group *group = this->groups[i];
@@ -82,7 +85,7 @@ void Game::groupsProg()
             {
                 Roll *roll = group->arr[k];
                 roll->localDel = (k + 1) * 10;
-                console.log("roll type = " + to_string(roll->type));
+                // console.log("roll type = " + to_string(roll->type));
             }
         }
     }

@@ -18,8 +18,8 @@ class Roll
 {
 public:
 
-   Group *group = nullptr;
-   void localDelProg();
+
+  
 // bool isLast = false;
 // /////////
     Game *game = nullptr;

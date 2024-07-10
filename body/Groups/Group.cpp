@@ -1,9 +1,7 @@
 #include "../Roll/Roll.cpp"
 
-
 void Group::addRoll(Roll *roll)
 {
-    roll->group = this;
     this->arr.push_back(roll);
 }
 
