@@ -1,6 +1,18 @@
 #include "../Game/Game.cpp"
 #include "Roll.h"
 
+void Roll::localDelProg()
+{
+    if(this->localDel > 1)
+    {
+        this->localDel--;
+    }
+    else if(this->localDel == 1)
+    {
+        this->show = false;
+    }
+}
+
 Roll::Roll(){};
 
 Roll::Roll(int type, double cX, double cY)
@@ -33,8 +45,8 @@ Roll::~Roll()
 
 void Roll::draw(int i)
 {
-   // if (this->show)
-    //{
+    if (this->show)
+    {
         this->getDrawPosition();
         ctx.DrawImage(this->image,
                       this->animX,
@@ -50,7 +62,7 @@ void Roll::draw(int i)
                       this->mid,
                       this->mid);
 //ctx.DrawText(this->cX - 25, this->cY - 25, 50, to_string(i));
-  //  }
+    }
     // ctx.FillRect(this->cX, this->cY, 3, 3, "yellow");
 }
 
