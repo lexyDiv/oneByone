@@ -28,6 +28,9 @@ void Game::rollsOnDeleteProg()
     }
 }
 
+
+
+
 void Game::tryDelProg()
 {
     if (this->tryDel && this->unComplite == false && this->rolls2.size() > 35)
@@ -105,23 +108,7 @@ void Game::deleter()
     }
 
     this->rollsOnDeleteProg();
-    // vector<int> delIndexes;
-    // for (int i = 0; i < this->rollsOnDelete.size(); i++)
-    // {
-    //     Roll *roll = this->rollsOnDelete[i];
-    //     if (roll->del)
-    //     {
-    //         delete roll;
-    //         roll = nullptr;
-    //         delIndexes.push_back(i);
-    //     }
-    // }
 
-    // for (int i = 0; i < delIndexes.size(); i++)
-    // {
-    //     int index = delIndexes[i] - i;
-    //     this->rollsOnDelete.erase(this->rollsOnDelete.cbegin() + index);
-    // }
 }
 
 void Game::getWayLine()
@@ -154,7 +141,7 @@ void Game::newRollCreating()
         if (this->check < 2)
         {
             this->impulseRollCreate();
-             this->check++;
+            // this->check++;
         }
     }
 }
@@ -219,7 +206,7 @@ void Game::prog()
 void Game::impulseRollCreate()
 {
     Container *head = this->wayLine->getHead();
-    Roll *newRoll = new Roll(intRand(1, 6),
+    Roll *newRoll = new Roll(this->getTypeNewRoll(),
                              head->wayPoint->x,
                              head->wayPoint->y);
     // this->rollsOnDelete.push_back(newRoll);

@@ -7,6 +7,8 @@ class Game
 public:
 
 vector<Group> groups;
+int getTypeNewRoll();
+void getGroups();
 
 
 /////////////////////////////////////////// groopps

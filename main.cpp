@@ -23,9 +23,12 @@ vector<Roll*> arr;
 
 int main()
 {
+    srand(time(0));
 
-Roll *roll = new Roll(1, 99, 99);
-arr.emplace(arr.begin(), roll);
+
+    /////////////
+
+
 //////////////////
 
     ctx.getFont();
