@@ -70,6 +70,7 @@ public:
     int animW = 213;
     int animH = 213;
     bool del = false;
+    int localDel = 0;
     bool show = true;
     Roll();
     Roll(int type, double cX, double cY);

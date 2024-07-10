@@ -123,6 +123,20 @@ void Game::getWayLine()
 
 void Game::newRollCreating()
 {
+    if(this->endLevel)
+    {
+        if(this->speed < 200)
+        {
+            this->speed+=4;
+            if(this->flyingRoll != nullptr)
+            {
+                this->flyingRoll->del = true;
+                this->flyingRoll = nullptr;
+            }
+        }
+        return;
+    }
+
     double disToImpulseRoll = 0.0f;
     if (this->impulseRoll != nullptr)
     {
@@ -200,6 +214,7 @@ void Game::prog()
 
     this->rollsToCollision.clear();
     this->getGroups();
+    this->groupsProg();
    // this->tryDelProg();
     this->deleter();
 }

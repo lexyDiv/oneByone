@@ -9,6 +9,7 @@ public:
 vector<Group *> groups;
 int getTypeNewRoll();
 void getGroups();
+void groupsProg();
 
 
 /////////////////////////////////////////// groopps
@@ -28,7 +29,7 @@ void rollsOnDeleteProg();
     bool endLevel = false;
     int check = 0;
     bool needFilter = false;
-    int speed =  75; // bug
+    int speed =  30; // bug
     int speedVector = -1;
     bool quit = false;
     double speedKoof = 0.1; 

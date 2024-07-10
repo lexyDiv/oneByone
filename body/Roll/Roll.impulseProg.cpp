@@ -69,6 +69,10 @@ void Roll::forvardMove(bool special)
         else
         {
             this->impulsForvard();
+            if(this->rightCont == this->game->wayLine->tale)
+            {
+                this->game->endLevel = true;
+            }
             // if(iter)
             // {
             this->speed = 0;
