@@ -10,6 +10,7 @@ vector<Group *> groups;
 int getTypeNewRoll();
 void getGroups();
 void groupsProg();
+void deleteGroups();
 
 
 /////////////////////////////////////////// groopps

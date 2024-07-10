@@ -10,6 +10,7 @@ Game::Game()
 
 Game::~Game()
 {
+    this->deleteGroups();
     delete this->wayLine;
     this->wayLine = nullptr;
 
