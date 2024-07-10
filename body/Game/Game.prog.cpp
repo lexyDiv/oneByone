@@ -199,7 +199,8 @@ void Game::prog()
     }
 
     this->rollsToCollision.clear();
-    this->tryDelProg();
+    this->getGroups();
+   // this->tryDelProg();
     this->deleter();
 }
 
@@ -224,5 +225,5 @@ void Game::impulseRollCreate()
     }
     newRoll = nullptr;
     head = nullptr;
-    this->getGroups();
+   // this->getGroups();
 }

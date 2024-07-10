@@ -19,11 +19,11 @@ Group::Group(Game *game)
 
 Group::~Group()
 {
-    for (int i = 0; i < this->arr.size(); i++)
-    {
-        Roll *roll = this->arr[i];
-        roll->group = nullptr;
-        roll = nullptr;
-    }
+    // for (int i = 0; i < this->arr.size(); i++)
+    // {
+    //     Roll *roll = this->arr[i];
+    //     roll->group = nullptr;
+    //     roll = nullptr;
+    // }
     this->game = nullptr;
 };
