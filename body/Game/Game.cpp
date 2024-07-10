@@ -55,19 +55,20 @@ void Game::draw()
         this->flyingRoll->draw();
     }
 
-    // for(int i = 0; i < 2; i++)
+    //////////////////// groups
+
+    // for(int i = 0; i < this->groups.size(); i++)
     // {
-    //     PointF* p = this->LR[i];
-    //     if(p != nullptr)
+    //     this->pause = true;
+    //     Group *group = this->groups[i];
+    //     for(int k = 0; k < group->arr.size(); k++)
     //     {
-    //         ctx.FillRect(p->x, p->y, 5, 5, "black");
+    //         Roll *roll = group->arr[k];
+    //         ctx.StrokeRect(roll->x, roll->y, roll->diameter, roll->diameter, "red");
     //     }
-    // }
-    // if(this->controllRoll != nullptr)
-    // {
-    //     Roll *roll = this->controllRoll;
-    //    // ctx.StrokeRect(roll->x, roll->y, roll->kickDis, roll->kickDis, "red");
-    //    //ctx.FillRect(roll->leftCont->wayPoint->x, roll->leftCont->wayPoint->y, 5, 5, "yellow");
-    //   /// ctx.FillRect(roll->rightCont->wayPoint->x, roll->rightCont->wayPoint->y, 5, 5, "green");
+    //     ctx.DrawText(group->arr[0]->x, group->arr[0]->y, 50, to_string(i));
+    //     ctx.DrawText(group->arr[0]->x, group->arr[0]->y + 50, 50, 
+    //    "localDel = " + to_string(group->arr[0]->localDel));
+
     // }
 }

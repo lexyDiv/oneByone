@@ -30,7 +30,7 @@ Roll::~Roll()
     this->leftRoll = nullptr;
     this->rightRoll = nullptr;
     this->image = nullptr;
-     // console.log("Roll * deleted !!!");
+    // console.log("Roll * deleted !!!");
 }
 
 void Roll::draw(int i)
@@ -51,7 +51,7 @@ void Roll::draw(int i)
                       255,
                       this->mid,
                       this->mid);
-//ctx.DrawText(this->cX - 25, this->cY - 25, 50, to_string(i));
+        // ctx.DrawText(this->cX - 25, this->cY - 25, 50, to_string(i));
     }
     // ctx.FillRect(this->cX, this->cY, 3, 3, "yellow");
 }

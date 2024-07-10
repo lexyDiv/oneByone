@@ -217,6 +217,7 @@ void Game::prog()
     ///////////////////////////////////////////////////////////
     this->getGroups();
     this->groupsProg();
+    this->rollsWithLocalDelProg();
     /////////////////////////////////////////////////////////////
    // this->tryDelProg();
     this->deleter();

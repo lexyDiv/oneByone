@@ -13,6 +13,7 @@ int getTypeNewRoll();
 void getGroups();
 void groupsProg();
 void deleteGroups();
+void rollsWithLocalDelProg();
 
 
 /////////////////////////////////////////// groopps
@@ -32,7 +33,7 @@ void rollsOnDeleteProg();
     bool endLevel = false;
     int check = 0;
     bool needFilter = false;
-    int speed =  30; // bug
+    int speed =  10; // bug
     int speedVector = -1;
     bool quit = false;
     double speedKoof = 0.1; 

@@ -52,10 +52,10 @@ void Game::getGroups()
             group = nullptr;
         }
     }
-    if (this->groups.size())
-    {
-        console.log("groups : " + to_string(this->groups.size())); // ok
-    }
+    // if (this->groups.size())
+    // {
+    //     console.log("groups : " + to_string(this->groups.size()));
+    // }
 }
 
 void Game::groupsProg()
@@ -74,13 +74,14 @@ void Game::groupsProg()
             PointF b = {nextRoll->cX, nextRoll->cY};
             Delta deltas = getDeltas(a, b);
             double dis = getDis(deltas);
-            if (dis <= roll->kickDis + 0.1)
+            if (dis <= roll->kickDis + 1)
             {
                 nearCount++;
             }
         }
         if (nearCount == group->arr.size() - 1)
         {
+          //  console.log("groop is fix !!!");
             for (int k = 0; k < group->arr.size(); k++)
             {
                 Roll *roll = group->arr[k];
@@ -88,6 +89,10 @@ void Game::groupsProg()
                 // console.log("roll type = " + to_string(roll->type));
             }
         }
+        // else
+        // {
+        //     console.log("group NO fix !!!");
+        // }
     }
 }
 
@@ -99,5 +104,28 @@ void Game::deleteGroups()
         delete group;
         group = nullptr;
         this->groups[i] = nullptr;
+    }
+}
+
+void Game::rollsWithLocalDelProg()
+{
+    for(int i = 0; i < this->rolls2.size(); i++)
+    {
+        Roll *roll = this->rolls2[i];
+        if(roll->localDel && roll->localDel > 1)
+        {
+            roll->localDel--;
+        }
+        else if(roll->localDel == 1 && roll->show)
+        {
+            roll->show = false;
+            roll->leftRoll->rightRoll = roll->rightRoll;
+            if(roll->rightRoll != nullptr)
+            {
+                roll->rightRoll->leftRoll = roll->leftRoll;
+                roll->rightRoll->speed = 0;
+            }
+            roll->del = true;
+        }
     }
 }
