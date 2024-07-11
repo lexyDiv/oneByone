@@ -81,7 +81,7 @@ void Game::groupsProg()
         }
         if (nearCount == group->arr.size() - 1)
         {
-          //  console.log("groop is fix !!!");
+            //  console.log("groop is fix !!!");
             for (int k = 0; k < group->arr.size(); k++)
             {
                 Roll *roll = group->arr[k];
@@ -109,23 +109,24 @@ void Game::deleteGroups()
 
 void Game::rollsWithLocalDelProg()
 {
-    for(int i = 0; i < this->rolls2.size(); i++)
+    for (int i = 0; i < this->rolls2.size(); i++)
     {
         Roll *roll = this->rolls2[i];
-        if(roll->localDel && roll->localDel > 1)
+        if (roll->localDel && roll->localDel > 1)
         {
             roll->localDel--;
         }
-        else if(roll->localDel == 1 && roll->show)
+        else if (roll->localDel == 1 && roll->show)
         {
             roll->show = false;
             roll->leftRoll->rightRoll = roll->rightRoll;
-            if(roll->rightRoll != nullptr)
+            if (roll->rightRoll != nullptr)
             {
                 roll->rightRoll->leftRoll = roll->leftRoll;
                 roll->rightRoll->speed = 0;
             }
-            roll->del = true;
+            roll->localDel = -1;
+            roll->del = true; // ok
         }
     }
 }
