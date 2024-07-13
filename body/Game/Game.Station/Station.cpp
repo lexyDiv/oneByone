@@ -1,4 +1,4 @@
-#include "../../Roll/Roll.cpp"
+#include "../../Groups/Group.cpp"
 
 Station::Station(Game *game)
 {
@@ -45,9 +45,13 @@ void Station::prog()
     this->conor = radToDeg(getConor(deltas)) + 90;
     if (this->roll == nullptr &&
         this->game->flyingRoll == nullptr &&
-        !this->game->unComplite)
+        !this->game->unComplite &&
+        !this->game->endLevel)
     {
-        this->roll = new Roll(1, (double)this->x + this->gabX / 2,
+        this->roll = new Roll(
+           // intRand(1, 6),
+            1, 
+            (double)this->x + this->gabX / 2,
                               (double)this->y + this->gabY / 2);
         //this->game->rollsOnDelete.push_back(roll);
         this->game->pushOnRollsOnDelete(this->roll);
@@ -63,6 +67,11 @@ void Station::prog()
             this->game->flyingRoll = this->roll;
             this->roll = nullptr;
         }
+    }
+    if(this->game->endLevel && this->roll != nullptr)
+    {
+         this->roll->del = true;
+         this->roll = nullptr;  
     }
 }
 

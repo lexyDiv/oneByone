@@ -28,13 +28,13 @@ Roll::~Roll()
     this->leftRoll = nullptr;
     this->rightRoll = nullptr;
     this->image = nullptr;
-     // console.log("Roll * deleted !!!");
+    // console.log("Roll * deleted !!!");
 }
 
 void Roll::draw(int i)
 {
-   // if (this->show)
-    //{
+    if (this->show)
+    {
         this->getDrawPosition();
         ctx.DrawImage(this->image,
                       this->animX,
@@ -49,9 +49,26 @@ void Roll::draw(int i)
                       255,
                       this->mid,
                       this->mid);
-//ctx.DrawText(this->cX - 25, this->cY - 25, 50, to_string(i));
-  //  }
+        // ctx.DrawText(this->cX - 25, this->cY - 25, 50, to_string(i));
+    }
     // ctx.FillRect(this->cX, this->cY, 3, 3, "yellow");
+}
+
+void Roll::booDraw()
+{
+   // console.log("animW = " + to_string(this->animW) + " animH = " + to_string(this->animH));
+  // console.log(to_string(this->localDel));
+    ctx.DrawImage(boo,
+                  this->animX,
+                 // 123 *7,
+                  this->animY,
+                  this->animW,
+                  this->animH,
+                  this->cX - 110,
+                  this->cY - 85,
+                  200,
+                  200);
+   // ctx.FillRect(this->cX, this->cY, 5, 5, "green");
 }
 
 Image *Roll::getImage(int type)

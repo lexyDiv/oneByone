@@ -23,9 +23,12 @@ vector<Roll*> arr;
 
 int main()
 {
+    srand(time(0));
 
-Roll *roll = new Roll(1, 99, 99);
-arr.emplace(arr.begin(), roll);
+
+    /////////////
+
+
 //////////////////
 
     ctx.getFont();
@@ -45,7 +48,7 @@ arr.emplace(arr.begin(), roll);
         // ctx.DrawImage(spiral, 0, 0, 512, 512, 0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
         game->draw();
         // wayLine->drawPoints();
-
+       // ctx.DrawImage(boo, 123*7, 0, 123, 125, 100, 100, 100, 100);
         console.draw();
         ctx.End();
 

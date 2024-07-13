@@ -7,6 +7,7 @@
 
 // #include "../test/cell.cpp"
 
+
 int intRand(int start, int finish)
 {
     int random_number = (std::rand() % finish) + start; // rand() return a number between ​0​ and RAND_MAX

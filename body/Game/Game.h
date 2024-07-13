@@ -6,9 +6,25 @@ class Game
 {
 public:
 
+vector<Group *> groups;
+int getTypeNewRoll();
+
+//////////////////////////////////////////////////////////
+void getGroups();
+void groupsProg();
+void deleteGroups();
+void rollsWithLocalDelProg();
+int rollsOnBooMaxSize = 50;
+Roll *rollsOnBoo[50];
+void pushRollsOnBoo(Roll *roll);
+void rollsOnBooProg();
+void rollsOnBooDraw();
+
+
+/////////////////////////////////////////// groopps
+
 bool tryDel = false;
 void tryDelProg();
-//Roll *controllRoll = nullptr;
 Roll *rollWithSon = nullptr;
 
 void deleter();
@@ -22,10 +38,10 @@ void rollsOnDeleteProg();
     bool endLevel = false;
     int check = 0;
     bool needFilter = false;
-    int speed =  75; // bug
+    int speed =  10; // bug
     int speedVector = -1;
     bool quit = false;
-    double speedKoof = 0.1; // !!!!
+    double speedKoof = 0.1; 
     Station *station = new Station(this);
     string path = "levels/level" + to_string(this->level) + ".txt";
     WayLine *wayLine = new WayLine();
@@ -35,7 +51,6 @@ void rollsOnDeleteProg();
     Roll *impulseRoll = nullptr;
     Roll *flyingRoll = nullptr;
     bool unComplite = false;
-    //rapid<Roll *> *rollsToCollision = new rapid<Roll *>;
     vector<Roll *> rollsToCollision;
 
     void getWayLine();

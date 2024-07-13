@@ -18,7 +18,11 @@ void Roll::prog(int index)
         Delta deltas = getDeltas(a, b);
         double disToLeftRoll = getDis(deltas);
 
-        this->speed += 1;
+     
+       
+            this->speed += 1;
+        
+     
 
         this->sonRollRotation();
 
@@ -60,7 +64,8 @@ void Roll::forvardMove(bool special)
             dis = getDis(deltas);
         }
 
-        if ((disToLeftRoll >= this->kickDis && dis >= this->kickDis)
+        if (((disToLeftRoll >= this->kickDis && dis >= this->kickDis) ||
+        (this->leftRoll != nullptr && !this->leftRoll->show))
             // || iter == 1000
         )
         {
@@ -68,7 +73,14 @@ void Roll::forvardMove(bool special)
         }
         else
         {
-            this->impulsForvard();
+           // if(this->leftRoll != nullptr && this->leftRoll->show)
+           // {
+                this->impulsForvard();
+          //  }
+            if(this->rightCont == this->game->wayLine->tale)
+            {
+                this->game->endLevel = true;
+            }
             // if(iter)
             // {
             this->speed = 0;
@@ -105,7 +117,7 @@ void Roll::reversMove()
             dis2 = getDis(deltas);
         }
 
-        if (dis <= this->kickDis || dis2 <= this->kickDis)
+        if (dis <= this->kickDis + 0.3 || dis2 <= this->kickDis + 0.3)
         {
             break;
         }
