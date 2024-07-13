@@ -49,8 +49,8 @@ void Station::prog()
         !this->game->endLevel)
     {
         this->roll = new Roll(
-            intRand(1, 6),
-          //  1, 
+           // intRand(1, 6),
+            1, 
             (double)this->x + this->gabX / 2,
                               (double)this->y + this->gabY / 2);
         //this->game->rollsOnDelete.push_back(roll);

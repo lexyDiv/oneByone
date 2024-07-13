@@ -11,6 +11,8 @@ Image *roll10 = new Image("src/roll10.png");
 
 Image *ass = new Image("src/ass.png");
 
+Image *boo = new Image("src/boo.png");
+
 
 class Game;
 
@@ -95,6 +97,7 @@ public:
     void getDrawPosition();
     void move();
     void draw(int i = 0);
+    void booDraw();
     //////////////
     void getConorToSonRoll();
     Roll* getRightSonPoint();

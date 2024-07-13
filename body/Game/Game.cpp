@@ -6,6 +6,11 @@ Game::Game()
     {
         this->rollsOnDelete[i] = nullptr;
     }
+
+    for(int i = 0; i < this->rollsOnBooMaxSize; i ++)
+    {
+        this->rollsOnBoo[i] = nullptr;
+    }
 }
 
 Game::~Game()
@@ -55,6 +60,7 @@ void Game::draw()
         this->flyingRoll->draw();
     }
 
+    this->rollsOnBooDraw();
     //////////////////// groups
 
     // for(int i = 0; i < this->groups.size(); i++)

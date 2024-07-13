@@ -85,7 +85,9 @@ void Game::groupsProg()
             for (int k = 0; k < group->arr.size(); k++)
             {
                 Roll *roll = group->arr[k];
-                roll->localDel = (k + 1) * 10;
+                roll->localDel = (k + 1) * 5 + 90;
+                this->pushRollsOnBoo(roll);
+                // console.log("pushOnBoo");
                 // console.log("roll type = " + to_string(roll->type));
             }
         }
@@ -118,7 +120,7 @@ void Game::rollsWithLocalDelProg()
         }
         else if (roll->localDel == 1 && roll->show)
         {
-            roll->show = false;
+            // roll->show = false;
             roll->leftRoll->rightRoll = roll->rightRoll;
             if (roll->rightRoll != nullptr)
             {
@@ -127,6 +129,84 @@ void Game::rollsWithLocalDelProg()
             }
             roll->localDel = -1;
             roll->del = true; // ok
+        }
+    }
+}
+
+void Game::pushRollsOnBoo(Roll *roll)
+{
+    for (int i = 0; i < this->rollsOnBooMaxSize; i++)
+    {
+        if (this->rollsOnBoo[i] == nullptr)
+        {
+            this->rollsOnBoo[i] = roll;
+            break;
+        }
+    }
+}
+
+void Game::rollsOnBooProg()
+{
+    for (int i = 0; i < this->rollsOnBooMaxSize; i++)
+    {
+        Roll *roll = this->rollsOnBoo[i];
+        if (roll != nullptr && !roll->del)
+        {
+
+            if (roll->localDel > 60)
+            {
+                if (roll->localDel == 95)
+                {
+                    roll->show = false;
+                    roll->animW = 123;
+                    roll->animH = 125;
+                    roll->animX = 123 * 2;
+                    roll->animY = 0;
+                }
+                else if (roll->localDel < 95)
+                {
+                   // if (roll->localDel % 2 == 0)
+                  //  {
+                        roll->animX += 123;
+                        if (roll->animX == 123 * 7)
+                        {
+                            roll->animX = 0;
+                            roll->animY += 125;
+                        }
+                   // }
+                }
+                roll->localDel--;
+            }
+            else
+            {
+                roll->leftRoll->rightRoll = roll->rightRoll;
+                if (roll->rightRoll != nullptr)
+                {
+                    roll->rightRoll->leftRoll = roll->leftRoll;
+                    roll->rightRoll->speed = 0;
+                }
+                roll->del = true;
+                this->rollsOnBoo[i] = nullptr;
+            }
+        }
+        else
+        {
+            this->rollsOnBoo[i] = nullptr;
+        }
+        roll = nullptr;
+    }
+}
+
+void Game::rollsOnBooDraw()
+{
+
+    for (int i = 0; i < this->rollsOnBooMaxSize; i++)
+    {
+        Roll *roll = this->rollsOnBoo[i];
+        if (roll != nullptr && roll->localDel < 95)
+        {
+           // this->pause = true;
+            roll->booDraw();
         }
     }
 }

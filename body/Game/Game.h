@@ -14,6 +14,11 @@ void getGroups();
 void groupsProg();
 void deleteGroups();
 void rollsWithLocalDelProg();
+int rollsOnBooMaxSize = 50;
+Roll *rollsOnBoo[50];
+void pushRollsOnBoo(Roll *roll);
+void rollsOnBooProg();
+void rollsOnBooDraw();
 
 
 /////////////////////////////////////////// groopps
