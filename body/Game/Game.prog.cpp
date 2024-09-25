@@ -155,7 +155,7 @@ void Game::newRollCreating()
         if (this->check < 2)
         {
             this->impulseRollCreate();
-            // this->check++;
+            //this->check++;
         }
     }
 }
@@ -237,6 +237,7 @@ void Game::impulseRollCreate()
     newRoll->leftCont = head;
     newRoll->rightCont = head->right;
     newRoll->game = this;
+    
     if (this->rolls2.size() > 1)
     {
         Roll *secondRoll = this->rolls2[1];
